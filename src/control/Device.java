@@ -1,11 +1,13 @@
 package control;
 
 import model.Consume;
+import model.Home;
 
 public class Device extends Thread {
 	private String deviceName;
 	private int code; //incrementale
 	private Consume consume;
+	private Home md;
 	private int timer; //contatore del tempo 
 	
 	/**
@@ -14,10 +16,11 @@ public class Device extends Thread {
 	 * @param code
 	 * @param consume
 	 */
-	public Device(String deviceName, int code, Consume consume) {
+	public Device(String deviceName, int code, Consume consume, Home md) {
 		this.deviceName= deviceName;
 		this.code = code;
 		this.consume = consume;
+		this.md = md;
 		this.timer = 0;
 		this.start();
 	}
@@ -62,6 +65,18 @@ public class Device extends Thread {
 	 */
 	protected void incrTimer() {
 		timer++;
+	}
+	
+	protected void keepTime() {
+		try {
+			sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Home getMd() {
+		return md;
 	}
 	
 	
