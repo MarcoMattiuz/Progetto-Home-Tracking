@@ -1,5 +1,7 @@
 package view;
 
-public class View {
+import java.util.Map;
 
+public class View {
+	
 }
