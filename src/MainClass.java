@@ -1,21 +1,17 @@
-<<<<<<< Updated upstream
+import control.Controller;
 import model.Home;
 import view.Window;
-=======
-import view.Finestra;
->>>>>>> Stashed changes
+import view.Window;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-<<<<<<< Updated upstream
-		Window frame = new Window();
-		Home model = new Home("marco davide");
-		Controller controller = new Controller(model, frame.getMain_Pane);
-=======
-		Finestra f = new Finestra();
->>>>>>> Stashed changes
+//		Window frame = new Window();
+//		Home model = new Home("marco davide", null);
+//		Controller controller = new Controller(model, null);
+//		Window f = new Window();
+		Window f = new Window();
 	}
 
 }
