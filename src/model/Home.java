@@ -7,15 +7,19 @@ public class Home {
 	private String house_holder;
 	private Map<String, Room> rooms;
 	private Contract contract;
-	private double dailyConsumption;
-	private double presentConsumption;
+	private double dailyConsumption_Kwh;
+	private double presentConsumption_Kwh;
+	private double dailyConsumption_Gmc;
+	private double dailyConsumption_Lh;
 	
 	public Home(String house_holder, Contract contract) {
 		this.house_holder = house_holder;
 		this.contract = contract;
 		this.rooms = new HashMap<String, Room>();
-		this.dailyConsumption = 0;
-		this.presentConsumption = 0;
+		this.dailyConsumption_Kwh = 0;
+		this.presentConsumption_Kwh = 0;
+		this.dailyConsumption_Gmc = 0;
+		this.dailyConsumption_Lh = 0;
 	}
 
 	public String getHouse_holder() {
@@ -28,21 +32,21 @@ public class Home {
 	}
 
 
-	public double getDailyConsumption() {
-		return dailyConsumption;
+	public double getDailyConsumptionKwh() {
+		return dailyConsumption_Kwh;
 	}
 
-	public void setDailyConsumption(double consumption) {
-		this.dailyConsumption += consumption;
+	public void setDailyConsumptionKwh(double consumption) {
+		this.dailyConsumption_Kwh = consumption;
 	}
 
-	public double getPresentConsumption() {
-		return presentConsumption;
+	public double getPresentConsumptionKwh() {
+		return presentConsumption_Kwh;
 	}
 
 
-	public void setPresentConsumption(double consumption) {
-		this.presentConsumption += consumption;
+	public void setPresentConsumptionKwh(double consumption) {
+		this.presentConsumption_Kwh = consumption;
 	}
 	
 	/**
@@ -50,7 +54,7 @@ public class Home {
 	 * @return true (if presentConsumption >= contract.getMax_kw()) false (if presentConsumption < contract.getMax_kw()) 
 	 */
 	public boolean CheckLimitKwh() {
-		return presentConsumption >= contract.getMax_kw() ? true : false;
+		return presentConsumption_Kwh >= contract.getMax_kw() ? true : false;
 	}
 	
 	
