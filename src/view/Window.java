@@ -26,7 +26,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setType(Type.POPUP);
 		setBackground(Color.WHITE);
-		setBounds(100, 100, 611, 396);
+		setBounds(100, 100, 437, 266);
 		addWindowListener(this);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
@@ -55,8 +55,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		if(JOptionPane.showConfirmDialog(this, "Desideri uscire?")==JOptionPane.YES_OPTION)
-			System.exit(0); else setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		
 	}
 
 	@Override
@@ -66,13 +65,12 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(JOptionPane.showConfirmDialog(this, "Desideri uscire?")==JOptionPane.YES_OPTION)
+			System.exit(0); else setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

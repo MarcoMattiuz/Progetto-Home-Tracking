@@ -26,6 +26,7 @@ import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
 import javax.swing.JCheckBox;
 import java.awt.Color;
+import javax.swing.JEditorPane;
 
 public class Main_Panel extends JPanel {
 	private JTextField textField;
@@ -53,9 +54,11 @@ public class Main_Panel extends JPanel {
 		JLabel lblNewLabel_2 = new JLabel("Solar Panels");
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Yes");
+		chckbxNewCheckBox.setBorder(null);
 		chckbxNewCheckBox.setBackground(Color.WHITE);
 		
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("No");
+		chckbxNewCheckBox_1.setBorder(null);
 		chckbxNewCheckBox_1.setBackground(Color.WHITE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -63,11 +66,11 @@ public class Main_Panel extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+						.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-								.addGroup(Alignment.LEADING, groupLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 									.addComponent(lblNewLabel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 									.addComponent(lblNewLabel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 							.addGap(18)
@@ -99,7 +102,7 @@ public class Main_Panel extends JPanel {
 							.addComponent(chckbxNewCheckBox, 0, 0, Short.MAX_VALUE)
 							.addComponent(chckbxNewCheckBox_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
 					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
