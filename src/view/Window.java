@@ -22,22 +22,25 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	private JButton close;
 
 	public Window() {
-		setType(Type.POPUP);
 		setResizable(false);
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		setType(Type.POPUP);
 		setBackground(Color.WHITE);
 		setBounds(100, 100, 611, 396);
 		addWindowListener(this);
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Menu");
+		mnNewMenu.setBackground(Color.DARK_GRAY);
 		menuBar.add(mnNewMenu);
 		
-		close = new JButton("New button");
+		close = new JButton("Exit");
 		close.addActionListener((ActionListener) this);
 		mnNewMenu.add(close);
 		contentPane = new Main_Panel();
-		contentPane.setBackground(Color.GRAY);
+		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
 		setTitle("Home Tracking 1.0");
 		setVisible(true);
