@@ -4,19 +4,21 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.Controller;
+import control.Device;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
+
 import java.awt.GridLayout;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Choice;
 import java.awt.Canvas;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollBar;
 import javax.swing.JProgressBar;
@@ -32,10 +34,14 @@ public class Main_Panel extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 
+	private Controller contr;
+
 	/**
 	 * Create the panel.
 	 */
-	public Main_Panel() {
+	public Main_Panel(Controller controller) {
+		this.contr = controller;
+
 		setBounds(100, 100, 450, 300);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -107,6 +113,8 @@ public class Main_Panel extends JPanel {
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
+
+	
 
 	}
 }

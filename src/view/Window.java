@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import control.Controller;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -18,10 +21,11 @@ import javax.swing.JButton;
 
 public class Window extends JFrame implements ActionListener,WindowListener{
 
-	private JPanel contentPane;
+	private Main_Panel contentPane;
 	private JButton close;
-
-	public Window() {
+	private Controller controller;
+	public Window(Controller controller) {
+		this.controller = controller;
 		setResizable(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setType(Type.POPUP);
@@ -39,7 +43,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		close = new JButton("Exit");
 		close.addActionListener((ActionListener) this);
 		mnNewMenu.add(close);
-		contentPane = new Main_Panel();
+		contentPane = new Main_Panel(this.controller);
 		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
 		setTitle("Home Tracking 1.0");
