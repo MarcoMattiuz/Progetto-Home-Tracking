@@ -6,6 +6,7 @@ import java.util.Map;
 public class Home {
 	private String house_holder;
 	private Map<String, Room> rooms;
+
 	private Contract contract;
 	private double dailyConsumption_Kwh;
 	private double presentConsumption_Kwh;
@@ -20,6 +21,19 @@ public class Home {
 		this.presentConsumption_Kwh = 0;
 		this.setDailyConsumption_Gmc(0);
 		this.setDailyConsumption_Lh(0);
+	}
+
+	private static double roundAvoid(double value, int places) {
+		double scale = Math.pow(10, places);
+		return Math.round(value * scale) / scale;
+	}
+
+	public void addRoom(String roomName, Room room) {
+		rooms.put(roomName, room);
+	}
+
+	public Room getRoom(String key) {
+		return rooms.get(key);
 	}
 
 	public String getHouse_holder() {
@@ -39,33 +53,41 @@ public class Home {
 
 	public void setDailyConsumptionKwh(double consumption) {
 		this.dailyConsumption_Kwh = consumption;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
 	}
 
 	public void addToDailyConsumptionKhw(double consumption) {
 		this.dailyConsumption_Kwh += consumption;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
 	}
 
 	public void takeFromDailyConsumptionKhw(double consumption) {
 		this.dailyConsumption_Kwh -= consumption;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
 	}
 
 	public double getPresentConsumptionKwh() {
 		return presentConsumption_Kwh;
+
 	}
 
 	public void setPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh = consumption;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
 	}
 
 	public void addToPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh += consumption;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
 	}
 
 	public void takeFromPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh -= consumption;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
 	}
 
 	public boolean CheckLimitKwh() {
+		// se true tutti i thread devono essre interrotti
 		return presentConsumption_Kwh >= contract.getMax_kw() ? true : false;
 	}
 
@@ -78,8 +100,7 @@ public class Home {
 	}
 
 	/**
-	 * Gmc
-	 * GAS
+	 * Gmc GAS
 	 */
 	public double getDailyConsumption_Gmc() {
 		return dailyConsumption_Gmc;
@@ -87,14 +108,19 @@ public class Home {
 
 	public void setDailyConsumption_Gmc(double dailyConsumption_Gmc) {
 		this.dailyConsumption_Gmc = dailyConsumption_Gmc;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
 	}
 
 	public void addToDailyConsumption_Gmc(double dailyConsumption_Gmc) {
 		this.dailyConsumption_Gmc += dailyConsumption_Gmc;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
+
 	}
 
 	public void takeFromDailyConsumption_Gmc(double dailyConsumption_Gmc) {
 		this.dailyConsumption_Gmc -= dailyConsumption_Gmc;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
+
 	}
 
 	public double getDailyConsumption_Lh() {
@@ -103,14 +129,20 @@ public class Home {
 
 	public void setDailyConsumption_Lh(double dailyConsumption_Lh) {
 		this.dailyConsumption_Lh = dailyConsumption_Lh;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
+
 	}
-	
+
 	public void addToDailyConsumption_Lh(double dailyConsumption_Lh) {
 		this.dailyConsumption_Lh += dailyConsumption_Lh;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
+
 	}
-	
+
 	public void takeFromDailyConsumption_Lh(double dailyConsumption_Lh) {
 		this.dailyConsumption_Lh -= dailyConsumption_Lh;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
+
 	}
 
 }

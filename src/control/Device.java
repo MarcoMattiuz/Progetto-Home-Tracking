@@ -3,7 +3,7 @@ package control;
 import model.Consume;
 import model.Home;
 
-public class Device extends Thread {
+public abstract class Device extends Thread {
 	private String deviceName;
 	private int code; //incrementale
 	private Consume consume;
@@ -22,7 +22,7 @@ public class Device extends Thread {
 		this.consume = consume;
 		this.md = md;
 		this.timer = 0;
-		this.start();
+	
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class Device extends Thread {
 	
 	protected void keepTime() {
 		try {
-			sleep(500);
+			sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +78,10 @@ public class Device extends Thread {
 	public Home getMd() {
 		return md;
 	}
+
+	public abstract void toggle();
+
+	public abstract boolean isToggle();
 	
 	
 }

@@ -4,26 +4,23 @@ import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 import model.Consume;
+import model.Contract;
 import model.Home;
+import model.Room;
 
 public class Controller extends Thread{
 
-	private Home md;
-	public OnOffDevice ligth;
-	public ConstantDevice fridge;
-	public TimerDevice oven;
-	private Semaphore sem;
-	public OnOffDevice lampada;
-	private TimerDevice microonde;
-	public Controller(Home md, Semaphore sem) {
-		this.md = md;
-		this.sem = sem;
-		ligth = new OnOffDevice("Piantana", 0, new Consume(0.06,0,0,md.getContract()), md, sem);
-		lampada = new OnOffDevice("lampada", 0, new Consume(0.06,0,0,md.getContract()), md, sem);
-		fridge = new ConstantDevice("frigo", 0, new Consume(0.3, 0, 0, md.getContract()), md, sem);
-		oven = new TimerDevice("forno", 0, new Consume(1.5, 0, 0, md.getContract()), md, sem);
-		microonde = new TimerDevice("microonde", 0, new Consume(1.5, 0, 0, md.getContract()), md, sem);
-		oven.setTimer(40);
+	public Home home;
+	private Semaphore ligthSem; ////////////////
+	private Semaphore fridgeSem;
+	public Controller(Home home) {
+		this.home = home;
+		this.ligthSem = new Semaphore(1);
+		this.fridgeSem = new Semaphore(1);
+		home.addRoom("1", new Room("soggiorno"));
+		home.getRoom("1").addDevice(new Ligths("luce",1, new Consume(0.1, 0, 0, home.getContract()), home, ligthSem));
+		home.getRoom("1").addDevice(new Fridges("frigo",2, new Consume(0.4, 0, 0, home.getContract()), home, fridgeSem));
+		
 	}
 
 }
