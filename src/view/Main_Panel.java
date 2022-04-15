@@ -116,5 +116,16 @@ public class Main_Panel extends JPanel {
 
 	
 
+		JButton toggle = new JButton("toggle");
+		toggle.addActionListener(new ActionListener() {
+			public synchronized void actionPerformed(ActionEvent e) {
+				// TEST
+				Device luce = contr.home.getRoom("1").getDeviceByCode(1);
+				luce.toggle();
+				System.out.println("TOGGLE:"+luce.isToggle());
+			}
+		});
+		add(toggle, BorderLayout.EAST);
+
 	}
 }

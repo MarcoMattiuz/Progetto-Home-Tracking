@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 import control.Controller;
-import control.Ligths;
+import control.ElettricOnOff;
 import model.Consume;
 import model.Contract;
 import model.Home;
