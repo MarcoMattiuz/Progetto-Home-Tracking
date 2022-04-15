@@ -1,14 +1,12 @@
 package control;
 
-import java.util.concurrent.Semaphore;
-
 import model.Consume;
 import model.Home;
 
-public class Ligths extends Device {
+public class GasOvens extends Device {
 	private boolean firstOn;
 
-	public Ligths(String deviceName, int code, Consume consume, Home md) {
+	public GasOvens(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, false);
 		this.firstOn = true;
 	}
@@ -35,7 +33,7 @@ public class Ligths extends Device {
 			if (toggle) {
 				System.out.println("CURRENTCONSUMPITON::" + getMd().getPresentConsumptionKwh());
 				if (getTimer() % 5 == 0) {
-					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh(), this);
+					getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
 					System.out.println("--" + getDeviceName() + "--");
 				}
 				System.out.println("Timer: " + getTimer());
@@ -51,5 +49,4 @@ public class Ligths extends Device {
 			}
 		}
 	}
-
 }

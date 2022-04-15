@@ -9,19 +9,20 @@ public abstract class Device extends Thread {
 	private Consume consume;
 	private Home md;
 	private int timer; //contatore del tempo 
-	
+	protected boolean toggle;
 	/**
 	 * Constructor
 	 * @param deviceName
 	 * @param code
 	 * @param consume
 	 */
-	public Device(String deviceName, int code, Consume consume, Home md) {
+	public Device(String deviceName, int code, Consume consume, Home md, boolean toggle) {
 		this.deviceName= deviceName;
 		this.code = code;
 		this.consume = consume;
 		this.md = md;
 		this.timer = 0;
+		this.toggle = toggle;
 	
 	}
 	
@@ -79,9 +80,20 @@ public abstract class Device extends Thread {
 		return md;
 	}
 
-	public abstract void toggle();
+	public void toggle() {
+		toggle = !toggle;
+		if (toggle) {
+			setTimer(0);
+			md.addToPresentConsumptionKwh(this.getConsume().getKwh());
+		} else {
+			md.takeFromPresentConsumptionKwh(this.getConsume().getKwh());
+		}
+	}
+	
 
-	public abstract boolean isToggle();
+	public boolean isToggle() {
+		return toggle;
+	}
 	
 	
 }
