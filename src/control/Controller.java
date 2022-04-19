@@ -2,14 +2,15 @@ package control;
 
 import java.util.Scanner;
 import java.util.concurrent.Semaphore;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.Consume;
 import model.Contract;
 import model.Home;
 import model.Room;
 import view.Main_Panel;
 
-public class Controller extends Thread {
+public class Controller extends Thread implements ActionListener {
 
 	private Home home;
 	private Semaphore ligthSem; ////////////////
@@ -23,5 +24,11 @@ public class Controller extends Thread {
 		home.getRoom("1").addDevice(new Ligths("luce", 1, new Consume(0.1, 0, 0, home.getContract()), home, ligthSem));
 		home.getRoom("1")
 				.addDevice(new Fridges("frigo", 2, new Consume(0.4, 0, 0, home.getContract()), home, fridgeSem));
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
