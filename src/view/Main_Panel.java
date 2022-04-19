@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -30,18 +33,18 @@ import javax.swing.JCheckBox;
 import java.awt.Color;
 import javax.swing.JEditorPane;
 
-public class Main_Panel extends JPanel {
+public class Main_Panel extends JPanel implements ActionListener {
 	private JTextField textField;
 	private JTextField textField_1;
 
 	private Controller contr;
+	private JProgressBar progressBar;
 
 	/**
 	 * Create the panel.
 	 */
 	public Main_Panel(Controller controller) {
 		this.contr = controller;
-
 		setBounds(100, 100, 450, 300);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -52,7 +55,7 @@ public class Main_Panel extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("Room's Number");
 		
-		JProgressBar progressBar = new JProgressBar();
+		progressBar = new JProgressBar();
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -72,7 +75,6 @@ public class Main_Panel extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(progressBar, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
@@ -87,8 +89,8 @@ public class Main_Panel extends JPanel {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(chckbxNewCheckBox, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(chckbxNewCheckBox_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED, 130, Short.MAX_VALUE)))
+									.addComponent(chckbxNewCheckBox_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE))))
+						.addComponent(progressBar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -108,12 +110,12 @@ public class Main_Panel extends JPanel {
 							.addComponent(chckbxNewCheckBox, 0, 0, Short.MAX_VALUE)
 							.addComponent(chckbxNewCheckBox_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
 					.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
-
+		
 	
 
 		JButton toggle = new JButton("toggle");
@@ -127,5 +129,11 @@ public class Main_Panel extends JPanel {
 		});
 		add(toggle, BorderLayout.EAST);
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
