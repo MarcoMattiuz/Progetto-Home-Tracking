@@ -36,7 +36,7 @@ import java.awt.Dimension;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.DebugGraphics;
 
-public class homePanel extends JPanel {
+public class homePanel extends JPanel implements ActionListener{
 
 	/**
 	 * Create the panel.
@@ -44,12 +44,18 @@ public class homePanel extends JPanel {
 	Controller controller;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton yesBtn;
+	private JButton noBtn;
+	private JButton backBtn;
+	private JButton proceedBtn;
+	
+	int flag;
 	
 	public homePanel(Controller controller) {
 		setSize(new Dimension(430, 244));
 		this.controller=controller;
 		setLayout(new BorderLayout(0, 0));
-		
+		flag=1;
 		JLabel titleLabel = new JLabel("CREATING A NEW HOME -> HOUSE");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -83,11 +89,13 @@ public class homePanel extends JPanel {
 		JLabel lblNewLabel_3 = new JLabel("Solar Panels");
 		panel.add(lblNewLabel_3, "cell 0 3");
 		
-		JButton btnNewButton = new JButton("Yes");
-		panel.add(btnNewButton, "flowx,cell 3 3");
+		yesBtn = new JButton("Yes");
+		panel.add(yesBtn, "flowx,cell 3 3");
+		yesBtn.addActionListener(this);
 		
-		JButton btnNewButton_1 = new JButton("No");
-		panel.add(btnNewButton_1, "cell 3 3");
+		noBtn = new JButton("No");
+		panel.add(noBtn, "cell 3 3");
+		noBtn.addActionListener(this);
 		
 		JProgressBar progressBar = new JProgressBar();
 		panel.add(progressBar, "cell 0 7 4 1,growx");
@@ -99,13 +107,64 @@ public class homePanel extends JPanel {
 		splitPane.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		panel.add(splitPane, "cell 0 5 4 1,alignx center,growy");
 		
-		JButton btnNewButton_2 = new JButton("Back");
-		btnNewButton_2.setMinimumSize(new Dimension(71, 23));
-		btnNewButton_2.setMaximumSize(new Dimension(71, 23));
-		splitPane.setLeftComponent(btnNewButton_2);
+		backBtn = new JButton("Back");
+		backBtn.setMinimumSize(new Dimension(71, 23));
+		backBtn.setMaximumSize(new Dimension(71, 23));
+		splitPane.setLeftComponent(backBtn);
 		
-		JButton btnNewButton_3 = new JButton("Proceed");
-		splitPane.setRightComponent(btnNewButton_3);
+		proceedBtn = new JButton("Proceed");
+		splitPane.setRightComponent(proceedBtn);
 
+	}
+
+	
+	
+	public JButton getBackBtn() {
+		return backBtn;
+	}
+
+
+
+	public void setBackBtn(JButton backBtn) {
+		this.backBtn = backBtn;
+	}
+
+
+
+	public JButton getProceedBtn() {
+		return proceedBtn;
+	}
+
+
+
+	public void setProceedBtn(JButton proceedBtn) {
+		this.proceedBtn = proceedBtn;
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==yesBtn) {
+			if(flag==0) {
+				noBtn.show();
+				flag=1;
+				yesBtn.setSelected(false);
+			}else {
+				noBtn.hide();
+				flag=0;
+				yesBtn.setSelected(true);
+			}
+		}else {
+			if(flag==0) {
+				yesBtn.show();
+				noBtn.setSelected(false);
+				flag=1;
+			}else {
+				yesBtn.hide();
+				noBtn.setSelected(true);
+				flag=0;
+			}
+		}
 	}
 }
