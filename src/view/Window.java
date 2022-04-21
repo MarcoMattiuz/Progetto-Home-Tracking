@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JRadioButton;
 
 public class Window extends JFrame implements ActionListener,WindowListener{
 	
@@ -35,18 +36,19 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	private JPanel contentPane;
 	private JPanel homePanel;
 	private JPanel contractPanel;
-	private JButton home_btn;
+	private JPanel noHousePanel;
+	private JButton homeBtn;
 	private Controller controller;
-	private JButton rooms_btn;
-	private JButton exit_btn;
+	private JButton roomsBtn;
+	private JButton exitBtn;
 	private JButton btnNewButton;
-	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
-	private JButton btnNewButton_4;
+	private JButton optBtn;
 	private JMenu menu;
 	
 	public Window(Controller controller) {
+		noHousePanel=new NoHousePanel(controller);
 		title="HOME TRACKING V1";
 		this.controller=controller;
 		setVisible(true);
@@ -74,27 +76,22 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		menu.setBackground(Color.DARK_GRAY);
 		menuBar.add(menu);
 		
-		home_btn = new JButton("Home");
-		home_btn.setMaximumSize(new Dimension(70, 23));
-		home_btn.setMinimumSize(new Dimension(70, 23));
-		home_btn.addActionListener((ActionListener) this);
-		menu.add(home_btn);
+		homeBtn = new JButton("Home");
+		homeBtn.setMaximumSize(new Dimension(70, 23));
+		homeBtn.setMinimumSize(new Dimension(70, 23));
+		homeBtn.addActionListener((ActionListener) this);
+		menu.add(homeBtn);
 		
-		rooms_btn = new JButton("Rooms");
-		rooms_btn.setMinimumSize(new Dimension(70, 23));
-		rooms_btn.setMaximumSize(new Dimension(70, 23));
-		menu.add(rooms_btn);
-		rooms_btn.addActionListener(this);
+		roomsBtn = new JButton("Rooms");
+		roomsBtn.setMinimumSize(new Dimension(70, 23));
+		roomsBtn.setMaximumSize(new Dimension(70, 23));
+		menu.add(roomsBtn);
+		roomsBtn.addActionListener(this);
 		
 		btnNewButton = new JButton("n");
 		btnNewButton.setMinimumSize(new Dimension(70, 23));
 		btnNewButton.setMaximumSize(new Dimension(70, 23));
 		menu.add(btnNewButton);
-		
-		btnNewButton_1 = new JButton("n");
-		btnNewButton_1.setMinimumSize(new Dimension(70, 23));
-		btnNewButton_1.setMaximumSize(new Dimension(70, 23));
-		menu.add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("n");
 		btnNewButton_2.setMinimumSize(new Dimension(70, 23));
@@ -106,18 +103,18 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		btnNewButton_3.setMaximumSize(new Dimension(70, 23));
 		menu.add(btnNewButton_3);
 		
-		btnNewButton_4 = new JButton("n");
-		btnNewButton_4.setMinimumSize(new Dimension(70, 23));
-		btnNewButton_4.setMaximumSize(new Dimension(70, 23));
-		menu.add(btnNewButton_4);
+		exitBtn = new JButton("Exit");
+		exitBtn.setMaximumSize(new Dimension(70, 70));
+		menu.add(exitBtn);
+		exitBtn.addActionListener(this);
 		
-		exit_btn = new JButton("Exit");
-		exit_btn.setMaximumSize(new Dimension(70, 70));
-		menu.add(exit_btn);
-		exit_btn.addActionListener(this);
+		optBtn = new JButton("Options");
+		optBtn.setMinimumSize(new Dimension(70, 23));
+		optBtn.setMaximumSize(new Dimension(70, 23));
+		menu.add(optBtn);
 		setTitle(title);
-		homePanel=new homePanel(controller);
-		contractPanel= new contractPanel(controller);
+		homePanel=new HomePanel(controller);
+		contractPanel= new ContractPanel(controller);
 		menu.hide();
 	}
 	
@@ -125,9 +122,13 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		throw new IllegalStateException();
 	}
 	
-	@Override
+	public void setNoHousePanel() {
+		setContentPane(noHousePanel);
+		
+	}
+	
 	public void windowOpened(WindowEvent e) {
-		setContentPane(new NoHousePanel(controller));
+		setNoHousePanel();
 		((NoHousePanel) getContentPane()).setTitleName(JOptionPane.showInputDialog("Welcome, please enter your name here"));
 	}
 
@@ -164,14 +165,14 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==home_btn) {
+		if(e.getSource()==homeBtn) {
 			setHomePanel();
-		}else if(e.getSource()==rooms_btn) {
+		}else if(e.getSource()==roomsBtn) {
 			setBounds(500, 500, 466, 307);
 			//getContentPane().setVisible(false);
 			setContentPane(contractPanel);
 			menu.setPopupMenuVisible(false);menu.setSelected(false);
-		}else if(e.getSource()==exit_btn) {
+		}else if(e.getSource()==exitBtn) {
 //			System.exit(EXIT_ON_CLOSE);
 			windowIconified(null);
 		}
@@ -193,9 +194,12 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	}
 	
 	public void setContractPanel() {
+		menu.show();
+		menu.setPopupMenuVisible(true);
+		menu.setPopupMenuVisible(false);
 		setBounds(500, 500, 466, 307);
-		getContentPane().setVisible(false);
-		setContentPane(new contractPanel(controller));
+	//	getContentPane().setVisible(false);
+		setContentPane(contractPanel);
 	}
 	
 	@Override

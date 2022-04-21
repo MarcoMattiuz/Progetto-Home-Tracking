@@ -32,6 +32,10 @@ public class Controller extends Thread implements ActionListener {
 	public void setWindow(Window win) {
 		this.window = win;
 	}
+	
+	private void generateHouse() {
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -39,6 +43,27 @@ public class Controller extends Thread implements ActionListener {
 			if(e.getSource()==((NoHousePanel) window.getContentPane()).getNameBtn()) {
 				window.setHomePanel();
 			}
+		
+		}else if(window.getContentPane() instanceof HomePanel) {
+			if(e.getSource()==((HomePanel) window.getContentPane()).getProceedBtn()) {
+				int progress = ((HomePanel) window.getContentPane()).getIndexProgressBar();
+				window.setContractPanel();
+				((ContractPanel) window.getContentPane()).setProgressBar(progress);
+			}else if(e.getSource()==((HomePanel) window.getContentPane()).getBackBtn()) {
+				window.setNoHousePanel();
+				window.getJMenuBar().getMenu(0).hide();	// Nascondo il menu
+			}	
+		
+		}else if(window.getContentPane() instanceof ContractPanel) {
+			if(e.getSource()==((ContractPanel) window.getContentPane()).getProceedBtn()) {
+				window.setContentPane(null);
+			}else if(e.getSource()==((ContractPanel) window.getContentPane()).getBackBtn()) {
+				int progress = ((ContractPanel) window.getContentPane()).getIndexProgressBar();
+				window.setHomePanel();
+				((HomePanel) window.getContentPane()).setProgressBar(progress);
+	
+			}	
 		}
+		
 	}
 }
