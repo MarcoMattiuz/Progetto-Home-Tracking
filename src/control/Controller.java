@@ -137,7 +137,7 @@ public class Controller extends Thread implements ActionListener {
 			}
 			}
 	}
-				// Fine Controlli su tutti i campi dati, si può creare la casa adesso
+				// Fine Controlli su tutti i campi dati, si puï¿½ creare la casa adesso
 //				window.setContentPane(null);
 		else if(e.getSource()==((ContractPanel) window.getContentPane()).getBackBtn()) {
 				int progress = ((ContractPanel) window.getContentPane()).getIndexProgressBar();
