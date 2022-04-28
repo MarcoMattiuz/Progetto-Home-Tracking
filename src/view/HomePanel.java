@@ -23,10 +23,6 @@ import javax.swing.Box;
 import java.awt.Component;
 import javax.swing.BoxLayout;
 import javax.swing.JProgressBar;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.border.BevelBorder;
 import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
@@ -39,8 +35,8 @@ import javax.swing.DebugGraphics;
 
 @SuppressWarnings("serial")
 
-public class HomePanel extends JPanel implements ActionListener,DocumentListener,ChangeListener{
-	
+public class HomePanel extends JPanel implements ActionListener, DocumentListener, ChangeListener {
+
 	private int progressState;
 	private Controller controller;
 	private JTextField holderNameTfd;
@@ -53,59 +49,59 @@ public class HomePanel extends JPanel implements ActionListener,DocumentListener
 	private JTextField houseNameTfd;
 	private JProgressBar progressBar;
 	private JSpinner spinner;
-	
+
 	public HomePanel(Controller controller) {
-		progressState=0;
+		progressState = 0;
 		setSize(new Dimension(430, 244));
-		this.controller=controller;
+		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));
-		flag=1;
-		flag2=false;
+		flag = 1;
+		flag2 = false;
 		JLabel titleLabel = new JLabel("CREATING A NEW HOME -> HOUSE");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
-		
+
 		JPanel panel = new JPanel();
 		panel.setSize(new Dimension(466, 400));
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[82.00][41.00][][349.00,grow]", "[30.00][30.00][30.00:30.00][30.00][10.00][:37.00:30px,grow][10.00][]"));
-		
+		panel.setLayout(new MigLayout("", "[82.00][41.00][][349.00,grow]",
+				"[30.00][30.00][30.00:30.00][30.00][10.00][:37.00:30px,grow][10.00][]"));
+
 		JLabel holderNameLabel = new JLabel("Holder Name");
 		panel.add(holderNameLabel, "cell 0 0");
-		
+
 		holderNameTfd = new JTextField();
 		holderNameTfd.getDocument().addDocumentListener(this);
-		
+
 		panel.add(holderNameTfd, "cell 3 0,growx,aligny center");
 		holderNameTfd.setColumns(10);
-		
+
 		JLabel houseNameLabel = new JLabel("House Name");
 		panel.add(houseNameLabel, "cell 0 1");
-		
+
 		houseNameTfd = new JTextField();
 		panel.add(houseNameTfd, "cell 3 1,growx");
 		houseNameTfd.setColumns(10);
 		houseNameTfd.getDocument().addDocumentListener(this);
 		JLabel rnLabel = new JLabel("Rooms Number");
 		panel.add(rnLabel, "cell 0 2");
-		
+
 		spinner = new JSpinner();
 		panel.add(spinner, "cell 3 2,alignx left,aligny center");
-		
+
 		JLabel sPLabel = new JLabel("Solar Panels");
 		panel.add(sPLabel, "cell 0 3");
-		
+
 		yesBtn = new JButton("Yes");
 		panel.add(yesBtn, "flowx,cell 3 3");
 
-		
 		noBtn = new JButton("No");
 		panel.add(noBtn, "cell 3 3");
-		
+
 		progressBar = new JProgressBar();
 		panel.add(progressBar, "cell 0 7 4 1,growx");
-		
+
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
@@ -132,133 +128,116 @@ public class HomePanel extends JPanel implements ActionListener,DocumentListener
 		proceedBtn.addActionListener(this);
 		spinner.addChangeListener(this);
 	}
-	
+
 	public JButton getYesBtn() {
 		return yesBtn;
 	}
-
-
 
 	public void setYesBtn(JButton yesBtn) {
 		this.yesBtn = yesBtn;
 	}
 
-
-
 	public JButton getNoBtn() {
 		return noBtn;
 	}
-
-
 
 	public void setNoBtn(JButton noBtn) {
 		this.noBtn = noBtn;
 	}
 
-
-
 	public JButton getBackBtn() {
 		return backBtn;
 	}
-
-
 
 	public void setBackBtn(JButton backBtn) {
 		this.backBtn = backBtn;
 	}
 
-
-
 	public JButton getProceedBtn() {
 		return proceedBtn;
 	}
-
-
 
 	public void setProceedBtn(JButton proceedBtn) {
 		this.proceedBtn = proceedBtn;
 	}
 
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==yesBtn) {
-			if(flag==0) {
+		if (e.getSource() == yesBtn) {
+			if (flag == 0) {
 				noBtn.show();
-				flag=1;
+				flag = 1;
 				yesBtn.setSelected(false);
 				updateProgressBar(-1);
-			}else {
+			} else {
 				noBtn.hide();
-				flag=0;
+				flag = 0;
 				yesBtn.setSelected(true);
 				updateProgressBar(1);
 			}
-		}else if(e.getSource()==noBtn){
-			if(flag==0) {
+		} else if (e.getSource() == noBtn) {
+			if (flag == 0) {
 				yesBtn.show();
 				noBtn.setSelected(false);
 				updateProgressBar(-1);
-				flag=1;
-			}else {
+				flag = 1;
+			} else {
 				yesBtn.hide();
 				updateProgressBar(1);
 				noBtn.setSelected(true);
-				flag=0;
+				flag = 0;
 			}
-		}else if(e.getSource()==backBtn) {
-			//JOptionPane.showMessageDialog(this, "You can't go back!");
+		} else if (e.getSource() == backBtn) {
+			// JOptionPane.showMessageDialog(this, "You can't go back!");
 		}
 	}
-	
+
 	private void updateProgressBar(int i) {
-		if(i>=0) {
-			progressState+=12;
-		}else {
-			progressState-=12;
-			if(progressState<0) {
-				progressState=0;
+		if (i >= 0) {
+			progressState += 12;
+		} else {
+			progressState -= 12;
+			if (progressState < 0) {
+				progressState = 0;
 			}
 		}
 		progressBar.setValue(progressState);
 	}
-	
+
 	public void setProgressBar(int progressState) {
 		progressBar.setValue(progressState);
-		this.progressState=progressState;
+		this.progressState = progressState;
 	}
-	
+
 	public int getIndexProgressBar() {
 		return progressState;
 	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		if(e.getDocument()==holderNameTfd.getDocument()) {
-			if(holderNameTfd.getText().length()==1) {
-				updateProgressBar(1);	
-			}			
-		}else if(e.getDocument()==houseNameTfd.getDocument()) {
-			if(houseNameTfd.getText().length()==1) {
+		if (e.getDocument() == holderNameTfd.getDocument()) {
+			if (holderNameTfd.getText().length() == 1) {
+				updateProgressBar(1);
+			}
+		} else if (e.getDocument() == houseNameTfd.getDocument()) {
+			if (houseNameTfd.getText().length() == 1) {
 				updateProgressBar(1);
 			}
 		}
-	}		
-	
+	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
-		if(e.getDocument()==holderNameTfd.getDocument()) {
-			if(holderNameTfd.getText().compareTo("")==0) {
-				updateProgressBar(-1);	
-			}			
-		}else if(e.getDocument()==houseNameTfd.getDocument()) {
-			if(houseNameTfd.getText().compareTo("")==0) {
+		if (e.getDocument() == holderNameTfd.getDocument()) {
+			if (holderNameTfd.getText().compareTo("") == 0) {
+				updateProgressBar(-1);
+			}
+		} else if (e.getDocument() == houseNameTfd.getDocument()) {
+			if (houseNameTfd.getText().compareTo("") == 0) {
 				updateProgressBar(-1);
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -267,13 +246,13 @@ public class HomePanel extends JPanel implements ActionListener,DocumentListener
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		if(spinner.getValue().equals(0)) {
+		if (spinner.getValue().equals(0)) {
 			updateProgressBar(-1);
-			flag2=false;
-		}else {			
-			if(!flag2) {
-				updateProgressBar(1);	
-				flag2=true;
+			flag2 = false;
+		} else {
+			if (!flag2) {
+				updateProgressBar(1);
+				flag2 = true;
 			}
 		}
 	}
@@ -293,15 +272,15 @@ public class HomePanel extends JPanel implements ActionListener,DocumentListener
 	public int getRoomsNumber() {
 		return (int) spinner.getValue();
 	}
-	
+
 	public void setRoomsNumber(int number) {
 		spinner.setValue(number);
 	}
-	
-	public int wantSolarPanels() {		// 1 Vuole, 0 non selezionato, -1 non vuole
-		if(yesBtn.isSelected()&&!noBtn.isSelected()) {
+
+	public int wantSolarPanels() { // 1 Vuole, 0 non selezionato, -1 non vuole
+		if (yesBtn.isSelected() && !noBtn.isSelected()) {
 			return 1;
-		}else if(!yesBtn.isSelected()&&noBtn.isSelected()) {
+		} else if (!yesBtn.isSelected() && noBtn.isSelected()) {
 			return -1;
 		}
 		return 0;

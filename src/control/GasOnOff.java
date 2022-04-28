@@ -32,7 +32,7 @@ public class GasOnOff extends Device {
 
 			if (toggle) {
 				System.out.println("CURRENTCONSUMPITON::" + getMd().getPresentConsumptionKwh());
-				if (getTimer() % 5 == 0) {
+				if (getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
 					System.out.println("--" + getDeviceName() + "--");
 				}
@@ -42,7 +42,7 @@ public class GasOnOff extends Device {
 				keepTime();
 			} else {
 				try {
-					sleep(1000);
+					sleep(500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

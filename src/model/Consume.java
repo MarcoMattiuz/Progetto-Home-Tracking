@@ -4,14 +4,12 @@ public class Consume {
 	private double kwh; 
 	private double gmc;
 	private double lh;
-	private Contract contract;
 	
 	
-	public Consume(double kwh, double gmc, double lh, Contract contract) {
+	public Consume(double kwh, double gmc, double lh) {
 		this.kwh = kwh;
 		this.gmc = gmc;
 		this.lh = lh;
-		this.contract = contract;
 	}
 	
 	public double getKwh() {
@@ -22,9 +20,6 @@ public class Consume {
 	}
 	public double getLh() {
 		return lh;
-	}
-	public Contract getContract() {
-		return contract;
 	}
 	
 	

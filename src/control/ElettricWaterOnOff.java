@@ -1,18 +1,17 @@
 package control;
 
-import java.util.concurrent.Semaphore;
-
 import model.Consume;
 import model.Home;
 
-public class ElettricOnOff extends Device {
+public class ElettricWaterOnOff extends Device {
 	private boolean firstOn;
-
-	public ElettricOnOff(String deviceName, int code, Consume consume, Home md) {
+	
+	public ElettricWaterOnOff(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, false);
 		this.firstOn = true;
 	}
-
+	
+	
 	@Override
 	public void toggle() {
 		toggle = !toggle;
@@ -35,10 +34,10 @@ public class ElettricOnOff extends Device {
 				System.out.println("CURRENTCONSUMPITON::" + getMd().getPresentConsumptionKwh());
 				if (getTimer() % hour == 0) {
 					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
+					getMd().addToDailyConsumption_Lh(this.getConsume().getKwh());
 					System.out.println("--" + getDeviceName() + "--");
 				}
 				System.out.println("Timer: " + getTimer());
-//				System.out.println(getDeviceName()+":: "+getMd().getDailyConsumptionKwh());
 				incrTimer();
 				keepTime();
 			} else {

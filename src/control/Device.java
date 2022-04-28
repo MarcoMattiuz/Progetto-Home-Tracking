@@ -10,6 +10,7 @@ public abstract class Device extends Thread {
 	private Home md;
 	private int timer; //contatore del tempo 
 	protected boolean toggle;
+	protected int hour;
 	/**
 	 * Constructor
 	 * @param deviceName
@@ -23,7 +24,7 @@ public abstract class Device extends Thread {
 		this.md = md;
 		this.timer = 0;
 		this.toggle = toggle;
-	
+		this.hour = 60;
 	}
 	
 	/**

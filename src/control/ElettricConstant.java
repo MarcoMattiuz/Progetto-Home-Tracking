@@ -17,7 +17,7 @@ public class ElettricConstant extends Device {
 	public void run() {
 		while (true) {
 			System.out.println("CURRENTCONSUMPITON::"+getMd().getPresentConsumptionKwh());
-			if (getTimer() % 5 == 0) {
+			if (getTimer() % hour == 0) {
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 				System.out.println("--" + getDeviceName() + "--");
 			}

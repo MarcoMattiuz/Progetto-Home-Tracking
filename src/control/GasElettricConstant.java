@@ -10,12 +10,12 @@ public class GasElettricConstant extends Device {
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
 		this.start();
 	}
-
+	//non si puo spegnere
 	@Override
 	public void run() {
 		while (true) {
 			System.out.println("CURRENTCONSUMPITON::"+getMd().getPresentConsumptionKwh());
-			if (getTimer() % 5 == 0) {
+			if (getTimer() % hour == 0) {
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 				getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
 				System.out.println("--" + getDeviceName() + "--");
@@ -24,7 +24,6 @@ public class GasElettricConstant extends Device {
 //			System.out.println(getDeviceName() + ":: " + getMd().getDailyConsumptionKwh());
 			incrTimer();
 			keepTime();
-
 		}
 	}
 }

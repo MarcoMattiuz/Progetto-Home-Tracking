@@ -28,7 +28,7 @@ public class WaterOnOff extends Device {
 	public void run() {
 		while (true) {
 			if(toggle) {
-				if(getTimer() % 5 == 0) {
+				if(getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
 					System.out.println("--"+getDeviceName()+"--");
 				}
@@ -37,7 +37,7 @@ public class WaterOnOff extends Device {
 				keepTime();
 			}else {
 				try {
-					sleep(1000);
+					sleep(500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

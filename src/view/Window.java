@@ -2,10 +2,9 @@ package view;
 
 import java.awt.*;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import com.jgoodies.forms.builder.PanelBuilder;
 
 import control.Controller;
 import model.Home;

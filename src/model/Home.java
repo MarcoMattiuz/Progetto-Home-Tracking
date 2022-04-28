@@ -8,12 +8,15 @@ import control.Device;
 public class Home {
 	private String house_holder;
 	private Map<String, Room> rooms;
-
 	private Contract contract;
 	private double dailyConsumption_Kwh;
 	private double presentConsumption_Kwh;
 	private double dailyConsumption_Gmc;
 	private double dailyConsumption_Lh;
+	private double money_kwh;
+
+	private double money_Gmh;
+	private double money_Lh;
 
 	public Home(String house_holder, Contract contract) {
 		this.house_holder = house_holder;
@@ -23,6 +26,17 @@ public class Home {
 		this.presentConsumption_Kwh = 0;
 		this.setDailyConsumption_Gmc(0);
 		this.setDailyConsumption_Lh(0);
+		this.money_Gmh = 0;
+		this.money_kwh = 0;
+		this.money_Lh = 0;
+		// create rooms
+		rooms.put("cucina", new Room("cucina"));
+		rooms.put("bagno-1", new Room("bagno-1"));
+		rooms.put("bagno-2", new Room("bagno-2"));
+		rooms.put("soggiorno", new Room("soggiorno"));
+		rooms.put("camera-1", new Room("camera-1"));
+		rooms.put("camera-2", new Room("camera-2"));
+		rooms.put("taverna", new Room("taverna"));
 	}
 
 	private static double roundAvoid(double value, int places) {
@@ -145,6 +159,42 @@ public class Home {
 		this.dailyConsumption_Lh -= dailyConsumption_Lh;
 		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
 
+	}
+
+	public synchronized void addToMoney_Kwh(double ammount) {
+		this.money_kwh += ammount;
+	}
+
+	public synchronized void addToMoney_Gmh(double ammount) {
+		this.money_Gmh += ammount;
+	}
+
+	public synchronized void addToMoney_Lh(double ammount) {
+		this.money_Lh += ammount;
+	}
+
+	public double getMoney_kwh() {
+		return money_kwh;
+	}
+
+	public void setMoney_kwh(double money_kwh) {
+		this.money_kwh = money_kwh;
+	}
+
+	public double getMoney_Gmh() {
+		return money_Gmh;
+	}
+
+	public void setMoney_Gmh(double money_Gmh) {
+		this.money_Gmh = money_Gmh;
+	}
+
+	public double getMoney_Lh() {
+		return money_Lh;
+	}
+
+	public void setMoney_Lh(double money_Lh) {
+		this.money_Lh = money_Lh;
 	}
 
 }
