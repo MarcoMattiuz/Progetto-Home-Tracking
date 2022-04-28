@@ -15,11 +15,6 @@ public class MainClass {
 	public static void main(String[] args) {
 		Home home = new Home("marco davide", new Contract("contratto", 3, 0.17, 0.58, 1.30));
 		Controller controller = new Controller(home);
-		Window frame = new Window(controller);
-	
-		
-		
-
-	}
-
-}
+		Window frame= new Window(controller);
+		controller.setWindow(frame);
+	}}
