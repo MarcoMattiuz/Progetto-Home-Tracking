@@ -277,4 +277,33 @@ public class HomePanel extends JPanel implements ActionListener,DocumentListener
 			}
 		}
 	}
+
+	public int getProgressState() {
+		return progressState;
+	}
+
+	public String getHolderName() {
+		return holderNameTfd.getText();
+	}
+
+	public String getHouseName() {
+		return houseNameTfd.getText();
+	}
+
+	public int getRoomsNumber() {
+		return (int) spinner.getValue();
+	}
+	
+	public void setRoomsNumber(int number) {
+		spinner.setValue(number);
+	}
+	
+	public int wantSolarPanels() {		// 1 Vuole, 0 non selezionato, -1 non vuole
+		if(yesBtn.isSelected()&&!noBtn.isSelected()) {
+			return 1;
+		}else if(!yesBtn.isSelected()&&noBtn.isSelected()) {
+			return -1;
+		}
+		return 0;
+	}
 }

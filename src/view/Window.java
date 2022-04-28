@@ -207,5 +207,28 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		// TODO Auto-generated method stub
 		return super.getContentPane();
 	}
+
+	public JPanel getHomePanel() {
+		return homePanel;
+	}
+
+	public JPanel getContractPanel() {
+		return contractPanel;
+	}
+
+	public JPanel getNoHousePanel() {
+		return noHousePanel;
+	}
+
+	public void showErrorMessage(String message) {
+		JOptionPane.showMessageDialog(getContentPane(), message);
+	}
 	
+	public boolean showBooleanErrorMessage(String message) {
+		if(JOptionPane.showConfirmDialog(getContentPane(), message)==JOptionPane.YES_OPTION) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
