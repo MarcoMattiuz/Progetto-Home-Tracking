@@ -21,6 +21,7 @@ public class Controller extends Thread implements ActionListener {
 	public Controller(Home h) {
 		this.home = h;
 		// add devices to rooms
+		// fai metodo per istanziare le cose in base al numero di stanze
 		Room cucina = home.getRoom("cucina");
 		cucina.addDevice(new ElettricOnOff("forno", 1, new Consume(1.4, 0, 0), home));
 		cucina.addDevice(new ElettricConstant("frigo", 2, new Consume(1, 0, 0), home));
@@ -59,9 +60,12 @@ public class Controller extends Thread implements ActionListener {
 		taverna.addDevice(new ElettricOnOff("luce-10", 29, new Consume(0.055, 0, 0), home));
 		taverna.addDevice(new ElettricOnOff("luce-11", 30, new Consume(0.065, 0, 0), home));
 		taverna.addDevice(new GasElettricConstant("caldaia", 31, new Consume(1.8, 0.65, 0), home));
-		
+		/*
+		 * fai un metodo che istanzia i device nelle stanze in base a queante stanze selezionate
+		 */
 	}
 
+	
 	public void setWindow(Window win) {
 		this.window = win;
 	}
