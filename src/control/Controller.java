@@ -26,9 +26,42 @@ public class Controller extends Thread implements ActionListener {
 		this.window = win;
 	}
 
-	private void generateHouse(int numRooms) {
+	public void generateHouse(int numRooms) {
 		switch (numRooms) {
-		case 1:
+		case 7:
+			Room camera2 = home.getRoom("camera-2");
+			camera2.addDevice(new ElettricOnOff("lampadaLED-3", 21, new Consume(0.007, 0, 0), home));
+			camera2.addDevice(new ElettricOnOff("lampadaLED-4", 22, new Consume(0.007, 0, 0), home));
+			camera2.addDevice(new ElettricOnOff("computerfisso-2", 23, new Consume(1.1, 0, 0), home));
+		
+		case 6:
+			Room bagno1 = home.getRoom("bagno-1");
+			bagno1.addDevice(new WaterOnOff("lavandino", 8, new Consume(0, 0, 350), home));
+			bagno1.addDevice(new WaterOnOff("doccia", 9, new Consume(0, 0, 480), home));
+			bagno1.addDevice(new ElettricOnOff("luceLED-3", 10, new Consume(0.004, 0, 0), home));
+			bagno1.addDevice(new ElettricOnOff("luceLED-4", 11, new Consume(0.005, 0, 0), home));
+			bagno1.addDevice(new ElettricOnOff("stufetta", 12, new Consume(2.3, 0, 0), home));
+		case 5:
+			Room camera1 = home.getRoom("camera-1");
+			camera1.addDevice(new ElettricOnOff("lampadaLED-1", 17, new Consume(0.006, 0, 0), home));
+			camera1.addDevice(new ElettricOnOff("lampadaLED-2", 18, new Consume(0.008, 0, 0), home));
+			camera1.addDevice(new ElettricOnOff("computerfisso-1", 19, new Consume(0.9, 0, 0), home));
+			camera1.addDevice(new ElettricOnOff("tvLED-1", 20, new Consume(0.3, 0, 0), home));
+		case 4:
+			Room soggiorno = home.getRoom("soggiorno");
+			soggiorno.addDevice(new ElettricOnOff("luceLED-7", 24, new Consume(0.007, 0, 0), home));
+			soggiorno.addDevice(new ElettricOnOff("luceLED-8", 25, new Consume(0.005, 0, 0), home));
+			soggiorno.addDevice(new ElettricOnOff("luceLED-9", 26, new Consume(0.004, 0, 0), home));
+			soggiorno.addDevice(new ElettricOnOff("tvOLED-2", 27, new Consume(0.15, 0, 0), home));
+			soggiorno.addDevice(new ElettricOnOff("condizionatore", 28, new Consume(0.8, 0, 0), home));
+		case 3:
+			Room bagno2 = home.getRoom("bagno-2");
+			bagno2.addDevice(new WaterOnOff("lavandino", 13, new Consume(0, 0, 320), home));
+			bagno2.addDevice(new WaterOnOff("doccia", 14, new Consume(0, 0, 520), home));
+			bagno2.addDevice(new ElettricOnOff("luce-5", 15, new Consume(0.056, 0, 0), home));
+			bagno2.addDevice(new ElettricOnOff("luce-6", 16, new Consume(0.067, 0, 0), home));
+		case 2:
+			System.out.println("CUCINA");
 			Room cucina = home.getRoom("cucina");
 			cucina.addDevice(new ElettricOnOff("forno", 1, new Consume(1.4, 0, 0), home));
 			cucina.addDevice(new ElettricConstant("frigo", 2, new Consume(1, 0, 0), home));
@@ -37,56 +70,6 @@ public class Controller extends Thread implements ActionListener {
 			cucina.addDevice(new ElettricOnOff("tostapane", 5, new Consume(0.5, 0, 0), home));
 			cucina.addDevice(new WaterOnOff("lavabo", 6, new Consume(0, 0, 400), home)); // 400 litri all'ora
 			cucina.addDevice(new ElettricWaterOnOff("lavastoviglie", 7, new Consume(1.6, 0, 50), home)); // 50 litri
-																											// all'ora
-			if (numRooms == 1) {
-				break;
-			}
-		case 2:
-			Room bagno1 = home.getRoom("bagno-1");
-			bagno1.addDevice(new WaterOnOff("lavandino", 8, new Consume(0, 0, 350), home));
-			bagno1.addDevice(new WaterOnOff("doccia", 9, new Consume(0, 0, 480), home));
-			bagno1.addDevice(new ElettricOnOff("luceLED-3", 10, new Consume(0.004, 0, 0), home));
-			bagno1.addDevice(new ElettricOnOff("luceLED-4", 11, new Consume(0.005, 0, 0), home));
-			bagno1.addDevice(new ElettricOnOff("stufetta", 12, new Consume(2.3, 0, 0), home));
-			if (numRooms == 2) {
-				break;
-			}
-		case 3:
-			Room camera1 = home.getRoom("camera-1");
-			camera1.addDevice(new ElettricOnOff("lampadaLED-1", 17, new Consume(0.006, 0, 0), home));
-			camera1.addDevice(new ElettricOnOff("lampadaLED-2", 18, new Consume(0.008, 0, 0), home));
-			camera1.addDevice(new ElettricOnOff("computerfisso-1", 19, new Consume(0.9, 0, 0), home));
-			camera1.addDevice(new ElettricOnOff("tvLED-1", 20, new Consume(0.3, 0, 0), home));
-			if (numRooms == 3) {
-				break;
-			}
-		case 4:
-			Room soggiorno = home.getRoom("soggiorno");
-			soggiorno.addDevice(new ElettricOnOff("luceLED-7", 24, new Consume(0.007, 0, 0), home));
-			soggiorno.addDevice(new ElettricOnOff("luceLED-8", 25, new Consume(0.005, 0, 0), home));
-			soggiorno.addDevice(new ElettricOnOff("luceLED-9", 26, new Consume(0.004, 0, 0), home));
-			soggiorno.addDevice(new ElettricOnOff("tvOLED-2", 27, new Consume(0.15, 0, 0), home));
-			soggiorno.addDevice(new ElettricOnOff("condizionatore", 28, new Consume(0.8, 0, 0), home));
-			if (numRooms == 4) {
-				break;
-			}
-		case 5:
-			Room bagno2 = home.getRoom("bagno-2");
-			bagno2.addDevice(new WaterOnOff("lavandino", 13, new Consume(0, 0, 320), home));
-			bagno2.addDevice(new WaterOnOff("doccia", 14, new Consume(0, 0, 520), home));
-			bagno2.addDevice(new ElettricOnOff("luce-5", 15, new Consume(0.056, 0, 0), home));
-			bagno2.addDevice(new ElettricOnOff("luce-6", 16, new Consume(0.067, 0, 0), home));
-			if (numRooms == 5) {
-				break;
-			}
-		case 6:
-			Room camera2 = home.getRoom("camera-2");
-			camera2.addDevice(new ElettricOnOff("lampadaLED-3", 21, new Consume(0.007, 0, 0), home));
-			camera2.addDevice(new ElettricOnOff("lampadaLED-4", 22, new Consume(0.007, 0, 0), home));
-			camera2.addDevice(new ElettricOnOff("computerfisso-2", 23, new Consume(1.1, 0, 0), home));
-			if (numRooms == 6) {
-				break;
-			}
 		default:
 			Room taverna = home.getRoom("taverna");
 			taverna.addDevice(new ElettricOnOff("luce-10", 29, new Consume(0.055, 0, 0), home));

@@ -71,7 +71,7 @@ public abstract class Device extends Thread {
 	
 	protected void keepTime() {
 		try {
-			sleep(1000);
+			sleep(500); //minuto
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

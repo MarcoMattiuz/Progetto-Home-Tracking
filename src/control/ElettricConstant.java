@@ -13,6 +13,7 @@ public class ElettricConstant extends Device {
 		this.start();
 	}
 
+	//non si puo spegnere
 	@Override
 	public void run() {
 		while (true) {

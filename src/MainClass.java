@@ -17,4 +17,5 @@ public class MainClass {
 		Controller controller = new Controller(home);
 		Window frame= new Window(controller);
 		controller.setWindow(frame);
+		controller.generateHouse(1);
 	}}
