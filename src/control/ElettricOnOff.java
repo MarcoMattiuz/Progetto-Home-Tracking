@@ -14,7 +14,7 @@ public class ElettricOnOff extends Device {
 	}
 
 	@Override
-	public void toggle() {
+	public void toggle() {  //prova a implementare con un semaforo
 		toggle = !toggle;
 		if (firstOn) {
 			this.start();
