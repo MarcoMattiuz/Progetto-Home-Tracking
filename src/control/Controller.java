@@ -128,7 +128,7 @@ public class Controller extends Thread implements ActionListener {
 									"The \"Electricity Price\" field cannot be negative, do you want to make it positive?")) {
 								((ContractPanel) window.getContractPanel()).setePrice(((double) (Float
 										.valueOf(((ContractPanel) window.getContractPanel()).getePrice()) * -1)));
-								return;
+								return; // Bruttino 
 							}
 						}
 					} catch (Exception e2) {
