@@ -40,8 +40,9 @@ import javax.swing.JList;
 import java.awt.SystemColor;
 import javax.swing.AbstractListModel;
 import javax.swing.JCheckBox;
+import java.awt.Color;
 
-public class HousePanel extends JPanel implements DocumentListener {
+public class HousePanel extends JPanel implements ActionListener {
 
 	/**
 	 * Create the panel.
@@ -51,7 +52,7 @@ public class HousePanel extends JPanel implements DocumentListener {
 
 	@SuppressWarnings("unchecked")
 	public HousePanel(Controller controller) {
-		setSize(new Dimension(512, 443));
+		setSize(new Dimension(505, 328));
 		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));
 
@@ -63,7 +64,7 @@ public class HousePanel extends JPanel implements DocumentListener {
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][329.00,grow][69.00px:n][][]"));
+		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][218.00,grow][69.00px:n][][]"));
 		
 		JList list = new JList();
 		list.setBorder(null);
@@ -79,125 +80,32 @@ public class HousePanel extends JPanel implements DocumentListener {
 		list.setBackground(SystemColor.control);
 		panel.add(list, "flowx,cell 1 1,alignx left,aligny top");
 		
-		JButton btnNewButton = new JButton("STOP");
-		panel.add(btnNewButton, "flowx,cell 1 4");
+		JLabel consumptionLabel = new JLabel("NaN");
+		panel.add(consumptionLabel, "cell 1 2");
 		
 		JButton btnNewButton_1 = new JButton("START");
-		panel.add(btnNewButton_1, "cell 1 4");
+		btnNewButton_1.setForeground(Color.BLACK);
+		panel.add(btnNewButton_1, "flowx,cell 1 4,alignx center");
 		
-		JButton btnNewButton_2 = new JButton("VIEW CURRENT CONSUMPTION");
-		panel.add(btnNewButton_2, "cell 1 4");
+		JButton viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
+		viewthingsbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel.add(viewthingsbtn, "cell 1 4,alignx center");
+		
+		JButton btnNewButton = new JButton("STOP");
+		btnNewButton.setForeground(Color.BLACK);
+		panel.add(btnNewButton, "cell 1 4,alignx center");
 		setListener();
 	}
 
 	public void setListener() {
 	}
 
-	public void setProgressBar(int progressState) {
-		progressBar.setValue(progressState);
-		this.progressState = progressState;
-	}
-
-	public int getIndexProgressBar() {
-		return progressState;
-	}
-
-	private void updateProgressBar(int i) {
-		if (i >= 0) {
-			progressState += 13;
-		} else {
-			progressState -= 13;
-			if (progressState < 0) {
-				progressState = 0;
-			}
-		}
-		progressBar.setValue(progressState);
-	}
-
 	@Override
-	public void insertUpdate(DocumentEvent e) {
-		if (e.getDocument() == contractNameTfd.getDocument()) {
-			if (contractNameTfd.getText().length() == 1) {
-				updateProgressBar(1);
-			}
-		} else if (e.getDocument() == ePriceTfd.getDocument()) {
-			if (ePriceTfd.getText().length() == 1) {
-				updateProgressBar(1);
-			}
-		} else if (e.getDocument() == gPriceTfd.getDocument()) {
-			if (gPriceTfd.getText().length() == 1) {
-				updateProgressBar(1);
-			}
-		} else if (e.getDocument() == wPriceTfd.getDocument()) {
-			if (wPriceTfd.getText().length() == 1) {
-				updateProgressBar(1);
-			}
-		}
-	}
-
-	@Override
-	public void removeUpdate(DocumentEvent e) {
-		if (e.getDocument() == contractNameTfd.getDocument()) {
-			if (contractNameTfd.getText().compareTo("") == 0) {
-				updateProgressBar(-1);
-			}
-		} else if (e.getDocument() == ePriceTfd.getDocument()) {
-			if (ePriceTfd.getText().compareTo("") == 0) {
-				updateProgressBar(-1);
-			}
-		} else if (e.getDocument() == gPriceTfd.getDocument()) {
-			if (gPriceTfd.getText().compareTo("") == 0) {
-				updateProgressBar(-1);
-			}
-		} else if (e.getDocument() == wPriceTfd.getDocument()) {
-			if (wPriceTfd.getText().compareTo("") == 0) {
-				updateProgressBar(-1);
-			}
-		}
-	}
-
-	@Override
-	public void changedUpdate(DocumentEvent e) {
-		insertUpdate(e);
-
-	}
-
-	public String getContractName() {
-		return contractNameTfd.getText();
-	}
-
-	public String getePrice() {
-		return ePriceTfd.getText();
-	}
-
-	public void setePrice(Double x) {
-		ePriceTfd.setText(String.valueOf(x));
-		updateProgressBar(1);
-	}
-
-	public void setgPrice(Double x) {
-		gPriceTfd.setText(String.valueOf(x));
-		updateProgressBar(1);
-	}
-
-	public void setwPrice(Double x) {
-		wPriceTfd.setText(String.valueOf(x));
-		updateProgressBar(1);
-	}
-
-	public String getgPrice() {
-		return gPriceTfd.getText();
-	}
-
-	public String getwPrice() {
-		return wPriceTfd.getText();
-	}
-
-	public JButton getProceedBtn() {
-		return proceedBtn;
-	}
-
-	public JButton getBackBtn() {
-		return backBtn;
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
