@@ -2,9 +2,21 @@ package control;
 
 import model.Consume;
 import model.Home;
-
+/**
+ * 
+ * @author Marco&Davide <br>
+ * {@docRoot}
+ * @version 4.21.0
+ */
 public class GasElettricConstant extends Device {
 
+	/**
+	 * 
+	 * @param deviceName
+	 * @param code
+	 * @param consume
+	 * @param md
+	 */
 	public GasElettricConstant(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, true);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());

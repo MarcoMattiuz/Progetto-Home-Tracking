@@ -2,10 +2,22 @@ package control;
 
 import model.Consume;
 import model.Home;
-
+/**
+ * 
+ * @author Marco&Davide <br>
+ * {@docRoot}
+ * @version 4.21.0
+ */
 public class GasOnOff extends Device {
 	private boolean firstOn;
 
+	/**
+	 * 
+	 * @param deviceName
+	 * @param code
+	 * @param consume
+	 * @param md
+	 */
 	public GasOnOff(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, false);
 		this.firstOn = true;

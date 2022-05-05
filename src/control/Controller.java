@@ -10,7 +10,12 @@ import model.Home;
 import model.Room;
 import view.Main_Panel;
 import view.*;
-
+/**
+ * 
+ * @author Marco&Davide <br>
+ * {@docRoot}
+ * @version 4.21.0
+ */
 public class Controller extends Thread implements ActionListener {
 
 	private Home home;
@@ -18,14 +23,26 @@ public class Controller extends Thread implements ActionListener {
 	private Semaphore ligthSem; ////////////////
 	private Semaphore fridgeSem;
 
+	/**
+	 * 
+	 * @param h
+	 */
 	public Controller(Home h) {
 		this.home = h;
 	}
 
+	/**
+	 * 
+	 * @param win
+	 */
 	public void setWindow(Window win) {
 		this.window = win;
 	}
 
+	/**
+	 * 
+	 * @param numRooms
+	 */
 	public void generateHouse(int numRooms) {
 		home.generateRooms(numRooms);
 		switch (numRooms) {
@@ -194,7 +211,7 @@ public class Controller extends Thread implements ActionListener {
 					}
 				}
 			}
-			// Fine Controlli su tutti i campi dati, si pu� creare la casa adesso
+			// Fine Controlli su tutti i campi dati, si puo creare la casa adesso
 //				window.setContentPane(null);
 			else if (e.getSource() == ((ContractPanel) window.getContentPane()).getBackBtn()) {
 				int progress = ((ContractPanel) window.getContentPane()).getIndexProgressBar();

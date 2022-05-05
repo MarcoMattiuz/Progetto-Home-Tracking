@@ -4,9 +4,21 @@ import java.util.concurrent.Semaphore;
 
 import model.Consume;
 import model.Home;
-
+/**
+ * 
+ * @author Marco&Davide <br>
+ * {@docRoot}
+ * @version 4.21.0
+ */
 public class ElettricConstant extends Device {
 
+	/**
+	 * 
+	 * @param deviceName
+	 * @param code
+	 * @param consume
+	 * @param md
+	 */
 	public ElettricConstant(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, true);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());

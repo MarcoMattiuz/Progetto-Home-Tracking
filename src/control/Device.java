@@ -2,7 +2,12 @@ package control;
 
 import model.Consume;
 import model.Home;
-
+/**
+ * 
+ * @author Marco&Davide <br>
+ * {@docRoot}
+ * @version 4.21.0
+ */
 public abstract class Device extends Thread {
 	private String deviceName;
 	private int code; //incrementale
@@ -11,6 +16,7 @@ public abstract class Device extends Thread {
 	private int timer; //contatore del tempo 
 	protected boolean toggle;
 	protected int hour;
+	
 	/**
 	 * Constructor
 	 * @param deviceName
@@ -68,7 +74,7 @@ public abstract class Device extends Thread {
 	protected void incrTimer() {
 		timer++;
 	}
-	
+
 	protected void keepTime() {
 		try {
 			sleep(500); //minuto
