@@ -4,8 +4,11 @@ import java.util.concurrent.Semaphore;
 
 import model.Consume;
 import model.Home;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class ElettricConstant.
+ *
  * @author Marco&Davide <br>
  * {@docRoot}
  * @version 4.21.0
@@ -13,11 +16,12 @@ import model.Home;
 public class ElettricConstant extends Device {
 
 	/**
-	 * 
-	 * @param deviceName
-	 * @param code
-	 * @param consume
-	 * @param md
+	 * Instantiates a new elettric constant.
+	 *
+	 * @param deviceName the device name
+	 * @param code the code
+	 * @param consume the consume
+	 * @param md the md
 	 */
 	public ElettricConstant(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, true);
@@ -25,6 +29,9 @@ public class ElettricConstant extends Device {
 		this.start();
 	}
 
+	/**
+	 * Run.
+	 */
 	//non si puo spegnere
 	@Override
 	public void run() {

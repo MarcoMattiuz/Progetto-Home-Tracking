@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JPanel;
 
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,7 +33,7 @@ import javax.swing.JRadioButton;
 import java.awt.Cursor;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Dimension;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 import javax.swing.DebugGraphics;
 import java.awt.ComponentOrientation;
 import javax.swing.JFormattedTextField;
@@ -40,15 +41,28 @@ import javax.swing.JEditorPane;
 import java.awt.Color;
 import java.awt.SystemColor;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NoHousePanel.
+ */
 public class NoHousePanel extends JPanel{
 
 	/**
 	 * Create the panel.
 	 */
 	Controller controller;
+	
+	/** The name btn. */
 	private JButton nameBtn;
+	
+	/** The title label. */
 	private JLabel titleLabel;
 	
+	/**
+	 * Instantiates a new no house panel.
+	 *
+	 * @param controller the controller
+	 */
 	public NoHousePanel(Controller controller) {
 		setSize(new Dimension(430, 244));
 		this.controller=controller;
@@ -70,10 +84,20 @@ public class NoHousePanel extends JPanel{
 	//	controller.actionPerformed(null);
 		}
 	
+		/**
+		 * Gets the name btn.
+		 *
+		 * @return the name btn
+		 */
 		public JButton getNameBtn() {
 			return nameBtn;
 		}
 	
+	/**
+	 * Sets the title name.
+	 *
+	 * @param name the new title name
+	 */
 	public void setTitleName(String name) {
 
 		titleLabel.setText("Welcome "+name.toUpperCase()+"!");

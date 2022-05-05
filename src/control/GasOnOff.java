@@ -2,27 +2,36 @@ package control;
 
 import model.Consume;
 import model.Home;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class GasOnOff.
+ *
  * @author Marco&Davide <br>
  * {@docRoot}
  * @version 4.21.0
  */
 public class GasOnOff extends Device {
+	
+	/** The first on. */
 	private boolean firstOn;
 
 	/**
-	 * 
-	 * @param deviceName
-	 * @param code
-	 * @param consume
-	 * @param md
+	 * Instantiates a new gas on off.
+	 *
+	 * @param deviceName the device name
+	 * @param code the code
+	 * @param consume the consume
+	 * @param md the md
 	 */
 	public GasOnOff(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, false);
 		this.firstOn = true;
 	}
 
+	/**
+	 * Toggle.
+	 */
 	@Override
 	public void toggle() {
 		toggle = !toggle;
@@ -38,6 +47,9 @@ public class GasOnOff extends Device {
 		}
 	}
 
+	/**
+	 * Run.
+	 */
 	@Override
 	public void run() {
 		while (true) {

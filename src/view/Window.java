@@ -26,22 +26,56 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Window.
+ */
 public class Window extends JFrame implements ActionListener,WindowListener{
 	
+	/** The title. */
 	private final String title;
+	
+	/** The opened. */
 	private Boolean opened;					// Se è true la finestra è già stata aperta una volta
+	
+	/** The ft 1. */
 	private Boolean ft1;
+	
+	/** The ft 2. */
 	private Boolean ft2;	
+	
+	/** The content pane. */
 	private JPanel contentPane;
+	
+	/** The home panel. */
 	private JPanel homePanel;
+	
+	/** The contract panel. */
 	private JPanel contractPanel;
+	
+	/** The no house panel. */
 	private JPanel noHousePanel;
+	
+	/** The house btn. */
 	private JButton houseBtn;
+	
+	/** The controller. */
 	private Controller controller;
+	
+	/** The exit btn. */
 	private JButton exitBtn;
+	
+	/** The menu. */
 	private JMenu menu;
+	
+	/** The house panel. */
 	private HousePanel housePanel;
 	
+	/**
+	 * Instantiates a new window.
+	 *
+	 * @param controller the controller
+	 */
 	public Window(Controller controller) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -83,56 +117,107 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		menu.hide();
 	}
 	
+	/**
+	 * Sets the controller.
+	 *
+	 * @param controller the new controller
+	 */
 	public void setController(Controller controller) {
 		throw new IllegalStateException();
 	}
 	
+	/**
+	 * Sets the no house panel.
+	 */
 	public void setNoHousePanel() {
 		setContentPane(noHousePanel);
 		
 	}
 	
+	/**
+	 * Sets the house panel.
+	 */
 	public void setHousePanel() {
 		noHousePanel=contractPanel=homePanel=null;
 		setContentPane(housePanel);
 		setBounds(500, 500, 505, 380);
 	}
 	
+	/**
+	 * Window opened.
+	 *
+	 * @param e the e
+	 */
 	public void windowOpened(WindowEvent e) {
 		setNoHousePanel();
 		((NoHousePanel) getContentPane()).setTitleName(JOptionPane.showInputDialog("Welcome, please enter your name here"));
 	}
 
+	/**
+	 * Window closing.
+	 *
+	 * @param arg0 the arg 0
+	 */
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		System.exit(1);
 	}
 
+	/**
+	 * Window closed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void windowClosed(WindowEvent e) {
 
 	}
 
+	/**
+	 * Window iconified.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void windowIconified(WindowEvent e) {
 		if(JOptionPane.showConfirmDialog(this, "Desideri uscire?")==JOptionPane.YES_OPTION)
 			System.exit(1); else setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
+	/**
+	 * Window deiconified.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 	}
 
+	/**
+	 * Window activated.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void windowActivated(WindowEvent e) {		
 	}
 
+	/**
+	 * Window deactivated.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==houseBtn) {
@@ -143,6 +228,11 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		}
 	}
 	
+	/**
+	 * Initialize menu items.
+	 *
+	 * @param numberOfRooms the number of rooms
+	 */
 	public void initializeMenuItems(int numberOfRooms) {
 		switch (numberOfRooms) {
 		case 7:
@@ -195,9 +285,17 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		}
 	}
 	
+	/**
+	 * Sets the disable all menu buttons.
+	 *
+	 * @param bool the new disable all menu buttons
+	 */
 	public void setDisableAllMenuButtons(Boolean bool) {
 	}
 	
+	/**
+	 * Sets the home panel.
+	 */
 	public void setHomePanel() {
 		menu.show();
 		menu.setPopupMenuVisible(true);
@@ -207,6 +305,9 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		setContentPane(homePanel);
 	}
 	
+	/**
+	 * Sets the contract panel.
+	 */
 	public void setContractPanel() {
 		menu.show();
 		menu.setPopupMenuVisible(true);
@@ -216,28 +317,59 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		setContentPane(contractPanel);
 	}
 	
+	/**
+	 * Gets the content pane.
+	 *
+	 * @return the content pane
+	 */
 	@Override
 	public Container getContentPane() {
 		// TODO Auto-generated method stub
 		return super.getContentPane();
 	}
 
+	/**
+	 * Gets the home panel.
+	 *
+	 * @return the home panel
+	 */
 	public JPanel getHomePanel() {
 		return homePanel;
 	}
 
+	/**
+	 * Gets the contract panel.
+	 *
+	 * @return the contract panel
+	 */
 	public JPanel getContractPanel() {
 		return contractPanel;
 	}
 
+	/**
+	 * Gets the no house panel.
+	 *
+	 * @return the no house panel
+	 */
 	public JPanel getNoHousePanel() {
 		return noHousePanel;
 	}
 
+	/**
+	 * Show error message.
+	 *
+	 * @param message the message
+	 */
 	public void showErrorMessage(String message) {
 		JOptionPane.showMessageDialog(getContentPane(), message);
 	}
 	
+	/**
+	 * Show boolean error message.
+	 *
+	 * @param message the message
+	 * @return true, if successful
+	 */
 	public boolean showBooleanErrorMessage(String message) {
 		if(JOptionPane.showConfirmDialog(getContentPane(), message)==JOptionPane.YES_OPTION) {
 			return true;

@@ -2,8 +2,11 @@ package control;
 
 import model.Consume;
 import model.Home;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class GasElettricConstant.
+ *
  * @author Marco&Davide <br>
  * {@docRoot}
  * @version 4.21.0
@@ -11,17 +14,22 @@ import model.Home;
 public class GasElettricConstant extends Device {
 
 	/**
-	 * 
-	 * @param deviceName
-	 * @param code
-	 * @param consume
-	 * @param md
+	 * Instantiates a new gas elettric constant.
+	 *
+	 * @param deviceName the device name
+	 * @param code the code
+	 * @param consume the consume
+	 * @param md the md
 	 */
 	public GasElettricConstant(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, true);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
 		this.start();
 	}
+	
+	/**
+	 * Run.
+	 */
 	//non si puo spegnere
 	@Override
 	public void run() {

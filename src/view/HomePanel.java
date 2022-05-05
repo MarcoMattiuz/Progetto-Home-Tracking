@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,23 +34,55 @@ import java.awt.Dimension;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.DebugGraphics;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HomePanel.
+ */
 @SuppressWarnings("serial")
 
 public class HomePanel extends JPanel implements ActionListener, DocumentListener, ChangeListener {
 
+	/** The progress state. */
 	private int progressState;
+	
+	/** The controller. */
 	private Controller controller;
+	
+	/** The holder name tfd. */
 	private JTextField holderNameTfd;
+	
+	/** The yes btn. */
 	private JButton yesBtn;
+	
+	/** The no btn. */
 	private JButton noBtn;
+	
+	/** The back btn. */
 	private JButton backBtn;
+	
+	/** The proceed btn. */
 	private JButton proceedBtn;
+	
+	/** The flag. */
 	int flag;
+	
+	/** The flag 2. */
 	boolean flag2;
+	
+	/** The house name tfd. */
 	private JTextField houseNameTfd;
+	
+	/** The progress bar. */
 	private JProgressBar progressBar;
+	
+	/** The spinner. */
 	private JSpinner spinner;
 
+	/**
+	 * Instantiates a new home panel.
+	 *
+	 * @param controller the controller
+	 */
 	public HomePanel(Controller controller) {
 		progressState = 0;
 		setSize(new Dimension(430, 244));
@@ -117,6 +150,9 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 		setListener();
 	}
 
+	/**
+	 * Sets the listener.
+	 */
 	private void setListener() {
 		yesBtn.addActionListener(controller);
 		yesBtn.addActionListener(this);
@@ -129,38 +165,83 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 		spinner.addChangeListener(this);
 	}
 
+	/**
+	 * Gets the yes btn.
+	 *
+	 * @return the yes btn
+	 */
 	public JButton getYesBtn() {
 		return yesBtn;
 	}
 
+	/**
+	 * Sets the yes btn.
+	 *
+	 * @param yesBtn the new yes btn
+	 */
 	public void setYesBtn(JButton yesBtn) {
 		this.yesBtn = yesBtn;
 	}
 
+	/**
+	 * Gets the no btn.
+	 *
+	 * @return the no btn
+	 */
 	public JButton getNoBtn() {
 		return noBtn;
 	}
 
+	/**
+	 * Sets the no btn.
+	 *
+	 * @param noBtn the new no btn
+	 */
 	public void setNoBtn(JButton noBtn) {
 		this.noBtn = noBtn;
 	}
 
+	/**
+	 * Gets the back btn.
+	 *
+	 * @return the back btn
+	 */
 	public JButton getBackBtn() {
 		return backBtn;
 	}
 
+	/**
+	 * Sets the back btn.
+	 *
+	 * @param backBtn the new back btn
+	 */
 	public void setBackBtn(JButton backBtn) {
 		this.backBtn = backBtn;
 	}
 
+	/**
+	 * Gets the proceed btn.
+	 *
+	 * @return the proceed btn
+	 */
 	public JButton getProceedBtn() {
 		return proceedBtn;
 	}
 
+	/**
+	 * Sets the proceed btn.
+	 *
+	 * @param proceedBtn the new proceed btn
+	 */
 	public void setProceedBtn(JButton proceedBtn) {
 		this.proceedBtn = proceedBtn;
 	}
 
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == yesBtn) {
@@ -192,6 +273,11 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 		}
 	}
 
+	/**
+	 * Update progress bar.
+	 *
+	 * @param i the i
+	 */
 	private void updateProgressBar(int i) {
 		if (i >= 0) {
 			progressState += 12;
@@ -204,15 +290,30 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 		progressBar.setValue(progressState);
 	}
 
+	/**
+	 * Sets the progress bar.
+	 *
+	 * @param progressState the new progress bar
+	 */
 	public void setProgressBar(int progressState) {
 		progressBar.setValue(progressState);
 		this.progressState = progressState;
 	}
 
+	/**
+	 * Gets the index progress bar.
+	 *
+	 * @return the index progress bar
+	 */
 	public int getIndexProgressBar() {
 		return progressState;
 	}
 
+	/**
+	 * Insert update.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		if (e.getDocument() == holderNameTfd.getDocument()) {
@@ -226,6 +327,11 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 		}
 	}
 
+	/**
+	 * Removes the update.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		if (e.getDocument() == holderNameTfd.getDocument()) {
@@ -240,10 +346,20 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 
 	}
 
+	/**
+	 * Changed update.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 	}
 
+	/**
+	 * State changed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (spinner.getValue().equals(0)) {
@@ -257,26 +373,56 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 		}
 	}
 
+	/**
+	 * Gets the progress state.
+	 *
+	 * @return the progress state
+	 */
 	public int getProgressState() {
 		return progressState;
 	}
 
+	/**
+	 * Gets the holder name.
+	 *
+	 * @return the holder name
+	 */
 	public String getHolderName() {
 		return holderNameTfd.getText();
 	}
 
+	/**
+	 * Gets the house name.
+	 *
+	 * @return the house name
+	 */
 	public String getHouseName() {
 		return houseNameTfd.getText();
 	}
 
+	/**
+	 * Gets the rooms number.
+	 *
+	 * @return the rooms number
+	 */
 	public int getRoomsNumber() {
 		return (int) spinner.getValue();
 	}
 
+	/**
+	 * Sets the rooms number.
+	 *
+	 * @param number the new rooms number
+	 */
 	public void setRoomsNumber(int number) {
 		spinner.setValue(number);
 	}
 
+	/**
+	 * Want solar panels.
+	 *
+	 * @return the int
+	 */
 	public int wantSolarPanels() { // 1 Vuole, 0 non selezionato, -1 non vuole
 		if (yesBtn.isSelected() && !noBtn.isSelected()) {
 			return 1;

@@ -9,8 +9,11 @@ import model.Home;
 import model.Room;
 import view.Window;
 import view.Window;
+
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class MainClass.
+ *
  * @author Marco&Davide <br>
  * {@docRoot}
  * @version 4.21.0
@@ -18,8 +21,9 @@ import view.Window;
 public class MainClass {
 
 	/**
-	 * 
-	 * @param args
+	 * The main method.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		Home home = new Home("marco davide", new Contract("contratto", 3, 0.17, 0.58, 1.30));

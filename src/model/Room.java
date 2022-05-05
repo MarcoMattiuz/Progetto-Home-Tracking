@@ -5,27 +5,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 import control.Device;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class Room.
+ *
  * @author Marco&Davide <br>
  * {@docRoot}
  * @version 4.21.0
  */
 public class Room {
+	
+	/** The name. */
 	private String name;
+	
+	/** The devices. */
 	private ArrayList<Device> devices;
 	
 	/**
-	 * 
-	 * @param name
+	 * Instantiates a new room.
+	 *
+	 * @param name the name
 	 */
 	public Room(String name){
 		this.name = name;
 		this.devices = new ArrayList<Device>(10);
 	}
+	
 	/**
-	 * 
-	 * @param code
+	 * Gets the device by code.
+	 *
+	 * @param code the code
 	 * @return found
 	 */
 	public Device getDeviceByCode(int code) {
@@ -37,23 +47,29 @@ public class Room {
 		}
 		return found;
 	}
+	
 	/**
-	 * 
-	 * @param device
+	 * Adds the device.
+	 *
+	 * @param device the device
 	 */
 	public void addDevice(Device device) {
 		devices.add(device);
 	}
+	
 	/**
-	 * 
-	 * @param code
+	 * Removes the device by code.
+	 *
+	 * @param code the code
 	 */
 	public void removeDeviceByCode(int code) {
 		devices.removeIf(n -> (n.getCode() == code));
 	}
+	
 	/**
-	 * 
-	 * @param name
+	 * Removes the all device by name.
+	 *
+	 * @param name the name
 	 */
 	public void removeAllDeviceByName(String name) {
 		ArrayList<Device> arr = new ArrayList<Device>(10);

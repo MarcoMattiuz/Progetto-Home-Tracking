@@ -1,6 +1,10 @@
+/*
+ * 
+ */
 package control;
 
 import java.util.concurrent.Semaphore;
+
 
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -11,38 +15,47 @@ import model.Consume;
 import model.Home;
 import model.Room;
 import view.*;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class Controller.
+ *
  * @author Marco&Davide <br>
  * {@docRoot}
  * @version 4.21.0
  */
-public class Controller extends Thread implements ActionListener {
+public class Controller extends Thread implements ActionListener, AncestorListener {
 
+	/** The house. */
 	private Home house;
+	
+	/** The window. */
 	private Window window;
-	private Semaphore ligthSem; ////////////////
-	private Semaphore fridgeSem;
+	
 
 	/**
-	 * 
-	 * @param h
+	 * Instantiates a new controller.
+	 *
+	 * @param h the h
 	 */
 	public Controller(Home h) {
 		this.house = h;
 	}
 
+
 	/**
-	 * 
-	 * @param win
+	 * Sets the window.
+	 *
+	 * @param win the new window
 	 */
 	public void setWindow(Window win) {
 		this.window = win;
 	}
 
 	/**
-	 * 
-	 * @param numRooms
+	 * Generate house.
+	 *
+	 * @param numRooms the num rooms
 	 */
 	public void generateHouse(int numRooms) {
 		house.generateRooms(numRooms);
@@ -98,6 +111,11 @@ public class Controller extends Thread implements ActionListener {
 		}
 	}
 
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Boolean fieldflag = true;
@@ -262,18 +280,33 @@ public class Controller extends Thread implements ActionListener {
 		
 	}
 
+	/**
+	 * Ancestor added.
+	 *
+	 * @param event the event
+	 */
 	@Override
 	public void ancestorAdded(AncestorEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Ancestor removed.
+	 *
+	 * @param event the event
+	 */
 	@Override
 	public void ancestorRemoved(AncestorEvent event) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Ancestor moved.
+	 *
+	 * @param event the event
+	 */
 	@Override
 	public void ancestorMoved(AncestorEvent event) {
 		// TODO Auto-generated method stub

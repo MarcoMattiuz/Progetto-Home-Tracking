@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JPanel;
 
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -42,14 +43,25 @@ import javax.swing.AbstractListModel;
 import javax.swing.JCheckBox;
 import java.awt.Color;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RoomPanel.
+ */
 public class RoomPanel extends JPanel implements ActionListener {
 
 	/**
 	 * Create the panel.
 	 */
 	Controller controller;
+	
+	/** The progress state. */
 	private int progressState;
 
+	/**
+	 * Instantiates a new room panel.
+	 *
+	 * @param controller the controller
+	 */
 	@SuppressWarnings("unchecked")
 	public RoomPanel(Controller controller) {
 		setSize(new Dimension(505, 328));
@@ -100,9 +112,17 @@ public class RoomPanel extends JPanel implements ActionListener {
 		setListener();
 	}
 
+	/**
+	 * Sets the listener.
+	 */
 	public void setListener() {
 	}
 
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

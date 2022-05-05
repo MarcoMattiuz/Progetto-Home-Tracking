@@ -4,27 +4,36 @@ import java.util.concurrent.Semaphore;
 
 import model.Consume;
 import model.Home;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class ElettricOnOff.
+ *
  * @author Marco&Davide <br>
  * {@docRoot}
  * @version 4.21.0
  */
 public class ElettricOnOff extends Device {
+	
+	/** The first on. */
 	private boolean firstOn;
 
 	/**
-	 * 
-	 * @param deviceName
-	 * @param code
-	 * @param consume
-	 * @param md
+	 * Instantiates a new elettric on off.
+	 *
+	 * @param deviceName the device name
+	 * @param code the code
+	 * @param consume the consume
+	 * @param md the md
 	 */
 	ElettricOnOff(String deviceName, int code, Consume consume, Home md) {
 		super(deviceName, code, consume, md, false);
 		this.firstOn = true;
 	}
 
+	/**
+	 * Toggle.
+	 */
 	@Override
 	public void toggle() {  //prova a implementare con un semaforo
 		toggle = !toggle;
@@ -40,6 +49,9 @@ public class ElettricOnOff extends Device {
 		}
 	}
 
+	/**
+	 * Run.
+	 */
 	@Override
 	public void run() {
 		while (true) {

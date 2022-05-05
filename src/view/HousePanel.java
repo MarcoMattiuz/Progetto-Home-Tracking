@@ -45,18 +45,37 @@ import javax.swing.AbstractListModel;
 import javax.swing.JCheckBox;
 import java.awt.Color;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HousePanel.
+ */
 public class HousePanel extends JPanel{
 
 	/**
 	 * Create the panel.
 	 */
 	Controller controller;
+	
+	/** The progress state. */
 	private int progressState;
+	
+	/** The list. */
 	private JList list;
+	
+	/** The consumption label. */
 	private JLabel consumptionLabel;
+	
+	/** The viewthingsbtn. */
 	private JButton viewthingsbtn;
+	
+	/** The title label. */
 	private JLabel titleLabel;
 
+	/**
+	 * Instantiates a new house panel.
+	 *
+	 * @param controller the controller
+	 */
 	@SuppressWarnings("unchecked")
 	public HousePanel(Controller controller) {
 		setSize(new Dimension(505, 328));
@@ -92,39 +111,82 @@ public class HousePanel extends JPanel{
 		setListener();
 	}
 
+	/**
+	 * Sets the listener.
+	 */
 	public void setListener() {
 		viewthingsbtn.addActionListener(controller);
 		list.addAncestorListener(controller);
 	}
 	
+	/**
+	 * Gets the list.
+	 *
+	 * @return the list
+	 */
 	public JList getList() {
 		return list;
 	}
 
+	/**
+	 * Sets the list.
+	 *
+	 * @param list the new list
+	 */
 	public void setList(JList list) {
 		this.list = list;
 	}
 
+	/**
+	 * Gets the consumption label.
+	 *
+	 * @return the consumption label
+	 */
 	public JLabel getConsumptionLabel() {
 		return consumptionLabel;
 	}
 
+	/**
+	 * Sets the consumption label.
+	 *
+	 * @param consumptionLabel the new consumption label
+	 */
 	public void setConsumptionLabel(JLabel consumptionLabel) {
 		this.consumptionLabel = consumptionLabel;
 	}
 
+	/**
+	 * Gets the viewthingsbtn.
+	 *
+	 * @return the viewthingsbtn
+	 */
 	public JButton getViewthingsbtn() {
 		return viewthingsbtn;
 	}
 
+	/**
+	 * Sets the viewthingsbtn.
+	 *
+	 * @param viewthingsbtn the new viewthingsbtn
+	 */
 	public void setViewthingsbtn(JButton viewthingsbtn) {
 		this.viewthingsbtn = viewthingsbtn;
 	}
 
+	/**
+	 * Gets the title label.
+	 *
+	 * @return the title label
+	 */
 	public JLabel getTitleLabel() {
 		return titleLabel;
 	}
 
+	/**
+	 * Sets the title label.
+	 *
+	 * @param titleLabel the new title label
+	 */
 	public void setTitleLabel(JLabel titleLabel) {
 		this.titleLabel = titleLabel;
 	}
