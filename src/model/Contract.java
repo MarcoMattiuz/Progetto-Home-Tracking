@@ -9,7 +9,7 @@ public class Contract {
 	private String type;
 	private double max_kw;
 	private double price_kwh;
-	private double price_gmc;
+	private double price_gmh;
 	private double price_lh;
 	
 	/**
@@ -24,7 +24,7 @@ public class Contract {
 		this.type = type;
 		this.max_kw = max_kw;
 		this.price_kwh = price_kwh;
-		this.price_gmc = price_gmc;
+		this.price_gmh = price_gmh;
 		this.price_lh = price_lh;
 	}
 	/**

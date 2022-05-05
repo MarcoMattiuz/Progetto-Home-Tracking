@@ -20,7 +20,6 @@ public class Home {
 	private double dailyConsumption_Gmc;
 	private double dailyConsumption_Lh;
 	private double money_kwh;
-
 	private double money_Gmh;
 	private double money_Lh;
 
@@ -267,6 +266,7 @@ public class Home {
 	 */
 	public synchronized void addToMoney_Kwh(double ammount) {
 		this.money_kwh += ammount;
+		dailyConsumption_Kwh = roundAvoid(money_kwh, 3);
 	}
 	/**
 	 * 
@@ -274,6 +274,7 @@ public class Home {
 	 */
 	public synchronized void addToMoney_Gmh(double ammount) {
 		this.money_Gmh += ammount;
+		dailyConsumption_Kwh = roundAvoid(money_Gmh, 3);
 	}
 	/**
 	 * 
@@ -281,6 +282,7 @@ public class Home {
 	 */
 	public synchronized void addToMoney_Lh(double ammount) {
 		this.money_Lh += ammount;
+		dailyConsumption_Kwh = roundAvoid(money_Lh, 3);
 	}
 	/**
 	 * 
