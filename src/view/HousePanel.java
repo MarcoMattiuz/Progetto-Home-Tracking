@@ -18,6 +18,7 @@ import javax.swing.JToolBar;
 import javax.swing.ListModel;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JInternalFrame;
 import javax.swing.JDesktopPane;
@@ -38,6 +39,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.Dimension;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.DebugGraphics;
+import javax.swing.DefaultListModel;
 import javax.swing.JSlider;
 import javax.swing.JList;
 import java.awt.SystemColor;
@@ -56,14 +58,16 @@ public class HousePanel extends JPanel{
 	private JLabel consumptionLabel;
 	private JButton viewthingsbtn;
 	private JLabel titleLabel;
-
+	private DefaultListModel model;
+	
 	@SuppressWarnings("unchecked")
 	public HousePanel(Controller controller) {
+		model = new DefaultListModel<>();
 		setSize(new Dimension(505, 328));
 		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));
 
-		titleLabel = new JLabel("HOUSE PANEL");
+		titleLabel = new JLabel("House Panel");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
@@ -73,7 +77,8 @@ public class HousePanel extends JPanel{
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][218.00,grow][69.00px:n][][]"));
 		
-		list = new JList<JLabel>();
+		list = new JList<>();
+		list.setModel(model);
 		list.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		list.setBorder(null);
 		list.setBackground(SystemColor.control);
@@ -101,8 +106,12 @@ public class HousePanel extends JPanel{
 		return list;
 	}
 
-	public void setList(JList list) {
-		this.list = list;
+	public void initializePanel(ArrayList<String> roomsNames, String houseName, String holderName) {
+		roomsNames.stream().forEach((s)->{
+            model.addElement(s);
+        });
+		titleLabel.setText(titleLabel.getText()+" [ \""+houseName+"\" owned by "+holderName+"]");
+		
 	}
 
 	public JLabel getConsumptionLabel() {

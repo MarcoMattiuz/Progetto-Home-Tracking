@@ -1,5 +1,6 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
 import javax.swing.event.AncestorEvent;
@@ -17,7 +18,7 @@ import view.*;
  * {@docRoot}
  * @version 4.21.0
  */
-public class Controller extends Thread implements ActionListener {
+public class Controller extends Thread implements ActionListener, AncestorListener {
 
 	private Home house;
 	private Window window;
@@ -44,16 +45,15 @@ public class Controller extends Thread implements ActionListener {
 	 * 
 	 * @param numRooms
 	 */
-	public void generateHouse(int numRooms) {
-		house.generateRooms(numRooms);
-		window.initializeMenuItems(numRooms);
+	public ArrayList<String> generateHouse(int numRooms) {
+		ArrayList<String> rn = house.generateRooms(numRooms);
+		window.initializeMenuItems(numRooms,rn);
 		switch (numRooms) {
 		case 7:
 			Room camera2 = house.getRoom("camera-2");
 			camera2.addDevice(new ElettricOnOff("lampadaLED-3", 21, new Consume(0.007, 0, 0), house));
 			camera2.addDevice(new ElettricOnOff("lampadaLED-4", 22, new Consume(0.007, 0, 0), house));
 			camera2.addDevice(new ElettricOnOff("computerfisso-2", 23, new Consume(1.1, 0, 0), house));
-		
 		case 6:
 			Room bagno2 = house.getRoom("bagno-2");
 			bagno2.addDevice(new WaterOnOff("lavandino", 13, new Consume(0, 0, 320), house));
@@ -96,6 +96,7 @@ public class Controller extends Thread implements ActionListener {
 			taverna.addDevice(new GasElettricConstant("caldaia", 31, new Consume(1.2, 0.65, 0), house));
 			break;
 		}
+		return rn;
 	}
 
 	@Override
@@ -249,8 +250,12 @@ public class Controller extends Thread implements ActionListener {
 		
 			// Fine Controlli su tutti i campi dati, si pu� creare la casa adesso
 					if(fieldflag) { 
-						generateHouse(((HomePanel) window.getHomePanel()).getRoomsNumber());
+						ArrayList<String> arr = generateHouse((window.getHomePanel()).getRoomsNumber());
+						String holderName=(window.getHomePanel()).getHolderName();
+						String houseName=(window.getHomePanel()).getHouseName();
 						window.setHousePanel();
+						((HousePanel) window.getContentPane()).initializePanel(arr,houseName,holderName);
+						//
 					}
 				}
 		}else if (e.getSource() == ((ContractPanel) window.getContentPane()).getBackBtn()) {
