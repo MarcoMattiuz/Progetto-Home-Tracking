@@ -27,6 +27,7 @@ public class Controller extends Thread implements ActionListener {
 	}
 
 	public void generateHouse(int numRooms) {
+		home.generateRooms(numRooms);
 		switch (numRooms) {
 		case 7:
 			Room camera2 = home.getRoom("camera-2");

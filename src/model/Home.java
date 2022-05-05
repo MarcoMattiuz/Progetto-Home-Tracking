@@ -29,16 +29,27 @@ public class Home {
 		this.money_Gmh = 0;
 		this.money_kwh = 0;
 		this.money_Lh = 0;
-		// create rooms
-		rooms.put("cucina", new Room("cucina"));
-		rooms.put("bagno-1", new Room("bagno-1"));
-		rooms.put("bagno-2", new Room("bagno-2"));
-		rooms.put("soggiorno", new Room("soggiorno"));
-		rooms.put("camera-1", new Room("camera-1"));
-		rooms.put("camera-2", new Room("camera-2"));
-		rooms.put("taverna", new Room("taverna"));
 	}
 
+	public void generateRooms(int num) {
+		switch(num) {
+		case 7:
+			rooms.put("camera-2", new Room("camera-2"));
+		case 6:
+			rooms.put("bagno-2", new Room("bagno-2"));
+		case 5:
+			rooms.put("camera-1", new Room("camera-1"));
+		case 4:
+			rooms.put("soggiorno", new Room("soggiorno"));
+		case 3:
+			rooms.put("bagno-1", new Room("bagno-1"));
+		case 2:
+			rooms.put("cucina", new Room("cucina"));
+		default:
+			rooms.put("taverna", new Room("taverna"));
+				break;
+		}
+	}
 	private static double roundAvoid(double value, int places) {
 		double scale = Math.pow(10, places);
 		return Math.round(value * scale) / scale;
