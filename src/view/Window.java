@@ -36,18 +36,22 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	private JPanel homePanel;
 	private JPanel contractPanel;
 	private JPanel noHousePanel;
-	private JButton homeBtn;
+	private JButton houseBtn;
 	private Controller controller;
-	private JButton roomsBtn;
 	private JButton exitBtn;
-	private JButton btnNewButton;
-	private JButton btnNewButton_2;
-	private JButton btnNewButton_3;
-	private JButton optBtn;
 	private JMenu menu;
+	private HousePanel housePanel;
 	
 	public Window(Controller controller) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		noHousePanel=new NoHousePanel(controller);
+		housePanel = new HousePanel(controller);
 		title="HOME TRACKING V1";
 		this.controller=controller;
 		setVisible(true);
@@ -62,55 +66,17 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.menu);
 		setJMenuBar(menuBar);
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		menu = new JMenu("Menu");
 		menu.setVerticalAlignment(SwingConstants.BOTTOM);
 		menu.setHorizontalAlignment(SwingConstants.TRAILING);
 		menu.setBackground(Color.DARK_GRAY);
 		menuBar.add(menu);
 		
-		homeBtn = new JButton("Home");
-		homeBtn.setMaximumSize(new Dimension(70, 23));
-		homeBtn.setMinimumSize(new Dimension(70, 23));
-		homeBtn.addActionListener((ActionListener) this);
-		menu.add(homeBtn);
-		
-		roomsBtn = new JButton("Rooms");
-		roomsBtn.setMinimumSize(new Dimension(70, 23));
-		roomsBtn.setMaximumSize(new Dimension(70, 23));
-		menu.add(roomsBtn);
-		roomsBtn.addActionListener(this);
-		
-		btnNewButton = new JButton("n");
-		btnNewButton.setMinimumSize(new Dimension(70, 23));
-		btnNewButton.setMaximumSize(new Dimension(70, 23));
-		menu.add(btnNewButton);
-		
-		btnNewButton_2 = new JButton("n");
-		btnNewButton_2.setMinimumSize(new Dimension(70, 23));
-		btnNewButton_2.setMaximumSize(new Dimension(70, 23));
-		menu.add(btnNewButton_2);
-		
-		btnNewButton_3 = new JButton("n");
-		btnNewButton_3.setMinimumSize(new Dimension(70, 23));
-		btnNewButton_3.setMaximumSize(new Dimension(70, 23));
-		menu.add(btnNewButton_3);
-		
-		exitBtn = new JButton("Exit");
-		exitBtn.setMaximumSize(new Dimension(70, 70));
-		menu.add(exitBtn);
-		exitBtn.addActionListener(this);
-		
-		optBtn = new JButton("Options");
-		optBtn.setMinimumSize(new Dimension(70, 23));
-		optBtn.setMaximumSize(new Dimension(70, 23));
-		menu.add(optBtn);
+		houseBtn = new JButton("House");
+		houseBtn.setMaximumSize(new Dimension(85, 23));
+		houseBtn.setMinimumSize(new Dimension(85, 23));
+		houseBtn.addActionListener((ActionListener) this);
+		menu.add(houseBtn);
 		setTitle(title);
 		homePanel=new HomePanel(controller);
 		contractPanel= new ContractPanel(controller);
@@ -124,6 +90,12 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public void setNoHousePanel() {
 		setContentPane(noHousePanel);
 		
+	}
+	
+	public void setHousePanel() {
+		noHousePanel=contractPanel=homePanel=null;
+		setContentPane(housePanel);
+		setBounds(500, 500, 505, 380);
 	}
 	
 	public void windowOpened(WindowEvent e) {
@@ -149,7 +121,6 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-		
 	}
 
 	@Override
@@ -164,23 +135,67 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==homeBtn) {
+		if(e.getSource()==houseBtn) {
 			setHomePanel();
-		}else if(e.getSource()==roomsBtn) {
-			setBounds(500, 500, 466, 307);
-			//getContentPane().setVisible(false);
-			setContentPane(contractPanel);
-			menu.setPopupMenuVisible(false);menu.setSelected(false);
 		}else if(e.getSource()==exitBtn) {
 //			System.exit(EXIT_ON_CLOSE);
 			windowIconified(null);
 		}
 	}
 	
-	public void setDisableAllMenuButtons(Boolean bool) {
-		if(bool) {
-			btnNewButton.setVisible(false);
+	public void initializeMenuItems(int numberOfRooms) {
+		switch (numberOfRooms) {
+		case 7:
+			JButton cameraBBtn = new JButton("Camera 2");
+			cameraBBtn.setMaximumSize(new Dimension(85, 23));
+			cameraBBtn.setMinimumSize(new Dimension(85, 23));
+			cameraBBtn.addActionListener((ActionListener) this);
+			menu.add(cameraBBtn);
+		case 6:
+			JButton bagnoBBtn = new JButton("Bagno 2");
+			bagnoBBtn.setMaximumSize(new Dimension(85, 23));
+			bagnoBBtn.setMinimumSize(new Dimension(85, 23));
+			bagnoBBtn.addActionListener((ActionListener) this);
+			menu.add(bagnoBBtn);
+		case 5:
+			JButton cameraABtn = new JButton("Camera 1");
+			cameraABtn.setMaximumSize(new Dimension(85, 23));
+			cameraABtn.setMinimumSize(new Dimension(85, 23));
+			cameraABtn.addActionListener((ActionListener) this);
+			menu.add(cameraABtn);
+		case 4:
+			JButton soggiornoBtn = new JButton("Soggiorno");
+			soggiornoBtn.setMaximumSize(new Dimension(85, 23));
+			soggiornoBtn.setMinimumSize(new Dimension(85, 23));
+			soggiornoBtn.addActionListener((ActionListener) this);
+			menu.add(soggiornoBtn);
+		case 3:
+			JButton bagnoABtn = new JButton("Bagno 1");
+			bagnoABtn.setMaximumSize(new Dimension(85, 23));
+			bagnoABtn.setMinimumSize(new Dimension(85, 23));
+			bagnoABtn.addActionListener((ActionListener) this);
+			menu.add(bagnoABtn);
+		case 2:
+			JButton cucinaBtn = new JButton("Cucina");
+			cucinaBtn.setMaximumSize(new Dimension(85, 23));
+			cucinaBtn.setMinimumSize(new Dimension(85, 23));
+			cucinaBtn.addActionListener((ActionListener) this);
+			menu.add(cucinaBtn);
+		default:
+			JButton tavernaBtn = new JButton("Taverna");
+			tavernaBtn.setMaximumSize(new Dimension(85, 23));
+			tavernaBtn.setMinimumSize(new Dimension(85, 23));
+			tavernaBtn.addActionListener((ActionListener) this);
+			menu.add(tavernaBtn);
+			exitBtn = new JButton("Exit");
+			exitBtn.setMaximumSize(new Dimension(85, 70));
+			menu.add(exitBtn);
+			exitBtn.addActionListener(this);
+			
 		}
+	}
+	
+	public void setDisableAllMenuButtons(Boolean bool) {
 	}
 	
 	public void setHomePanel() {
