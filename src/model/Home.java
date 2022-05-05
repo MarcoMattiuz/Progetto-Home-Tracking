@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,24 +70,26 @@ public class Home {
 	 *
 	 * @param num the num
 	 */
-	public void generateRooms(int num) {
+	public ArrayList<String> generateRooms(int num) {
+		ArrayList<String> ret = new ArrayList<String>();
 		switch (num) {
 		case 7:
-			rooms.put("camera-2", new Room("camera-2"));
+			rooms.put("camera-2", new Room("camera-2"));		ret.add("Camera 2");
 		case 6:
-			rooms.put("bagno-2", new Room("bagno-2"));
+			rooms.put("bagno-2", new Room("bagno-2"));			ret.add("Bagno 2");
 		case 5:
-			rooms.put("camera-1", new Room("camera-1"));
+			rooms.put("camera-1", new Room("camera-1"));		ret.add("Camera 1");
 		case 4:
-			rooms.put("soggiorno", new Room("soggiorno"));
+			rooms.put("soggiorno", new Room("soggiorno"));		ret.add("Soggiorno");
 		case 3:
-			rooms.put("bagno-1", new Room("bagno-1"));
+			rooms.put("bagno-1", new Room("bagno-1"));			ret.add("Bagno 1");
 		case 2:
-			rooms.put("cucina", new Room("cucina"));
+			rooms.put("cucina", new Room("cucina"));			ret.add("Cucina");
 		default:
-			rooms.put("taverna", new Room("taverna"));
+			rooms.put("taverna", new Room("taverna"));			ret.add("Taverna");
 			break;
 		}
+		return ret;
 	}
 
 	/**
