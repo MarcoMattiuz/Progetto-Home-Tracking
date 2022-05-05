@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import javax.swing.JToolBar;
-import javax.swing.ListModel;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,8 +25,6 @@ import java.awt.Component;
 import javax.swing.BoxLayout;
 import javax.swing.JProgressBar;
 import javax.swing.border.BevelBorder;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.JSpinner;
@@ -45,25 +42,21 @@ import javax.swing.AbstractListModel;
 import javax.swing.JCheckBox;
 import java.awt.Color;
 
-public class HousePanel extends JPanel{
+public class RoomPanel extends JPanel implements ActionListener {
 
 	/**
 	 * Create the panel.
 	 */
 	Controller controller;
 	private int progressState;
-	private JList list;
-	private JLabel consumptionLabel;
-	private JButton viewthingsbtn;
-	private JLabel titleLabel;
 
 	@SuppressWarnings("unchecked")
-	public HousePanel(Controller controller) {
+	public RoomPanel(Controller controller) {
 		setSize(new Dimension(505, 328));
 		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));
 
-		titleLabel = new JLabel("HOUSE PANEL");
+		JLabel titleLabel = new JLabel("ROOM PANEL -");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
@@ -73,59 +66,46 @@ public class HousePanel extends JPanel{
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][218.00,grow][69.00px:n][][]"));
 		
-		list = new JList<JLabel>();
-		list.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		JList list = new JList();
 		list.setBorder(null);
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"STANZA 1 PROVA", "STANZA 2 PROVA", "STANZA 3 PROVA", "STANZA 4 PROVA", "STANZA 5 PROVA", "STANZA 6 PROVA", "STANZA 7 PROVA", "STANZA 8 PROVA", "STANZA 9 PROVA", "STANZA 10 PROVA", "STANZA 11 PROVA", "STANZA 12 PROVA"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 		list.setBackground(SystemColor.control);
 		panel.add(list, "flowx,cell 1 1,alignx left,aligny top");
 		
-		consumptionLabel = new JLabel("NaN");
-		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		JLabel consumptionLabel = new JLabel("NaN");
 		panel.add(consumptionLabel, "cell 1 2");
 		
-		viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
+		JButton btnNewButton_1 = new JButton("START");
+		btnNewButton_1.setForeground(Color.BLACK);
+		panel.add(btnNewButton_1, "flowx,cell 1 4,alignx center");
+		
+		JButton viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
 		viewthingsbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		panel.add(viewthingsbtn, "cell 1 4,alignx center");
+		
+		JButton btnNewButton = new JButton("STOP");
+		btnNewButton.setForeground(Color.BLACK);
+		panel.add(btnNewButton, "cell 1 4,alignx center");
 		setListener();
 	}
 
 	public void setListener() {
-		viewthingsbtn.addActionListener(controller);
-		list.addAncestorListener(controller);
-	}
-	
-	public JList getList() {
-		return list;
 	}
 
-	public void setList(JList list) {
-		this.list = list;
-	}
-
-	public JLabel getConsumptionLabel() {
-		return consumptionLabel;
-	}
-
-	public void setConsumptionLabel(JLabel consumptionLabel) {
-		this.consumptionLabel = consumptionLabel;
-	}
-
-	public JButton getViewthingsbtn() {
-		return viewthingsbtn;
-	}
-
-	public void setViewthingsbtn(JButton viewthingsbtn) {
-		this.viewthingsbtn = viewthingsbtn;
-	}
-
-	public JLabel getTitleLabel() {
-		return titleLabel;
-	}
-
-	public void setTitleLabel(JLabel titleLabel) {
-		this.titleLabel = titleLabel;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
