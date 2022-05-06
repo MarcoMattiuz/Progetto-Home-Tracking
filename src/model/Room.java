@@ -67,7 +67,7 @@ public class Room {
 	}
 	
 	/**
-	 * Removes the all device by name.
+	 * Removes all device by name.
 	 *
 	 * @param name the name
 	 */

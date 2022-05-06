@@ -106,7 +106,7 @@ public abstract class Device extends Thread {
 	}
 
 	/**
-	 * Keep time.
+	 * Keep time. metodo che viene utilizzato nei metodi run per tenere i tempo costante tra i dispositivi
 	 */
 	protected void keepTime() {
 		try {
@@ -126,7 +126,7 @@ public abstract class Device extends Thread {
 	}
 
 	/**
-	 * Toggle.
+	 * Toggle. metodo toggle di base
 	 */
 	public void toggle() {
 		toggle = !toggle;

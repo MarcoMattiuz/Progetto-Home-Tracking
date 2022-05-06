@@ -54,7 +54,7 @@ public class Controller extends Thread implements ActionListener, AncestorListen
 	}
 
 	/**
-	 * Generate house.
+	 * Generate house. genera la casa istanzia le stanze e i dispositivi
 	 *
 	 * @param numRooms the num rooms
 	 */
@@ -188,7 +188,7 @@ public class Controller extends Thread implements ActionListener, AncestorListen
 								((ContractPanel) window.getContractPanel()).setePrice(((double) (Float
 										.valueOf(((ContractPanel) window.getContractPanel()).getePrice()) * -1)));
 								fieldflag=false;
-								return; // Bruttino 
+								return; // Bruttino //si molto bruttino :(
 							}else {
 								fieldflag=false;
 							}

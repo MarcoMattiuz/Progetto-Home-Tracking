@@ -66,9 +66,9 @@ public class Home {
 	}
 
 	/**
-	 * Generate rooms.
+	 * Generate rooms. metodo che istanzia le case e viene richiamato nel controller
 	 *
-	 * @param num the num
+	 * @param num the num 
 	 */
 	public ArrayList<String> generateRooms(int num) {
 		ArrayList<String> ret = new ArrayList<String>();
@@ -93,7 +93,7 @@ public class Home {
 	}
 
 	/**
-	 * Round avoid.
+	 * Round avoid. arrotonda un double in base ai posti decimali inseriti
 	 *
 	 * @param value the value
 	 * @param places the places

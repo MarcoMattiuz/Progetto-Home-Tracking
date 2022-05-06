@@ -12,7 +12,7 @@ import view.Window;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MainClass.
+ * The Class MainClass. 
  *
  * @author Marco&Davide <br>
  * {@docRoot}
