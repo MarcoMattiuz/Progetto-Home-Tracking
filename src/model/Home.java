@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import control.Device;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Home.

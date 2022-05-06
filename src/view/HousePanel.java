@@ -46,6 +46,7 @@ import java.awt.SystemColor;
 import javax.swing.AbstractListModel;
 import javax.swing.JCheckBox;
 import java.awt.Color;
+import javax.swing.ListSelectionModel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -92,6 +93,7 @@ public class HousePanel extends JPanel{
 		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][218.00,grow][69.00px:n][][]"));
 		
 		list = new JList<>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(model);
 		list.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		list.setBorder(null);
@@ -116,7 +118,7 @@ public class HousePanel extends JPanel{
 	 */
 	public void setListener() {
 		viewthingsbtn.addActionListener(controller);
-		list.addAncestorListener(controller);
+		list.addListSelectionListener(controller);
 	}
 	
 	/**

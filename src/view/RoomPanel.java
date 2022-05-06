@@ -2,13 +2,13 @@ package view;
 
 import javax.swing.JPanel;
 
-
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import control.Controller;
+import model.Room;
 
 import java.awt.Font;
 import javax.swing.SpringLayout;
@@ -16,8 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import javax.swing.JToolBar;
+import javax.swing.ListModel;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JInternalFrame;
 import javax.swing.JDesktopPane;
@@ -26,6 +28,8 @@ import java.awt.Component;
 import javax.swing.BoxLayout;
 import javax.swing.JProgressBar;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.JSpinner;
@@ -36,39 +40,61 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.Dimension;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.DebugGraphics;
+import javax.swing.DefaultListModel;
 import javax.swing.JSlider;
 import javax.swing.JList;
 import java.awt.SystemColor;
 import javax.swing.AbstractListModel;
 import javax.swing.JCheckBox;
 import java.awt.Color;
+import javax.swing.ListSelectionModel;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class RoomPanel.
+ * The Class HousePanel.
  */
-public class RoomPanel extends JPanel implements ActionListener {
+public class RoomPanel extends JPanel{
 
 	/**
 	 * Create the panel.
 	 */
 	Controller controller;
 	
-	/** The progress state. */
-	private int progressState;
-
-	/**
-	 * Instantiates a new room panel.
-	 *
-	 * @param controller the controller
-	 */
+	Room room;
+	
+	/** The list. */
+	private JList list;
+	
+	/** The consumption label. */
+	private JLabel consumptionLabel;
+	
+	/** The viewthingsbtn. */
+	private JButton viewthingsbtn;
+	
+	/** The title label. */
+	private JLabel titleLabel;
+	private DefaultListModel model;
+	
 	@SuppressWarnings("unchecked")
-	public RoomPanel(Controller controller) {
+	public RoomPanel(Controller controller, Room room, String roomName) {
+		this.room=room;
+		model = new DefaultListModel<>();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		setSize(new Dimension(505, 328));
 		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));
 
-		JLabel titleLabel = new JLabel("ROOM PANEL -");
+		titleLabel = new JLabel("Room Panel");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
@@ -78,54 +104,95 @@ public class RoomPanel extends JPanel implements ActionListener {
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][218.00,grow][69.00px:n][][]"));
 		
-		JList list = new JList();
+		list = new JList<>();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setModel(model);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		list.setBorder(null);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"STANZA 1 PROVA", "STANZA 2 PROVA", "STANZA 3 PROVA", "STANZA 4 PROVA", "STANZA 5 PROVA", "STANZA 6 PROVA", "STANZA 7 PROVA", "STANZA 8 PROVA", "STANZA 9 PROVA", "STANZA 10 PROVA", "STANZA 11 PROVA", "STANZA 12 PROVA"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
 		list.setBackground(SystemColor.control);
 		panel.add(list, "flowx,cell 1 1,alignx left,aligny top");
 		
-		JLabel consumptionLabel = new JLabel("NaN");
+		consumptionLabel = new JLabel("NaN");
+		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel.add(consumptionLabel, "cell 1 2");
 		
-		JButton btnNewButton_1 = new JButton("START");
-		btnNewButton_1.setForeground(Color.BLACK);
-		panel.add(btnNewButton_1, "flowx,cell 1 4,alignx center");
-		
-		JButton viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
-		viewthingsbtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
 		panel.add(viewthingsbtn, "cell 1 4,alignx center");
-		
-		JButton btnNewButton = new JButton("STOP");
-		btnNewButton.setForeground(Color.BLACK);
-		panel.add(btnNewButton, "cell 1 4,alignx center");
 		setListener();
+		(room.getDevicesNames()).stream().forEach((s)->{
+			model.addElement(s);
+		});
+		titleLabel.setText(titleLabel.getText()+" [ \""+roomName+"\"");
 	}
 
 	/**
 	 * Sets the listener.
 	 */
 	public void setListener() {
+		viewthingsbtn.addActionListener(controller);
+		list.addListSelectionListener(controller);
+	}
+	
+	/**
+	 * Gets the list.
+	 *
+	 * @return the list
+	 */
+	public JList getList() {
+		return list;
 	}
 
 	/**
-	 * Action performed.
+	 * Gets the consumption label.
 	 *
-	 * @param e the e
+	 * @return the consumption label
 	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public JLabel getConsumptionLabel() {
+		return consumptionLabel;
+	}
+
+	/**
+	 * Sets the consumption label.
+	 *
+	 * @param consumptionLabel the new consumption label
+	 */
+	public void setConsumptionLabel(JLabel consumptionLabel) {
+		this.consumptionLabel = consumptionLabel;
+	}
+
+	/**
+	 * Gets the viewthingsbtn.
+	 *
+	 * @return the viewthingsbtn
+	 */
+	public JButton getViewthingsbtn() {
+		return viewthingsbtn;
+	}
+
+	/**
+	 * Sets the viewthingsbtn.
+	 *
+	 * @param viewthingsbtn the new viewthingsbtn
+	 */
+	public void setViewthingsbtn(JButton viewthingsbtn) {
+		this.viewthingsbtn = viewthingsbtn;
+	}
+
+	/**
+	 * Gets the title label.
+	 *
+	 * @return the title label
+	 */
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+
+	/**
+	 * Sets the title label.
+	 *
+	 * @param titleLabel the new title label
+	 */
+	public void setTitleLabel(JLabel titleLabel) {
+		this.titleLabel = titleLabel;
 	}
 }

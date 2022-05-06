@@ -21,6 +21,7 @@ public class Room {
 	
 	/** The devices. */
 	private ArrayList<Device> devices;
+	private ArrayList<String> devicesNames;
 	
 	/**
 	 * Instantiates a new room.
@@ -30,6 +31,7 @@ public class Room {
 	public Room(String name){
 		this.name = name;
 		this.devices = new ArrayList<Device>(10);
+		this.devicesNames=new ArrayList<String>(1);
 	}
 	
 	/**
@@ -55,6 +57,7 @@ public class Room {
 	 */
 	public void addDevice(Device device) {
 		devices.add(device);
+		devicesNames.add(device.getName());
 	}
 	
 	/**
@@ -79,6 +82,10 @@ public class Room {
 			}
 		}
 		devices.removeAll(arr);
+	}
+	
+	public ArrayList<String> getDevicesNames(){
+		return devicesNames;
 	}
 	
 }

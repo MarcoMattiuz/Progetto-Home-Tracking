@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import control.Controller;
 import model.Home;
+import model.Room;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -71,6 +72,22 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	
 	/** The house panel. */
 	private HousePanel housePanel;
+
+	private JButton cameraBBtn;
+
+	private JButton bagnoBBtn;
+
+	private JButton cameraABtn;
+
+	private JButton soggiornoBtn;
+
+	private JButton bagnoABtn;
+
+	private JButton cucinaBtn;
+
+	private JButton tavernaBtn;
+	
+	private ArrayList<RoomPanel> roomPanels;
 	
 	/**
 	 * Instantiates a new window.
@@ -86,6 +103,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 			e.printStackTrace();
 		}
 		noHousePanel=new NoHousePanel(controller);
+		roomPanels = new ArrayList<RoomPanel>(1);
 		housePanel = new HousePanel(controller);
 		title="HOME TRACKING V1";
 		this.controller=controller;
@@ -163,6 +181,17 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public void windowClosing(WindowEvent arg0) {
 		System.exit(1);
 	}
+	
+	public void addRoomPanel(RoomPanel roomPanel) {
+		roomPanels.add(roomPanel);
+	}
+	
+	public void setRoomPanel(int idx) {
+		if(idx>=0&&idx<=roomPanels.size()) {
+			setContentPane(roomPanels.get(idx));
+		}
+	}
+	
 
 	/**
 	 * Window closed.
@@ -232,52 +261,58 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public void initializeMenuItems(int numberOfRooms, ArrayList<String> roomsNames) {
 		switch (numberOfRooms) {
 		case 7:
-			JButton cameraBBtn = new JButton(roomsNames.get(6));
+			cameraBBtn = new JButton(roomsNames.get(6));
 			cameraBBtn.setMaximumSize(new Dimension(85, 23));
 			cameraBBtn.setMinimumSize(new Dimension(85, 23));
 			cameraBBtn.addActionListener((ActionListener) this);
+			cameraBBtn.addActionListener((ActionListener) controller);
 			menu.add(cameraBBtn);
 		case 6:
-			JButton bagnoBBtn = new JButton(roomsNames.get(5));
+			bagnoBBtn = new JButton(roomsNames.get(5));
 			bagnoBBtn.setMaximumSize(new Dimension(85, 23));
 			bagnoBBtn.setMinimumSize(new Dimension(85, 23));
 			bagnoBBtn.addActionListener((ActionListener) this);
+			bagnoBBtn.addActionListener((ActionListener) controller);
 			menu.add(bagnoBBtn);
 		case 5:
-			JButton cameraABtn = new JButton(roomsNames.get(4));
+			cameraABtn = new JButton(roomsNames.get(4));
 			cameraABtn.setMaximumSize(new Dimension(85, 23));
 			cameraABtn.setMinimumSize(new Dimension(85, 23));
+			cameraABtn.addActionListener((ActionListener) controller);
 			cameraABtn.addActionListener((ActionListener) this);
 			menu.add(cameraABtn);
 		case 4:
-			JButton soggiornoBtn = new JButton(roomsNames.get(3));
+			soggiornoBtn = new JButton(roomsNames.get(3));
 			soggiornoBtn.setMaximumSize(new Dimension(85, 23));
 			soggiornoBtn.setMinimumSize(new Dimension(85, 23));
+			soggiornoBtn.addActionListener((ActionListener) controller);
 			soggiornoBtn.addActionListener((ActionListener) this);
 			menu.add(soggiornoBtn);
 		case 3:
-			JButton bagnoABtn = new JButton(roomsNames.get(2));
+			bagnoABtn = new JButton(roomsNames.get(2));
 			bagnoABtn.setMaximumSize(new Dimension(85, 23));
 			bagnoABtn.setMinimumSize(new Dimension(85, 23));
+			bagnoABtn.addActionListener((ActionListener) controller);
 			bagnoABtn.addActionListener((ActionListener) this);
 			menu.add(bagnoABtn);
 		case 2:
-			JButton cucinaBtn = new JButton(roomsNames.get(1));
+			cucinaBtn = new JButton(roomsNames.get(1));
 			cucinaBtn.setMaximumSize(new Dimension(85, 23));
 			cucinaBtn.setMinimumSize(new Dimension(85, 23));
+			cucinaBtn.addActionListener((ActionListener) controller);
 			cucinaBtn.addActionListener((ActionListener) this);
 			menu.add(cucinaBtn);
 		default:
-			JButton tavernaBtn = new JButton(roomsNames.get(0));
+			tavernaBtn = new JButton(roomsNames.get(0));
 			tavernaBtn.setMaximumSize(new Dimension(85, 23));
 			tavernaBtn.setMinimumSize(new Dimension(85, 23));
+			tavernaBtn.addActionListener((ActionListener) controller);
 			tavernaBtn.addActionListener((ActionListener) this);
 			menu.add(tavernaBtn);
 			exitBtn = new JButton("Exit");
 			exitBtn.setMaximumSize(new Dimension(85, 70));
 			menu.add(exitBtn);
 			exitBtn.addActionListener(this);
-			
 		}
 	}
 	
