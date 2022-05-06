@@ -122,7 +122,7 @@ public class RoomPanel extends JPanel{
 		(room.getDevicesNames()).stream().forEach((s)->{
 			model.addElement(s);
 		});
-		titleLabel.setText(titleLabel.getText()+" [ \""+roomName+"\"");
+		titleLabel.setText(titleLabel.getText()+" [ \""+roomName+"\" ]");
 	}
 
 	/**

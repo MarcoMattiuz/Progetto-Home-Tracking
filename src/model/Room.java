@@ -57,7 +57,7 @@ public class Room {
 	 */
 	public void addDevice(Device device) {
 		devices.add(device);
-		devicesNames.add(device.getName());
+		devicesNames.add(device.getDeviceName());
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class Room {
 	public void removeAllDeviceByName(String name) {
 		ArrayList<Device> arr = new ArrayList<Device>(10);
 		for (Device device : devices) {
-			if(device.getName().equals(name)) {
+			if(device.getDeviceName().equals(name)) {
 				arr.add(device);
 			}
 		}

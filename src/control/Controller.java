@@ -287,8 +287,7 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 		
 			// Fine Controlli su tutti i campi dati, si pu� creare la casa adesso
 					if(fieldflag) { 
-						ArrayList<String> arr = generateHouse((window.getHomePanel()).getRoomsNumber(),true,2); //TO-DO passare al metodo isSolar (se ci sono i pannelli) e solar (la potenza sviluppata) che va da 2 a 6
-						roomsNames = generateHouse((window.getHomePanel()).getRoomsNumber());
+						roomsNames=generateHouse((window.getHomePanel()).getRoomsNumber(),true,2); // TO-DO passare al metodo isSolar (se ci sono i pannelli) e solar (la potenza sviluppata) che va da 2 a 6
 						Collections.reverse(roomsNames);
 						roomsNamesReversed=roomsNames;
 						Collections.reverse(roomsNames);
