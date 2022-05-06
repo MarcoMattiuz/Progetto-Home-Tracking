@@ -57,9 +57,17 @@ public class Controller extends Thread implements ActionListener, AncestorListen
 	 * Generate house. genera la casa istanzia le stanze e i dispositivi
 	 *
 	 * @param numRooms the num rooms
+	 * @param isSolar the is solar
+	 * @param solar the solar
+	 * @return the array list
 	 */
-	public ArrayList<String> generateHouse(int numRooms) {
-		ArrayList<String> rn = house.generateRooms(numRooms);
+	public ArrayList<String> generateHouse(int numRooms, boolean isSolar, int solar) {
+		ArrayList<String> rn = house.generateRooms(numRooms,isSolar);
+		//solar è la potenza dell'impianto e viene messa come -consumo nei pannelli
+		if(isSolar) {
+			Room roof = house.getRoom("roof");
+			roof.addDevice(new SolarPannels("pannelli-solari", 01, new Consume(-1 * solar, 0, 0), house));
+		}
 		window.initializeMenuItems(numRooms,rn);
 		switch (numRooms) {
 		case 7:
@@ -268,7 +276,7 @@ public class Controller extends Thread implements ActionListener, AncestorListen
 		
 			// Fine Controlli su tutti i campi dati, si puï¿½ creare la casa adesso
 					if(fieldflag) { 
-						ArrayList<String> arr = generateHouse((window.getHomePanel()).getRoomsNumber());
+						ArrayList<String> arr = generateHouse((window.getHomePanel()).getRoomsNumber(),true,2); //TO-DO passare al metodo isSolar (se ci sono i pannelli) e solar (la potenza sviluppata) che va da 2 a 6
 						String holderName=(window.getHomePanel()).getHolderName();
 						String houseName=(window.getHomePanel()).getHouseName();
 						window.setHousePanel();

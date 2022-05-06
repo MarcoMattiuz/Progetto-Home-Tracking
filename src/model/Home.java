@@ -70,8 +70,11 @@ public class Home {
 	 *
 	 * @param num the num 
 	 */
-	public ArrayList<String> generateRooms(int num) {
+	public ArrayList<String> generateRooms(int num, boolean isSolar) {
 		ArrayList<String> ret = new ArrayList<String>();
+		if(isSolar) {
+			rooms.put("roof", new Room("roof"));                ret.add("Roof");
+		}
 		switch (num) {
 		case 7:
 			rooms.put("camera-2", new Room("camera-2"));		ret.add("Camera 2");
