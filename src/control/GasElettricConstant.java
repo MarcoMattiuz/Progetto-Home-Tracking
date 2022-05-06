@@ -21,8 +21,8 @@ public class GasElettricConstant extends Device {
 	 * @param consume the consume
 	 * @param md the md
 	 */
-	public GasElettricConstant(String deviceName, int code, Consume consume, Home md) {
-		super(deviceName, code, consume, md, true);
+	public GasElettricConstant(String deviceName, int code, Consume consume, Home md,Controller contr) {
+		super(deviceName, code, consume, md, true, contr);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
 		this.start();
 	}
@@ -34,14 +34,13 @@ public class GasElettricConstant extends Device {
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("CURRENTCONSUMPITON::"+getMd().getPresentConsumptionKwh());
 			if (getTimer() % hour == 0) {
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
-				getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
-				System.out.println("--" + getDeviceName() + "--");
+//				getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
+				contr.updateConsumption(getMd().getDailyConsumption());
+				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumptionKwh());
 			}
 			System.out.println("Timer: " + getTimer());
-//			System.out.println(getDeviceName() + ":: " + getMd().getDailyConsumptionKwh());
 			incrTimer();
 			keepTime();
 		}

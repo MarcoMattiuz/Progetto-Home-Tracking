@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
+import javax.swing.JCheckBoxMenuItem;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -251,7 +253,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==houseBtn) {
-			setHomePanel();
+			setHousePanel();
 		}else if(e.getSource()==exitBtn) {
 //			System.exit(EXIT_ON_CLOSE);
 			windowIconified(null);
@@ -388,6 +390,10 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 */
 	public void showErrorMessage(String message) {
 		JOptionPane.showMessageDialog(getContentPane(), message);
+	}
+	
+	public void reverse() {
+		Collections.reverse(roomPanels);
 	}
 	
 	/**

@@ -70,25 +70,25 @@ public class Home {
 	 */
 	public ArrayList<String> generateRooms(int num, boolean isSolar) {
 		ArrayList<String> ret = new ArrayList<String>();
-		if(isSolar) {
-			rooms.put("roof", new Room("roof"));                ret.add("Roof");
-		}
 		switch (num) {
-		case 7:
-			rooms.put("camera-2", new Room("camera-2"));		ret.add("Camera 2");
-		case 6:
-			rooms.put("bagno-2", new Room("bagno-2"));			ret.add("Bagno 2");
-		case 5:
-			rooms.put("camera-1", new Room("camera-1"));		ret.add("Camera 1");
-		case 4:
-			rooms.put("soggiorno", new Room("soggiorno"));		ret.add("Soggiorno");
-		case 3:
-			rooms.put("bagno-1", new Room("bagno-1"));			ret.add("Bagno 1");
-		case 2:
-			rooms.put("cucina", new Room("cucina"));			ret.add("Cucina");
-		default:
-			rooms.put("taverna", new Room("taverna"));			ret.add("Taverna");
-			break;
+			case 7:
+				rooms.put("camera-2", new Room("camera-2"));		ret.add("Camera 2");
+			case 6:
+				rooms.put("bagno-2", new Room("bagno-2"));			ret.add("Bagno 2");
+			case 5:
+				rooms.put("camera-1", new Room("camera-1"));		ret.add("Camera 1");
+			case 4:
+				rooms.put("soggiorno", new Room("soggiorno"));		ret.add("Soggiorno");
+			case 3:
+				rooms.put("bagno-1", new Room("bagno-1"));			ret.add("Bagno 1");
+			case 2:
+				rooms.put("cucina", new Room("cucina"));			ret.add("Cucina");
+			default:
+				rooms.put("taverna", new Room("taverna"));			ret.add("Taverna");
+				break;
+		}
+		if(isSolar) {
+			rooms.put("roof", new Room("roof"));           ret.add("Roof");
 		}
 		return ret;
 	}
@@ -269,7 +269,6 @@ public class Home {
 	public synchronized void addToDailyConsumption_Gmc(double dailyConsumption_Gmc) {
 		this.dailyConsumption_Gmc += dailyConsumption_Gmc;
 		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
-
 	}
 	
 	/**
@@ -283,6 +282,12 @@ public class Home {
 
 	}
 	
+	public synchronized void addToDailyConsumption_Kwh_Gmc(double dailyConsumption_Gmc, double dailyConsumption_Kwh) {
+		this.dailyConsumption_Gmc += dailyConsumption_Gmc;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
+		this.dailyConsumption_Kwh += dailyConsumption_Kwh;
+		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
+	}
 	/**
 	 * Gets the daily consumption lh.
 	 *
@@ -301,6 +306,14 @@ public class Home {
 		this.dailyConsumption_Lh = dailyConsumption_Lh;
 		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
 
+	}
+	
+	public synchronized String getDailyConsumption() {
+		return "Daily Consumption: \n"
+				+ "Electricity: " + dailyConsumption_Kwh + " kW/h \n"
+						+ " Gas: " + dailyConsumption_Gmc + " Gm/h \n"
+								+ " Water: " + dailyConsumption_Lh + " l/h";
+	
 	}
 	
 	/**

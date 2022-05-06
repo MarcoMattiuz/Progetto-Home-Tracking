@@ -17,8 +17,8 @@ public class SolarPannels extends Device{
    * @param consume the consume
    * @param md the md
    */
-  public SolarPannels(String deviceName, int code, Consume consume, Home md) {
-		super(deviceName, code, consume, md, true);
+  public SolarPannels(String deviceName, int code, Consume consume, Home md,Controller contr) {
+		super(deviceName, code, consume, md, true, contr);
 //		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
 		this.start();
 	}

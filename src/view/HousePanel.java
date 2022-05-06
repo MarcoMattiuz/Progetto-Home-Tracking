@@ -100,7 +100,7 @@ public class HousePanel extends JPanel{
 		list.setBackground(SystemColor.control);
 		panel.add(list, "flowx,cell 1 1,alignx left,aligny top");
 		
-		consumptionLabel = new JLabel("NaN");
+		consumptionLabel = new JLabel("");
 		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel.add(consumptionLabel, "cell 1 2");
 		

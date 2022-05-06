@@ -26,8 +26,8 @@ public class ElettricOnOff extends Device {
 	 * @param consume the consume
 	 * @param md the md
 	 */
-	ElettricOnOff(String deviceName, int code, Consume consume, Home md) {
-		super(deviceName, code, consume, md, false);
+	ElettricOnOff(String deviceName, int code, Consume consume, Home md, Controller contr) {
+		super(deviceName, code, consume, md, false, contr);
 		this.firstOn = true;
 	}
 
@@ -56,13 +56,10 @@ public class ElettricOnOff extends Device {
 	public void run() {
 		while (true) {
 			if (toggle) {
-				System.out.println("CURRENTCONSUMPITON::" + getMd().getPresentConsumptionKwh());
 				if (getTimer() % hour == 0) {
 					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 					System.out.println("--" + getDeviceName() + "--");
 				}
-				System.out.println("Timer: " + getTimer());
-//				System.out.println(getDeviceName()+":: "+getMd().getDailyConsumptionKwh());
 				incrTimer();
 				keepTime();
 			} else {

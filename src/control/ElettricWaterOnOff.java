@@ -25,8 +25,8 @@ public class ElettricWaterOnOff extends Device {
 	 * @param consume the consume
 	 * @param md the md
 	 */
-	public ElettricWaterOnOff(String deviceName, int code, Consume consume, Home md) {
-		super(deviceName, code, consume, md, false);
+	public ElettricWaterOnOff(String deviceName, int code, Consume consume, Home md, Controller contr) {
+		super(deviceName, code, consume, md, false, contr);
 		this.firstOn = true;
 	}
 	
@@ -56,13 +56,11 @@ public class ElettricWaterOnOff extends Device {
 	public void run() {
 		while (true) {
 			if (toggle) {
-				System.out.println("CURRENTCONSUMPITON::" + getMd().getPresentConsumptionKwh());
 				if (getTimer() % hour == 0) {
 					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
-					getMd().addToDailyConsumption_Lh(this.getConsume().getKwh());
+					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
 					System.out.println("--" + getDeviceName() + "--");
 				}
-				System.out.println("Timer: " + getTimer());
 				incrTimer();
 				keepTime();
 			} else {

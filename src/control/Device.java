@@ -34,6 +34,8 @@ public abstract class Device extends Thread {
 	/** The hour. */
 	protected int hour;
 	
+	protected Controller contr;
+	
 	/**
 	 * Constructor.
 	 *
@@ -43,14 +45,15 @@ public abstract class Device extends Thread {
 	 * @param md the md
 	 * @param toggle the toggle
 	 */
-	public Device(String deviceName, int code, Consume consume, Home md, boolean toggle) {
+	public Device(String deviceName, int code, Consume consume, Home md, boolean toggle, Controller contr) {
+		this.contr = contr;
 		this.deviceName= deviceName;
 		this.code = code;
 		this.consume = consume;
 		this.md = md;
 		this.timer = 0;
 		this.toggle = toggle;
-		this.hour = 60;
+		this.hour = 5;
 	}
 	
 	/**

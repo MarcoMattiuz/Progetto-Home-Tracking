@@ -24,8 +24,8 @@ public class WaterOnOff extends Device {
 	 * @param consume the consume
 	 * @param md the md
 	 */
-	public WaterOnOff(String deviceName, int code, Consume consume, Home md) {
-		super(deviceName, code, consume, md, false);
+	public WaterOnOff(String deviceName, int code, Consume consume, Home md,Controller contr) {
+		super(deviceName, code, consume, md, false, contr);
 		this.firstOn = true;
 	}
 
