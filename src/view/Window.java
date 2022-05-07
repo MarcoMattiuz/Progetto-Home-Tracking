@@ -29,6 +29,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JLabel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -94,7 +95,16 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	private ArrayList<RoomPanel> roomPanels;
 	
 	private RoomPanel roof;
+	private JLabel time;
 	
+	public JLabel getTime() {
+		return time;
+	}
+
+	public void setTime(JLabel time) {
+		this.time = time;
+	}
+
 	/**
 	 * Instantiates a new window.
 	 *
@@ -133,6 +143,9 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		exitBtn = new JButton("Exit");
 		exitBtn.setMaximumSize(new Dimension(85, 70));
 		menu.add(exitBtn);
+		
+		time = new JLabel("");
+		menuBar.add(time);
 		exitBtn.addActionListener(this);
 		setTitle(title);
 		homePanel=new HomePanel(controller);

@@ -60,7 +60,7 @@ public abstract class Device extends Thread {
 		this.timer = 0;
 		this.toggle = toggle;
 		this.roomKey = RoomKey;
-		this.hour = 20;
+		this.hour = 60;
 	}
 	
 	/**
@@ -90,6 +90,11 @@ public abstract class Device extends Thread {
 		return consume;
 	}
 	
+	protected double getPercentConsumption(double consume) {
+		int percent = (100/hour) * (getTimer() % hour);
+		double ret = consume - (consume/100) * percent;
+		return ret;
+	}
 	/**
 	 * Gets the timer.
 	 *

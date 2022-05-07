@@ -8,23 +8,23 @@ import model.Home;
  * The Class WaterOnOff.
  *
  * @author Marco&Davide <br>
- * {@docRoot}
+ *         {@docRoot}
  * @version 4.21.0
  */
 public class WaterOnOff extends Device {
 
 	/** The first on. */
 	private boolean firstOn;
-	
+
 	/**
 	 * Instantiates a new water on off.
 	 *
 	 * @param deviceName the device name
-	 * @param code the code
-	 * @param consume the consume
-	 * @param md the md
+	 * @param code       the code
+	 * @param consume    the consume
+	 * @param md         the md
 	 */
-	public WaterOnOff(String deviceName, int code, Consume consume, Home md,Controller contr, String RoomKey) {
+	public WaterOnOff(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
 		super(deviceName, code, consume, md, false, contr, RoomKey);
 		this.firstOn = true;
 	}
@@ -35,13 +35,16 @@ public class WaterOnOff extends Device {
 	@Override
 	public void toggle() {
 		toggle = !toggle;
-		if(firstOn) {
+		if (firstOn) {
 			this.start();
 			firstOn = false;
 		}
 		if (toggle) {
 			setTimer(0);
-		} 
+		}else {
+			getMd().addToDailyConsumption_Lh(getPercentConsumption(this.getConsume().getLh()));
+			getMd().getRoom(roomKey).addToDailyConsumption_Lh(getPercentConsumption(this.getConsume().getLh()));
+		}
 	}
 
 	/**
@@ -51,20 +54,19 @@ public class WaterOnOff extends Device {
 	public void run() {
 		while (true) {
 			contr.updateConsumption(getMd().getDailyConsumption());
-			if(toggle) {
-				if(getTimer() != 0 && getTimer() % hour == 0 ) {
+			if (toggle) {
+				if (getTimer() != 0 && getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
 					getMd().getRoom(roomKey).addToDailyConsumption_Lh(this.getConsume().getLh());
-					System.out.println("--"+getDeviceName()+"--");
+					System.out.println("--" + getDeviceName() + "--");
 				}
-				System.out.println("Timer: "+getTimer());
 				incrTimer();
 				keepTime();
-			}else {
+			} else {
 				try {
-					System.out.println("SPENTO");
+
 					sleep(50);
-					System.out.println("SPENTO");
+
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

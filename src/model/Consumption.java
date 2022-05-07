@@ -30,7 +30,7 @@ public class Consumption {
 	 * @return Math.round(value * scale) / scale
 	 */
 	protected double round(double value) {
-		double ret =Math.round(value*1000.0)/1000.0;
+		double ret =Math.round(value*10000.0)/10000.0;
 		System.out.println("ARROTONDATO"+ret);
 		return ret;
 	}

@@ -41,7 +41,11 @@ public class GasOnOff extends Device {
 		}
 		if (toggle) {
 			setTimer(0);
-		} 
+		}else {
+			//percent
+			getMd().addToDailyConsumption_Gmc(getPercentConsumption(this.getConsume().getGmc()));
+			getMd().getRoom(roomKey).addToDailyConsumption_Gmc(getPercentConsumption(this.getConsume().getGmc()));
+		}
 	}
 
 	/**
@@ -52,14 +56,10 @@ public class GasOnOff extends Device {
 		while (true) {
 			contr.updateConsumption(getMd().getDailyConsumption());
 			if (toggle) {
-			
 				if (getTimer() != 0 && getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
 					getMd().getRoom(roomKey).addToDailyConsumption_Gmc(this.getConsume().getGmc());
-					System.out.println("--" + getDeviceName() + "--");
 				}
-				System.out.println("Timer: " + getTimer());
-//				System.out.println(getDeviceName()+":: "+getMd().getDailyConsumptionKwh());
 				incrTimer();
 				keepTime();
 			} else {

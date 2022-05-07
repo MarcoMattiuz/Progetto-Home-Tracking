@@ -130,6 +130,7 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			Room taverna = house.getRoom("taverna");
 			taverna.addDevice(new ElettricOnOff("luce-10", 29, new Consume(0.055, 0, 0), house, this,"taverna"));
 			taverna.addDevice(new ElettricOnOff("luce-11", 30, new Consume(0.065, 0, 0), house,this,"taverna"));
+			taverna.addDevice(new ElettricWaterOnOff("lavatrice", 32, new Consume(1.8, 0, 70), house, this,"taverna")); // 50 litri
 			taverna.addDevice(new GasElettricConstant("caldaia", 31, new Consume(1.2, 0.65, 0), house,this,"taverna"));
 			window.addRoomPanel(new RoomPanel(this, taverna, rn.get(0).getRoomName()));
 			if(isSolar) {
@@ -388,6 +389,11 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 	}
 	
 
+	public void updateTime(int time) {
+		int hour = time / 60;
+		int minutes = time % 60;
+		window.getTime().setText("Time: " + "-hours: " + hour + " minutes: " + minutes + "-");
+	}
 	
 	/**
  * Update consumption. Questo metodo viene aggiornato nei thread dei dispositivi costant perchè

@@ -48,6 +48,11 @@ public class ElettricWaterOnOff extends Device {
 		} else {
 			getMd().takeFromPresentConsumptionKwh(this.getConsume().getKwh());
 			getMd().getRoom(roomKey).takeFromPresentConsumptionKwh(this.getConsume().getKwh());
+			//percent
+			getMd().addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
+			getMd().getRoom(roomKey).addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
+			getMd().addToDailyConsumption_Lh(getPercentConsumption(this.getConsume().getLh()));
+			getMd().getRoom(roomKey).addToDailyConsumption_Lh(getPercentConsumption(this.getConsume().getLh()));
 		}
 	}
 
@@ -66,8 +71,6 @@ public class ElettricWaterOnOff extends Device {
 					//stanza
 					getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
 					getMd().getRoom(roomKey).addToDailyConsumption_Lh(this.getConsume().getLh());
-
-					System.out.println("--" + getDeviceName() + "--");
 				}
 				incrTimer();
 				keepTime();

@@ -37,9 +37,7 @@ public class SolarPannels extends Device{
 				System.out.println("produzione: "+ prod);
 				getMd().takeFromDailyConsumptionKhw(prod);
 				getMd().getRoom(roomKey).takeFromDailyConsumptionKhw(prod); //questo serve per vedere quanto hanno prodotto i pannelli
-				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumptionKwh());
 			}
-			System.out.println("Timer: " + getTimer());
 			incrTimer();
 			keepTime();
 		}

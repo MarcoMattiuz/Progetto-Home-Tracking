@@ -1,5 +1,5 @@
 package model;
-// TODO: Auto-generated Javadoc
+
 
 /**
  * The Class Consume.
