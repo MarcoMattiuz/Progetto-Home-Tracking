@@ -121,11 +121,13 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			cucina.addDevice(new WaterOnOff("lavabo", 6, new Consume(0, 0, 400), house, this)); // 400 litri all'ora
 			cucina.addDevice(new ElettricWaterOnOff("lavastoviglie", 7, new Consume(1.6, 0, 50), house, this)); // 50 litri
 			window.addRoomPanel(new RoomPanel(this, cucina, rn.get(1)));
+			
 		default:
 			Room taverna = house.getRoom("taverna");
 			taverna.addDevice(new ElettricOnOff("luce-10", 29, new Consume(0.055, 0, 0), house, this));
 			taverna.addDevice(new ElettricOnOff("luce-11", 30, new Consume(0.065, 0, 0), house,this));
 			taverna.addDevice(new GasElettricConstant("caldaia", 31, new Consume(1.2, 0.65, 0), house,this));
+			taverna.addDevice(new GasElettricConstant("caldaia2TEST", 31, new Consume(2, 1, 0), house,this));
 			window.addRoomPanel(new RoomPanel(this, taverna, rn.get(0)));
 			if(isSolar) {
 				Room roof = house.getRoom("roof");

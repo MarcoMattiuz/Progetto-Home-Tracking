@@ -268,7 +268,7 @@ public class Home {
 	 */
 	public synchronized void addToDailyConsumption_Gmc(double dailyConsumption_Gmc) {
 		this.dailyConsumption_Gmc += dailyConsumption_Gmc;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
+		dailyConsumption_Gmc = roundAvoid(dailyConsumption_Gmc, 3);
 	}
 	
 	/**
@@ -308,11 +308,11 @@ public class Home {
 
 	}
 	
-	public synchronized String getDailyConsumption() {
+	public String getDailyConsumption() {
 		return "Daily Consumption: \n"
-				+ "Electricity: " + dailyConsumption_Kwh + " kW/h \n"
-						+ " Gas: " + dailyConsumption_Gmc + " Gm/h \n"
-								+ " Water: " + dailyConsumption_Lh + " l/h";
+				+ "Electricity: " + this.getDailyConsumptionKwh() + " kW/h \n"
+						+ " Gas: " + this.getDailyConsumption_Gmc() + " Gm/h \n"
+								+ " Water: " + this.getDailyConsumption_Lh() + " l/h";
 	
 	}
 	

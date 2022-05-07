@@ -53,7 +53,7 @@ public abstract class Device extends Thread {
 		this.md = md;
 		this.timer = 0;
 		this.toggle = toggle;
-		this.hour = 5;
+		this.hour = 60;
 	}
 	
 	/**
