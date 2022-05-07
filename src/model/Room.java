@@ -14,7 +14,7 @@ import control.Device;
  * {@docRoot}
  * @version 4.21.0
  */
-public class Room {
+public class Room extends Consumption{
 	
 	/** The name. */
 	private String name;

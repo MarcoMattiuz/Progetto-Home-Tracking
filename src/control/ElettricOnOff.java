@@ -26,8 +26,8 @@ public class ElettricOnOff extends Device {
 	 * @param consume the consume
 	 * @param md the md
 	 */
-	ElettricOnOff(String deviceName, int code, Consume consume, Home md, Controller contr) {
-		super(deviceName, code, consume, md, false, contr);
+	ElettricOnOff(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
+		super(deviceName, code, consume, md, false, contr,RoomKey);
 		this.firstOn = true;
 	}
 
@@ -44,8 +44,10 @@ public class ElettricOnOff extends Device {
 		if (toggle) {
 			setTimer(0);
 			getMd().addToPresentConsumptionKwh(this.getConsume().getKwh());
+			getMd().getRoom(roomKey).addToPresentConsumptionKwh(this.getConsume().getKwh());
 		} else {
 			getMd().takeFromPresentConsumptionKwh(this.getConsume().getKwh());
+			getMd().getRoom(roomKey).takeFromPresentConsumptionKwh(this.getConsume().getKwh());
 		}
 	}
 
@@ -58,7 +60,7 @@ public class ElettricOnOff extends Device {
 			if (toggle) {
 				if (getTimer() % hour == 0) {
 					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
-					System.out.println("--" + getDeviceName() + "--");
+					getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
 				}
 				incrTimer();
 				keepTime();

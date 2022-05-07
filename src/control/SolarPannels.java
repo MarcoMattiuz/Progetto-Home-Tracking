@@ -17,9 +17,8 @@ public class SolarPannels extends Device{
    * @param consume the consume
    * @param md the md
    */
-  public SolarPannels(String deviceName, int code, Consume consume, Home md,Controller contr) {
-		super(deviceName, code, consume, md, true, contr);
-//		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
+  public SolarPannels(String deviceName, int code, Consume consume, Home md,Controller contr, String RoomKey) {
+		super(deviceName, code, consume, md, true, contr, RoomKey);
 		this.start();
 	}
 
@@ -31,14 +30,21 @@ public class SolarPannels extends Device{
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("CURRENTCONSUMPITON::"+getMd().getPresentConsumptionKwh());
 			if (getTimer() % hour == 0) {
-				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh() - ((Math.random()*3)+1));
-				System.out.println("--" + getDeviceName() + "--");
+				System.out.println("PANNELLI: "+ this.getPower());
+				double prod = this.getConsume().getKwh() - ((Math.random()*3)+1);
+				System.out.println("produzione: "+ prod);
+				getMd().takeFromDailyConsumptionKhw(prod);
+				getMd().getRoom(roomKey).takeFromDailyConsumptionKhw(prod); //questo serve per vedere quanto hanno prodotto i pannelli
+				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumptionKwh());
 			}
 			System.out.println("Timer: " + getTimer());
 			incrTimer();
 			keepTime();
 		}
+	}
+	
+	public double getPower() {
+		return this.getConsume().getKwh();
 	}
 }

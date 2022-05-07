@@ -24,8 +24,8 @@ public class WaterOnOff extends Device {
 	 * @param consume the consume
 	 * @param md the md
 	 */
-	public WaterOnOff(String deviceName, int code, Consume consume, Home md,Controller contr) {
-		super(deviceName, code, consume, md, false, contr);
+	public WaterOnOff(String deviceName, int code, Consume consume, Home md,Controller contr, String RoomKey) {
+		super(deviceName, code, consume, md, false, contr, RoomKey);
 		this.firstOn = true;
 	}
 
@@ -53,6 +53,7 @@ public class WaterOnOff extends Device {
 			if(toggle) {
 				if(getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
+					getMd().getRoom(roomKey).addToDailyConsumption_Lh(this.getConsume().getLh());
 					System.out.println("--"+getDeviceName()+"--");
 				}
 				System.out.println("Timer: "+getTimer());

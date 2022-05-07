@@ -25,9 +25,10 @@ public class GasElettricConstant extends Device {
 	 */
 	private Semaphore test;
 
-	public GasElettricConstant(String deviceName, int code, Consume consume, Home md, Controller contr) {
-		super(deviceName, code, consume, md, true, contr);
+	public GasElettricConstant(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
+		super(deviceName, code, consume, md, true, contr, RoomKey);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
+		md.getRoom(roomKey).addToPresentConsumptionKwh(this.getConsume().getKwh());
 		this.test = new Semaphore(0);
 		this.start();
 	}
@@ -39,15 +40,19 @@ public class GasElettricConstant extends Device {
 	@Override
 	public void run() {
 		while (true) {
+			contr.updateConsumption(getMd().getDailyConsumption());
 			if (getTimer() % hour == 0) {
-
+				
+				//casa
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
-
 				getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
-
-				contr.updateConsumption(getMd().getDailyConsumption());
-				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumptionKwh());
-				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumption_Gmc());
+				//stanza
+				getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh()); 
+				getMd().getRoom(roomKey).addToDailyConsumption_Gmc(this.getConsume().getGmc()); 
+				System.out.println("CASA: "+getMd().getDailyConsumption());
+				System.out.println(roomKey+": "+ getMd().getRoom(roomKey).getDailyConsumption());
+//				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumptionKwh());
+//				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumption_Gmc());
 			}
 			System.out.println("Timer: " + getTimer());
 			incrTimer();

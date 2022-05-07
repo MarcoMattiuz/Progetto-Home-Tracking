@@ -12,7 +12,7 @@ import java.util.Map;
  *         {@docRoot}
  * @version 4.21.0
  */
-public class Home {
+public class Home extends Consumption{
 	
 	/** The house holder. */
 	private String house_holder;
@@ -22,18 +22,6 @@ public class Home {
 	
 	/** The contract. */
 	private Contract contract;
-	
-	/** The daily consumption kwh. */
-	private double dailyConsumption_Kwh;
-	
-	/** The present consumption kwh. */
-	private double presentConsumption_Kwh;
-	
-	/** The daily consumption gmc. */
-	private double dailyConsumption_Gmc;
-	
-	/** The daily consumption lh. */
-	private double dailyConsumption_Lh;
 	
 	/** The money kwh. */
 	private double money_kwh;
@@ -54,10 +42,6 @@ public class Home {
 		this.house_holder = house_holder;
 		this.contract = contract;
 		this.rooms = new HashMap<String, Room>();
-		this.dailyConsumption_Kwh = 0;
-		this.presentConsumption_Kwh = 0;
-		this.setDailyConsumption_Gmc(0);
-		this.setDailyConsumption_Lh(0);
 		this.money_Gmh = 0;
 		this.money_kwh = 0;
 		this.money_Lh = 0;
@@ -66,7 +50,9 @@ public class Home {
 	/**
 	 * Generate rooms. metodo che istanzia le case e viene richiamato nel controller
 	 *
-	 * @param num the num 
+	 * @param num the num
+	 * @param isSolar the is solar
+	 * @return the array list
 	 */
 	public ArrayList<String> generateRooms(int num, boolean isSolar) {
 		ArrayList<String> ret = new ArrayList<String>();
@@ -93,17 +79,7 @@ public class Home {
 		return ret;
 	}
 
-	/**
-	 * Round avoid. arrotonda un double in base ai posti decimali inseriti
-	 *
-	 * @param value the value
-	 * @param places the places
-	 * @return Math.round(value * scale) / scale
-	 */
-	private static double roundAvoid(double value, int places) {
-		double scale = Math.pow(10, places);
-		return Math.round(value * scale) / scale;
-	}
+	
 
 	/**
 	 * Adds the room.
@@ -144,94 +120,17 @@ public class Home {
 		return rooms;
 	}
 
-	/**
-	 * Gets the daily consumption kwh.
-	 *
-	 * @return dailyConsumption_Kwh
-	 */
-	public synchronized double getDailyConsumptionKwh() {
-		return dailyConsumption_Kwh;
-	}
-
-	/**
-	 * Sets the daily consumption kwh.
-	 *
-	 * @param consumption the new daily consumption kwh
-	 */
-	public synchronized void setDailyConsumptionKwh(double consumption) {
-		this.dailyConsumption_Kwh = consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
-	}
-
-	/**
-	 * Adds the to daily consumption khw.
-	 *
-	 * @param consumption the consumption
-	 */
-	public synchronized void addToDailyConsumptionKhw(double consumption) {
-		this.dailyConsumption_Kwh += consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
-	}
 	
-	/**
-	 * Take from daily consumption khw.
-	 *
-	 * @param consumption the consumption
-	 */
-	public synchronized void takeFromDailyConsumptionKhw(double consumption) {
-		this.dailyConsumption_Kwh -= consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
-	}
-	
-	/**
-	 * Gets the present consumption kwh.
-	 *
-	 * @return presentConsumption_Kwh
-	 */
-	public synchronized double getPresentConsumptionKwh() {
-		return presentConsumption_Kwh;
-
-	}
-	
-	/**
-	 * Sets the present consumption kwh.
-	 *
-	 * @param consumption the new present consumption kwh
-	 */
-	public synchronized void setPresentConsumptionKwh(double consumption) {
-		this.presentConsumption_Kwh = consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
-	}
-	
-	/**
-	 * Adds the to present consumption kwh.
-	 *
-	 * @param consumption the consumption
-	 */
-	public synchronized void addToPresentConsumptionKwh(double consumption) {
-		this.presentConsumption_Kwh += consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
-	}
-	
-	/**
-	 * Take from present consumption kwh.
-	 *
-	 * @param consumption the consumption
-	 */
-	public synchronized void takeFromPresentConsumptionKwh(double consumption) {
-		this.presentConsumption_Kwh -= consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
-	}
 	
 	/**
 	 * Check limit kwh.
 	 *
 	 * @return presentConsumption_Kwh >= contract.getMax_kw() ? true : false;
 	 */
-	public synchronized boolean CheckLimitKwh() {
-		// se true tutti i thread devono essre interrotti
-		return presentConsumption_Kwh >= contract.getMax_kw() ? true : false;
-	}
+//	public synchronized boolean CheckLimitKwh() {
+//		// se true tutti i thread devono essre interrotti
+//		return presentConsumption_Kwh >= contract.getMax_kw() ? true : false;
+//	}
 
 	/**
 	 * Gets the contract.
@@ -242,101 +141,7 @@ public class Home {
 		return contract;
 	}
 
-	/**
-	 * Gets the daily consumption gmc.
-	 *
-	 * @return dailyConsumption_Gmc
-	 */
-	public synchronized double getDailyConsumption_Gmc() {
-		return dailyConsumption_Gmc;
-	}
 	
-	/**
-	 * Sets the daily consumption gmc.
-	 *
-	 * @param dailyConsumption_Gmc the new daily consumption gmc
-	 */
-	public synchronized void setDailyConsumption_Gmc(double dailyConsumption_Gmc) {
-		this.dailyConsumption_Gmc = dailyConsumption_Gmc;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
-	}
-	
-	/**
-	 * Adds the to daily consumption gmc.
-	 *
-	 * @param dailyConsumption_Gmc the daily consumption gmc
-	 */
-	public synchronized void addToDailyConsumption_Gmc(double dailyConsumption_Gmc) {
-		this.dailyConsumption_Gmc += dailyConsumption_Gmc;
-		dailyConsumption_Gmc = roundAvoid(dailyConsumption_Gmc, 3);
-	}
-	
-	/**
-	 * Take from daily consumption gmc.
-	 *
-	 * @param dailyConsumption_Gmc the daily consumption gmc
-	 */
-	public synchronized void takeFromDailyConsumption_Gmc(double dailyConsumption_Gmc) {
-		this.dailyConsumption_Gmc -= dailyConsumption_Gmc;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
-
-	}
-	
-	public synchronized void addToDailyConsumption_Kwh_Gmc(double dailyConsumption_Gmc, double dailyConsumption_Kwh) {
-		this.dailyConsumption_Gmc += dailyConsumption_Gmc;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
-		this.dailyConsumption_Kwh += dailyConsumption_Kwh;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
-	}
-	/**
-	 * Gets the daily consumption lh.
-	 *
-	 * @return dailyConsumption_Lh
-	 */
-	public synchronized double getDailyConsumption_Lh() {
-		return dailyConsumption_Lh;
-	}
-	
-	/**
-	 * Sets the daily consumption lh.
-	 *
-	 * @param dailyConsumption_Lh the new daily consumption lh
-	 */
-	public synchronized void setDailyConsumption_Lh(double dailyConsumption_Lh) {
-		this.dailyConsumption_Lh = dailyConsumption_Lh;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
-
-	}
-	
-	public String getDailyConsumption() {
-		return "Daily Consumption: \n"
-				+ "Electricity: " + this.getDailyConsumptionKwh() + " kW/h \n"
-						+ " Gas: " + this.getDailyConsumption_Gmc() + " Gm/h \n"
-								+ " Water: " + this.getDailyConsumption_Lh() + " l/h";
-	
-	}
-	
-	/**
-	 * Adds the to daily consumption lh.
-	 *
-	 * @param dailyConsumption_Lh the daily consumption lh
-	 */
-	public synchronized void addToDailyConsumption_Lh(double dailyConsumption_Lh) {
-		this.dailyConsumption_Lh += dailyConsumption_Lh;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
-
-	}
-	
-	/**
-	 * Take from daily consumption lh.
-	 *
-	 * @param dailyConsumption_Lh the daily consumption lh
-	 */
-	public synchronized void takeFromDailyConsumption_Lh(double dailyConsumption_Lh) {
-		this.dailyConsumption_Lh -= dailyConsumption_Lh;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
-
-	}
 	
 	/**
 	 * Adds the to money kwh.

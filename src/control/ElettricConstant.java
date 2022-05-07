@@ -22,10 +22,13 @@ public class ElettricConstant extends Device {
 	 * @param code the code
 	 * @param consume the consume
 	 * @param md the md
+	 * @param contr the contr
+	 * @param RoomKey the room key
 	 */
-	public ElettricConstant(String deviceName, int code, Consume consume, Home md, Controller contr) {
-		super(deviceName, code, consume, md, true, contr);
+	public ElettricConstant(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
+		super(deviceName, code, consume, md, true, contr,RoomKey);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
+		md.getRoom(roomKey).addToPresentConsumptionKwh(this.getConsume().getKwh());
 		this.start();
 	}
 
@@ -36,10 +39,13 @@ public class ElettricConstant extends Device {
 	@Override
 	public void run() {
 		while (true) {
+			contr.updateConsumption(getMd().getDailyConsumption()); 
 			if (getTimer() % hour == 0) {
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
-				contr.updateConsumption(getMd().getDailyConsumption());
-				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumptionKwh());
+				getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
+				System.out.println("CASA: "+getMd().getDailyConsumption());
+				System.out.println(roomKey+": "+ getMd().getRoom(roomKey).getDailyConsumption());
+//				System.out.println("--" + getDeviceName() + "--" + getMd().getDailyConsumptionKwh());
 			}
 			incrTimer();
 			keepTime();

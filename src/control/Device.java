@@ -34,7 +34,11 @@ public abstract class Device extends Thread {
 	/** The hour. */
 	protected int hour;
 	
+	/** The contr. */
 	protected Controller contr;
+	
+	/** The room key. */
+	protected String roomKey;
 	
 	/**
 	 * Constructor.
@@ -44,8 +48,10 @@ public abstract class Device extends Thread {
 	 * @param consume the consume
 	 * @param md the md
 	 * @param toggle the toggle
+	 * @param contr the contr
+	 * @param RoomKey the room key
 	 */
-	public Device(String deviceName, int code, Consume consume, Home md, boolean toggle, Controller contr) {
+	public Device(String deviceName, int code, Consume consume, Home md, boolean toggle, Controller contr, String RoomKey) {
 		this.contr = contr;
 		this.deviceName= deviceName;
 		this.code = code;
@@ -53,6 +59,7 @@ public abstract class Device extends Thread {
 		this.md = md;
 		this.timer = 0;
 		this.toggle = toggle;
+		this.roomKey = RoomKey;
 		this.hour = 60;
 	}
 	

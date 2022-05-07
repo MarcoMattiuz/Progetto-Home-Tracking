@@ -24,8 +24,8 @@ public class GasOnOff extends Device {
 	 * @param consume the consume
 	 * @param md the md
 	 */
-	public GasOnOff(String deviceName, int code, Consume consume, Home md,Controller contr) {
-		super(deviceName, code, consume, md, false, contr);
+	public GasOnOff(String deviceName, int code, Consume consume, Home md,Controller contr, String RoomKey) {
+		super(deviceName, code, consume, md, false, contr,RoomKey);
 		this.firstOn = true;
 	}
 
@@ -41,10 +41,7 @@ public class GasOnOff extends Device {
 		}
 		if (toggle) {
 			setTimer(0);
-			getMd().addToPresentConsumptionKwh(this.getConsume().getKwh());
-		} else {
-			getMd().takeFromPresentConsumptionKwh(this.getConsume().getKwh());
-		}
+		} 
 	}
 
 	/**
@@ -55,9 +52,10 @@ public class GasOnOff extends Device {
 		while (true) {
 
 			if (toggle) {
-				System.out.println("CURRENTCONSUMPITON::" + getMd().getPresentConsumptionKwh());
+			
 				if (getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
+					getMd().getRoom(roomKey).addToDailyConsumption_Gmc(this.getConsume().getGmc());
 					System.out.println("--" + getDeviceName() + "--");
 				}
 				System.out.println("Timer: " + getTimer());
