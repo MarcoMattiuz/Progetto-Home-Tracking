@@ -297,7 +297,7 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			// Fine Controlli su tutti i campi dati, si puï¿½ creare la casa adesso
 					if(fieldflag) { 
 						rooms=generateHouse((window.getHomePanel()).getRoomsNumber(),(((HomePanel) window.getHomePanel()).wantSolarPanels()==1),(((HomePanel) window.getHomePanel()).wantSolarPanels()==1)?(window.showBooleanErrorMessage(""
-								+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")?3:6):0); // TO-DO passare al metodo isSolar (se ci sono i pannelli) e solar (la potenza sviluppata) che va da 2 a 6
+								+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")?6:3):0);
 						Collections.reverse(rooms);
 						roomsReversed=rooms;
 						Collections.reverse(rooms);
@@ -372,6 +372,13 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 					throw new IllegalStateException("Selection error");
 				}
 			}
+		}else if(window.getContentPane() instanceof RoomPanel) {
+			ArrayList<Device> list = ((RoomPanel) window.getContentPane()).getRoom().getDevices();
+			list.forEach((s)->{
+				if((((RoomPanel) window.getContentPane()).getList()).getSelectedValue().toString().contains(s.getName())){
+					System.out.print(s);
+				}
+			});
 		}
 	}
 	

@@ -198,6 +198,10 @@ public class RoomPanel extends JPanel{
 		return titleLabel;
 	}
 
+	public Room getRoom() {
+		return room;
+	}
+
 	/**
 	 * Sets the title label.
 	 *
