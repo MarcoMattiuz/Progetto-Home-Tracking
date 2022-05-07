@@ -50,8 +50,9 @@ public class WaterOnOff extends Device {
 	@Override
 	public void run() {
 		while (true) {
+			contr.updateConsumption(getMd().getDailyConsumption());
 			if(toggle) {
-				if(getTimer() % hour == 0) {
+				if(getTimer() != 0 && getTimer() % hour == 0 ) {
 					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
 					getMd().getRoom(roomKey).addToDailyConsumption_Lh(this.getConsume().getLh());
 					System.out.println("--"+getDeviceName()+"--");
@@ -61,7 +62,9 @@ public class WaterOnOff extends Device {
 				keepTime();
 			}else {
 				try {
-					sleep(500);
+					System.out.println("SPENTO");
+					sleep(50);
+					System.out.println("SPENTO");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

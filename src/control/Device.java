@@ -60,7 +60,7 @@ public abstract class Device extends Thread {
 		this.timer = 0;
 		this.toggle = toggle;
 		this.roomKey = RoomKey;
-		this.hour = 60;
+		this.hour = 20;
 	}
 	
 	/**

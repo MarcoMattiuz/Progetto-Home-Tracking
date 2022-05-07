@@ -50,10 +50,10 @@ public class GasOnOff extends Device {
 	@Override
 	public void run() {
 		while (true) {
-
+			contr.updateConsumption(getMd().getDailyConsumption());
 			if (toggle) {
 			
-				if (getTimer() % hour == 0) {
+				if (getTimer() != 0 && getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
 					getMd().getRoom(roomKey).addToDailyConsumption_Gmc(this.getConsume().getGmc());
 					System.out.println("--" + getDeviceName() + "--");
@@ -64,7 +64,7 @@ public class GasOnOff extends Device {
 				keepTime();
 			} else {
 				try {
-					sleep(500);
+					sleep(50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

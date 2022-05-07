@@ -163,7 +163,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public void setHousePanel() {
 		noHousePanel=contractPanel=homePanel=null;
 		setContentPane(housePanel);
-		setBounds(500, 500, 505, 380);
+		setSize(505, 380);
 	}
 	
 	/**
@@ -186,6 +186,10 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		System.exit(1);
 	}
 	
+	public ArrayList<RoomPanel> getRoomPanels() {
+		return roomPanels;
+	}
+
 	public void addRoomPanel(RoomPanel roomPanel) {
 		roomPanels.add(roomPanel);
 	}
@@ -378,7 +382,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		menu.show();
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
-		setBounds(500, 500, 466, 307);
+		setSize(466,307);
 		//getContentPane().setVisible(false);
 		setContentPane(homePanel);
 	}
@@ -390,7 +394,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		menu.show();
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
-		setBounds(500, 500, 466, 307);
+		setSize(466,307);
 	//	getContentPane().setVisible(false);
 		setContentPane(contractPanel);
 	}

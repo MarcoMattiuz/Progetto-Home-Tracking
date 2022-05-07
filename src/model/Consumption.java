@@ -29,9 +29,10 @@ public class Consumption {
 	 * @param places the places
 	 * @return Math.round(value * scale) / scale
 	 */
-	protected double roundAvoid(double value, int places) {
-		double scale = Math.pow(10, places);
-		return Math.round(value * scale) / scale;
+	protected double round(double value) {
+		double ret =Math.round(value*1000.0)/1000.0;
+		System.out.println("ARROTONDATO"+ret);
+		return ret;
 	}
 	
 	/**
@@ -50,7 +51,7 @@ public class Consumption {
 	 */
 	public synchronized void setDailyConsumptionKwh(double consumption) {
 		this.dailyConsumption_Kwh = consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
+		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
 
 	/**
@@ -60,7 +61,7 @@ public class Consumption {
 	 */
 	public synchronized void addToDailyConsumptionKhw(double consumption) {
 		this.dailyConsumption_Kwh += consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
+		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
 	
 	/**
@@ -70,7 +71,7 @@ public class Consumption {
 	 */
 	public synchronized void takeFromDailyConsumptionKhw(double consumption) {
 		this.dailyConsumption_Kwh -= consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
+		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
 	
 	/**
@@ -90,7 +91,7 @@ public class Consumption {
 	 */
 	public synchronized void setPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh = consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
+		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
 	
 	/**
@@ -100,7 +101,7 @@ public class Consumption {
 	 */
 	public synchronized void addToPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh += consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
+		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
 	
 	/**
@@ -110,7 +111,7 @@ public class Consumption {
 	 */
 	public synchronized void takeFromPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh -= consumption;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Kwh, 3);
+		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
 	
 	/**
@@ -127,9 +128,9 @@ public class Consumption {
 	 *
 	 * @param dailyConsumption_Gmc the new daily consumption gmc
 	 */
-	public synchronized void setDailyConsumption_Gmc(double dailyConsumption_Gmc) {
-		this.dailyConsumption_Gmc = dailyConsumption_Gmc;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
+	public synchronized void setDailyConsumption_Gmc(double consumption) {
+		this.dailyConsumption_Gmc = consumption;
+		dailyConsumption_Kwh = round(dailyConsumption_Gmc);
 	}
 	
 	/**
@@ -137,9 +138,9 @@ public class Consumption {
 	 *
 	 * @param dailyConsumption_Gmc the daily consumption gmc
 	 */
-	public synchronized void addToDailyConsumption_Gmc(double dailyConsumption_Gmc) {
-		this.dailyConsumption_Gmc += dailyConsumption_Gmc;
-		dailyConsumption_Gmc = roundAvoid(dailyConsumption_Gmc, 3);
+	public synchronized void addToDailyConsumption_Gmc(double consumption) {
+		this.dailyConsumption_Gmc += consumption;
+		dailyConsumption_Gmc = round(dailyConsumption_Gmc);
 	}
 	
 	/**
@@ -147,9 +148,9 @@ public class Consumption {
 	 *
 	 * @param dailyConsumption_Gmc the daily consumption gmc
 	 */
-	public synchronized void takeFromDailyConsumption_Gmc(double dailyConsumption_Gmc) {
-		this.dailyConsumption_Gmc -= dailyConsumption_Gmc;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Gmc, 3);
+	public synchronized void takeFromDailyConsumption_Gmc(double consumption) {
+		this.dailyConsumption_Gmc -= consumption;
+		dailyConsumption_Gmc= round(dailyConsumption_Gmc);
 
 	}
 	
@@ -167,9 +168,9 @@ public class Consumption {
 	 *
 	 * @param dailyConsumption_Lh the new daily consumption lh
 	 */
-	public synchronized void setDailyConsumption_Lh(double dailyConsumption_Lh) {
-		this.dailyConsumption_Lh = dailyConsumption_Lh;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
+	public synchronized void setDailyConsumption_Lh(double consumption) {
+		this.dailyConsumption_Lh = consumption;
+		dailyConsumption_Lh = round(dailyConsumption_Lh);
 
 	}
 	
@@ -179,9 +180,9 @@ public class Consumption {
 	 *
 	 * @param dailyConsumption_Lh the daily consumption lh
 	 */
-	public synchronized void addToDailyConsumption_Lh(double dailyConsumption_Lh) {
-		this.dailyConsumption_Lh += dailyConsumption_Lh;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
+	public synchronized void addToDailyConsumption_Lh(double consumption) {
+		this.dailyConsumption_Lh += consumption;
+		dailyConsumption_Lh = round(dailyConsumption_Lh);
 
 	}
 	
@@ -190,13 +191,13 @@ public class Consumption {
 	 *
 	 * @param dailyConsumption_Lh the daily consumption lh
 	 */
-	public synchronized void takeFromDailyConsumption_Lh(double dailyConsumption_Lh) {
-		this.dailyConsumption_Lh -= dailyConsumption_Lh;
-		dailyConsumption_Kwh = roundAvoid(dailyConsumption_Lh, 3);
+	public synchronized void takeFromDailyConsumption_Lh(double consumption) {
+		this.dailyConsumption_Lh -= consumption;
+		dailyConsumption_Lh = round(dailyConsumption_Lh);
 
 	}
 	
-	public String getPresentConsumptio() {
+	public String getPresentConsumption() {
 		return "Present Consumption: " + this.getPresentConsumptionKwh() +"kW/h \n";
 	}
 	

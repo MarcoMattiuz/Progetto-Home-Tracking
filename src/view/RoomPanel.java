@@ -81,16 +81,6 @@ public class RoomPanel extends JPanel{
 		this.room=room;
 		model = new DefaultListModel<>();
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		setSize(new Dimension(505, 328));
 		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));

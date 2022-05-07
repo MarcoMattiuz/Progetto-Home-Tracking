@@ -57,8 +57,9 @@ public class ElettricWaterOnOff extends Device {
 	@Override
 	public void run() {
 		while (true) {
+			contr.updateConsumption(getMd().getDailyConsumption());
 			if (toggle) {
-				if (getTimer() % hour == 0) {
+				if (getTimer() != 0 && getTimer() % hour == 0) {
 					//casa
 					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
@@ -72,7 +73,7 @@ public class ElettricWaterOnOff extends Device {
 				keepTime();
 			} else {
 				try {
-					sleep(500);
+					sleep(50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

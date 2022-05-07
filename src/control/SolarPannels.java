@@ -30,7 +30,8 @@ public class SolarPannels extends Device{
 	@Override
 	public void run() {
 		while (true) {
-			if (getTimer() % hour == 0) {
+			contr.updateConsumption(getMd().getDailyConsumption());
+			if (getTimer() != 0 && getTimer() % hour == 0) {
 				System.out.println("PANNELLI: "+ this.getPower());
 				double prod = this.getConsume().getKwh() - ((Math.random()*3)+1);
 				System.out.println("produzione: "+ prod);

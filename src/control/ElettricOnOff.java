@@ -57,8 +57,9 @@ public class ElettricOnOff extends Device {
 	@Override
 	public void run() {
 		while (true) {
+			contr.updateConsumption(getMd().getDailyConsumption());
 			if (toggle) {
-				if (getTimer() % hour == 0) {
+				if (getTimer() != 0 && getTimer() % hour == 0) {
 					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 					getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
 				}
@@ -66,7 +67,8 @@ public class ElettricOnOff extends Device {
 				keepTime();
 			} else {
 				try {
-					sleep(500);
+					System.out.println("SPENTO");
+					sleep(50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

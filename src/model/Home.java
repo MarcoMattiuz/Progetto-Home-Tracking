@@ -150,7 +150,7 @@ public class Home extends Consumption{
 	 */
 	public synchronized void addToMoney_Kwh(double ammount) {
 		this.money_kwh += ammount;
-		dailyConsumption_Kwh = roundAvoid(money_kwh, 3);
+		dailyConsumption_Kwh = round(money_kwh);
 	}
 	
 	/**
@@ -160,7 +160,7 @@ public class Home extends Consumption{
 	 */
 	public synchronized void addToMoney_Gmh(double ammount) {
 		this.money_Gmh += ammount;
-		dailyConsumption_Kwh = roundAvoid(money_Gmh, 3);
+		dailyConsumption_Kwh = round(money_Gmh);
 	}
 	
 	/**
@@ -170,7 +170,7 @@ public class Home extends Consumption{
 	 */
 	public synchronized void addToMoney_Lh(double ammount) {
 		this.money_Lh += ammount;
-		dailyConsumption_Kwh = roundAvoid(money_Lh, 3);
+		dailyConsumption_Kwh = round(money_Lh);
 	}
 	
 	/**

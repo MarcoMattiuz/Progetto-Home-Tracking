@@ -41,7 +41,7 @@ public class GasElettricConstant extends Device {
 	public void run() {
 		while (true) {
 			contr.updateConsumption(getMd().getDailyConsumption());
-			if (getTimer() % hour == 0) {
+			if (getTimer() != 0 && getTimer() % hour == 0) {
 				
 				//casa
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());

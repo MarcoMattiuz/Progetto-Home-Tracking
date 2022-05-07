@@ -6,6 +6,7 @@ package control;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.event.ListSelectionEvent;
@@ -374,11 +375,15 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			}
 		}else if(window.getContentPane() instanceof RoomPanel) {
 			ArrayList<Device> list = ((RoomPanel) window.getContentPane()).getRoom().getDevices();
-			list.forEach((s)->{
-				if((((RoomPanel) window.getContentPane()).getList()).getSelectedValue().toString().contains(s.getName())){
-					System.out.print(s);
+			if((((RoomPanel) window.getContentPane()).getList().getSelectedIndex()!=-1)) {		
+				if((list.get(((RoomPanel) window.getContentPane()).getList().getSelectedIndex()) instanceof ElettricOnOff
+						||list.get(((RoomPanel) window.getContentPane()).getList().getSelectedIndex()) instanceof GasOnOff
+						||list.get(((RoomPanel) window.getContentPane()).getList().getSelectedIndex()) instanceof WaterOnOff
+						||list.get(((RoomPanel) window.getContentPane()).getList().getSelectedIndex()) instanceof ElettricWaterOnOff)) {
+					list.get(((RoomPanel) window.getContentPane()).getList().getSelectedIndex()).toggle();				
+					((RoomPanel) window.getContentPane()).getList().clearSelection();
 				}
-			});
+			}
 		}
 	}
 	
@@ -395,5 +400,13 @@ public void updateConsumption(String s) {
 //			System.out.println(house.getDailyConsumption());
 			((HousePanel) window.getContentPane()).getConsumptionLabel().setText(house.getDailyConsumption());
 		}
+		if(window.getContentPane() instanceof RoomPanel) {
+			ArrayList<RoomPanel> arr = (window.getRoomPanels());
+			arr.forEach((x)->{
+				x.getConsumptionLabel().setText(x.getRoom().getDailyConsumption());
+			});
+			
+		}
+		
 	}
 }
