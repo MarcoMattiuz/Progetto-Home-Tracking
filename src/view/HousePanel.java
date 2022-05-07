@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import control.Controller;
+import model.Room;
 
 import java.awt.Font;
 import javax.swing.SpringLayout;
@@ -130,7 +131,7 @@ public class HousePanel extends JPanel{
 		return list;
 	}
 
-	public void initializePanel(ArrayList<String> roomsNames, String houseName, String holderName) {
+	public void initializePanel(ArrayList<Room> roomsNames, String houseName, String holderName) {
 		roomsNames.stream().forEach((s)->{
             model.addElement(s);
         });

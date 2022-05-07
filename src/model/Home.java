@@ -54,26 +54,26 @@ public class Home extends Consumption{
 	 * @param isSolar the is solar
 	 * @return the array list
 	 */
-	public ArrayList<String> generateRooms(int num, boolean isSolar) {
-		ArrayList<String> ret = new ArrayList<String>();
+	public ArrayList<Room> generateRooms(int num, boolean isSolar) {
+		ArrayList<Room> ret = new ArrayList<Room>();
 		if(isSolar) {
-			rooms.put("roof", new Room("roof"));                    ret.add("Roof");
+			rooms.put("roof", new Room("roof"));                    ret.add(rooms.get("roof"));
 		}
 		switch (num) {
 			case 7:
-				rooms.put("camera-2", new Room("camera-2"));		ret.add("Camera 2");
+				rooms.put("camera-2", new Room("camera-2"));		ret.add(rooms.get("camera-2"));
 			case 6:
-				rooms.put("bagno-2", new Room("bagno-2"));			ret.add("Bagno 2");
+				rooms.put("bagno-2", new Room("bagno-2"));			ret.add(rooms.get("bagno-2"));
 			case 5:
-				rooms.put("camera-1", new Room("camera-1"));		ret.add("Camera 1");
+				rooms.put("camera-1", new Room("camera-1"));		ret.add(rooms.get("camera-1"));
 			case 4:
-				rooms.put("soggiorno", new Room("soggiorno"));		ret.add("Soggiorno");
+				rooms.put("soggiorno", new Room("soggiorno"));		ret.add(rooms.get("soggiorno"));
 			case 3:
-				rooms.put("bagno-1", new Room("bagno-1"));			ret.add("Bagno 1");
+				rooms.put("bagno-1", new Room("bagno-1"));			ret.add(rooms.get("bagno-1"));
 			case 2:
-				rooms.put("cucina", new Room("cucina"));			ret.add("Cucina");
+				rooms.put("cucina", new Room("cucina"));			ret.add(rooms.get("cucina"));
 			default:
-				rooms.put("taverna", new Room("taverna"));			ret.add("Taverna");
+				rooms.put("taverna", new Room("taverna"));			ret.add(rooms.get("taverna"));
 				break;
 		}
 		return ret;

@@ -123,7 +123,7 @@ public class RoomPanel extends JPanel{
 		viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
 		panel.add(viewthingsbtn, "cell 1 4,alignx center");
 		setListener();
-		(room.getDevicesNames()).stream().forEach((s)->{
+		(room.getDevices()).stream().forEach((s)->{
 			model.addElement(s);
 		});
 		titleLabel.setText(titleLabel.getText()+" -> \""+roomName+"\"");
