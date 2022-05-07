@@ -72,6 +72,10 @@ public class Room extends Consumption{
 	public String toString() {
 		return "Room [name=" + name + ", n. of devices=" + devices.size() + "]";
 	}
+	
+	public String getRoomName() {
+		return name;
+	}
 
 	/**
 	 * Removes all device by name.
