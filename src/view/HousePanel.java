@@ -134,7 +134,7 @@ public class HousePanel extends JPanel{
 		roomsNames.stream().forEach((s)->{
             model.addElement(s);
         });
-		titleLabel.setText(titleLabel.getText()+" [ \""+houseName+"\" owned by "+holderName+"]");
+		titleLabel.setText(titleLabel.getText()+" -> House \""+houseName+"\" owned by \""+holderName+"\"");
 		
 	}
 

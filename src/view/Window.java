@@ -76,6 +76,8 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	private HousePanel housePanel;
 
 	private JButton cameraBBtn;
+	
+	private JButton roofBtn;
 
 	private JButton bagnoBBtn;
 
@@ -90,6 +92,8 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	private JButton tavernaBtn;
 	
 	private ArrayList<RoomPanel> roomPanels;
+	
+	private RoomPanel roof;
 	
 	/**
 	 * Instantiates a new window.
@@ -126,12 +130,10 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		menu.setHorizontalAlignment(SwingConstants.TRAILING);
 		menu.setBackground(Color.DARK_GRAY);
 		menuBar.add(menu);
-		
-		houseBtn = new JButton("House");
-		houseBtn.setMaximumSize(new Dimension(85, 23));
-		houseBtn.setMinimumSize(new Dimension(85, 23));
-		houseBtn.addActionListener((ActionListener) this);
-		menu.add(houseBtn);
+		exitBtn = new JButton("Exit");
+		exitBtn.setMaximumSize(new Dimension(85, 70));
+		menu.add(exitBtn);
+		exitBtn.addActionListener(this);
 		setTitle(title);
 		homePanel=new HomePanel(controller);
 		contractPanel= new ContractPanel(controller);
@@ -188,10 +190,24 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		roomPanels.add(roomPanel);
 	}
 	
+	public void setRoof(RoomPanel roof) {
+		this.roof=roof;
+	}
+	
+	public void setRoofPanel() {
+		setContentPane(roof);
+		menu.setPopupMenuVisible(false);
+		menu.setPopupMenuVisible(true);
+		menu.setPopupMenuVisible(false);
+	}
+	
 	public void setRoomPanel(int idx) {
 		if(idx>=0&&idx<=roomPanels.size()) {
 			setContentPane(roomPanels.get(idx));
 		}
+		menu.setPopupMenuVisible(false);
+		menu.setPopupMenuVisible(true);
+		menu.setPopupMenuVisible(false);
 	}
 	
 
@@ -260,7 +276,14 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		}
 	}
 	
-	public void initializeMenuItems(int numberOfRooms, ArrayList<String> roomsNames) {
+	public void initializeMenuItems(int numberOfRooms, ArrayList<String> roomsNames, boolean isSolar) {
+		menu.remove(exitBtn);
+		houseBtn = new JButton("House");
+		houseBtn.setMaximumSize(new Dimension(85, 23));
+		houseBtn.setMinimumSize(new Dimension(85, 23));
+		houseBtn.addActionListener((ActionListener) this);
+		menu.add(houseBtn);
+		if(isSolar) numberOfRooms+=1;
 		switch (numberOfRooms) {
 		case 7:
 			cameraBBtn = new JButton(roomsNames.get(6));
@@ -311,11 +334,16 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 			tavernaBtn.addActionListener((ActionListener) controller);
 			tavernaBtn.addActionListener((ActionListener) this);
 			menu.add(tavernaBtn);
-			exitBtn = new JButton("Exit");
-			exitBtn.setMaximumSize(new Dimension(85, 70));
-			menu.add(exitBtn);
-			exitBtn.addActionListener(this);
 		}
+//		if(isSolar) {
+//			roofBtn = new JButton("Roof");
+//			roofBtn.setMaximumSize(new Dimension(85, 23));
+//			roofBtn.setMinimumSize(new Dimension(85, 23));
+//			roofBtn.addActionListener((ActionListener) this);
+//			roofBtn.addActionListener((ActionListener) controller);
+//			menu.add(roofBtn);
+//		}
+		menu.add(exitBtn);
 	}
 	
 	/**

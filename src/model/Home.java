@@ -70,6 +70,9 @@ public class Home {
 	 */
 	public ArrayList<String> generateRooms(int num, boolean isSolar) {
 		ArrayList<String> ret = new ArrayList<String>();
+		if(isSolar) {
+			rooms.put("roof", new Room("roof"));                    ret.add("Roof");
+		}
 		switch (num) {
 			case 7:
 				rooms.put("camera-2", new Room("camera-2"));		ret.add("Camera 2");
@@ -86,9 +89,6 @@ public class Home {
 			default:
 				rooms.put("taverna", new Room("taverna"));			ret.add("Taverna");
 				break;
-		}
-		if(isSolar) {
-			rooms.put("roof", new Room("roof"));           ret.add("Roof");
 		}
 		return ret;
 	}

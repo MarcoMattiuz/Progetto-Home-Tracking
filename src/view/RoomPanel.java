@@ -74,6 +74,7 @@ public class RoomPanel extends JPanel{
 	/** The title label. */
 	private JLabel titleLabel;
 	private DefaultListModel model;
+	private JButton backBtn;
 	
 	@SuppressWarnings("unchecked")
 	public RoomPanel(Controller controller, Room room, String roomName) {
@@ -116,13 +117,16 @@ public class RoomPanel extends JPanel{
 		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel.add(consumptionLabel, "cell 1 2");
 		
+		backBtn = new JButton("BACK");
+		panel.add(backBtn, "flowx,cell 1 4,alignx center");
+		
 		viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
 		panel.add(viewthingsbtn, "cell 1 4,alignx center");
 		setListener();
 		(room.getDevicesNames()).stream().forEach((s)->{
 			model.addElement(s);
 		});
-		titleLabel.setText(titleLabel.getText()+" [ \""+roomName+"\" ]");
+		titleLabel.setText(titleLabel.getText()+" -> \""+roomName+"\"");
 	}
 
 	/**
@@ -131,6 +135,7 @@ public class RoomPanel extends JPanel{
 	public void setListener() {
 		viewthingsbtn.addActionListener(controller);
 		list.addListSelectionListener(controller);
+		backBtn.addActionListener(controller);
 	}
 	
 	/**
@@ -140,6 +145,12 @@ public class RoomPanel extends JPanel{
 	 */
 	public JList getList() {
 		return list;
+	}
+
+	
+	
+	public JButton getBackBtn() {
+		return backBtn;
 	}
 
 	/**

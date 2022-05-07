@@ -72,9 +72,8 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			Room roof = house.getRoom("roof");
 			roof.addDevice(new SolarPannels("pannelli-solari", 01, new Consume(-1 * solar, 0, 0), house, this));
 		}
+		window.initializeMenuItems(numRooms,rn,isSolar);
 		Collections.reverse(rn);
-		
-		window.initializeMenuItems(numRooms,rn);
 		switch (numRooms) {
 		case 7:
 			Room camera2 = house.getRoom("camera-2");
@@ -122,13 +121,17 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			cucina.addDevice(new WaterOnOff("lavabo", 6, new Consume(0, 0, 400), house, this)); // 400 litri all'ora
 			cucina.addDevice(new ElettricWaterOnOff("lavastoviglie", 7, new Consume(1.6, 0, 50), house, this)); // 50 litri
 			window.addRoomPanel(new RoomPanel(this, cucina, rn.get(1)));
-			break;
 		default:
 			Room taverna = house.getRoom("taverna");
 			taverna.addDevice(new ElettricOnOff("luce-10", 29, new Consume(0.055, 0, 0), house, this));
 			taverna.addDevice(new ElettricOnOff("luce-11", 30, new Consume(0.065, 0, 0), house,this));
 			taverna.addDevice(new GasElettricConstant("caldaia", 31, new Consume(1.2, 0.65, 0), house,this));
 			window.addRoomPanel(new RoomPanel(this, taverna, rn.get(0)));
+			if(isSolar) {
+				Room roof = house.getRoom("roof");
+				window.setRoof(new RoomPanel(this, roof, "Roof"));
+			}
+			break;
 		}
 		window.reverse();
 		return rn;
@@ -307,19 +310,26 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 				((HomePanel) window.getContentPane()).setProgressBar(progress);
 			}
 		}
-		
+		if(window.getContentPane() instanceof RoomPanel) {
+			if(e.getSource()==((RoomPanel) window.getContentPane()).getBackBtn()){
+				window.setHousePanel();
+			}
+		}
 	}
 	
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if(window.getContentPane() instanceof HousePanel) {
 			if(!(((HousePanel) window.getContentPane()).getList().getSelectedIndex()==-1)) {
-			
 				if(((HousePanel) window.getContentPane()).getList().getSelectedValue().equals(roomsNames.get(0))==true){
 					// Taverna
 					System.out.println("Taverna");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(0);
+				}else if(((HousePanel) window.getContentPane()).getList().getSelectedValue().equals("Roof")) {
+					// Roof
+					((HousePanel) window.getContentPane()).getList().clearSelection();
+					window.setRoofPanel();
 				}else if(((HousePanel) window.getContentPane()).getList().getSelectedValue().equals(roomsNames.get(1))==true) {
 					// Cucina 
 					System.out.println("Cucina");
@@ -350,10 +360,6 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 					System.out.println("Camera 2");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(6);
-				}else if(((HousePanel) window.getContentPane()).getList().getSelectedValue().equals(roomsNames.get(7))==true) {
-					// Camera 2
-					((HousePanel) window.getContentPane()).getList().clearSelection();
-					window.setRoomPanel(7);
 				}else {
 					throw new IllegalStateException("Selection error");
 				}
