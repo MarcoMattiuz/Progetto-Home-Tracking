@@ -21,7 +21,6 @@ public class Room extends Consumption{
 	
 	/** The devices. */
 	private ArrayList<Device> devices;
-	private ArrayList<String> devicesNames;
 	
 	/**
 	 * Instantiates a new room.
@@ -31,7 +30,6 @@ public class Room extends Consumption{
 	public Room(String name){
 		this.name = name;
 		this.devices = new ArrayList<Device>(10);
-		this.devicesNames=new ArrayList<String>(1);
 	}
 	
 	/**
@@ -57,7 +55,6 @@ public class Room extends Consumption{
 	 */
 	public void addDevice(Device device) {
 		devices.add(device);
-		devicesNames.add(device.getDeviceName());
 	}
 	
 	/**
@@ -69,6 +66,13 @@ public class Room extends Consumption{
 		devices.removeIf(n -> (n.getCode() == code));
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Room [name=" + name + ", n. of devices=" + devices.size() + "]";
+	}
+
 	/**
 	 * Removes all device by name.
 	 *
@@ -84,8 +88,8 @@ public class Room extends Consumption{
 		devices.removeAll(arr);
 	}
 	
-	public ArrayList<String> getDevicesNames(){
-		return devicesNames;
+	public ArrayList<Device> getDevices(){
+		return devices;
 	}
 	
 }

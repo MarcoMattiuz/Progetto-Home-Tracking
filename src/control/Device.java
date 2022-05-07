@@ -149,6 +149,12 @@ public abstract class Device extends Thread {
 	}
 	
 
+	@Override
+	public String toString() {
+		return "Device [deviceName=" + deviceName + ", code=" + code + ", toggle=" + toggle + ", roomKey=" + roomKey
+				+ "]";
+	}
+
 	/**
 	 * Checks if is toggle.
 	 *
