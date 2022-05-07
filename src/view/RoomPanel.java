@@ -60,6 +60,7 @@ public class RoomPanel extends JPanel{
 	 */
 	Controller controller;
 	
+	/** The room. */
 	Room room;
 	
 	/** The list. */
@@ -73,9 +74,20 @@ public class RoomPanel extends JPanel{
 	
 	/** The title label. */
 	private JLabel titleLabel;
+	
+	/** The model. */
 	private DefaultListModel model;
+	
+	/** The back btn. */
 	private JButton backBtn;
 	
+	/**
+	 * Instantiates a new room panel.
+	 *
+	 * @param controller the controller
+	 * @param room the room
+	 * @param roomName the room name
+	 */
 	@SuppressWarnings("unchecked")
 	public RoomPanel(Controller controller, Room room, String roomName) {
 		this.room=room;
@@ -139,6 +151,11 @@ public class RoomPanel extends JPanel{
 
 	
 	
+	/**
+	 * Gets the back btn.
+	 *
+	 * @return the back btn
+	 */
 	public JButton getBackBtn() {
 		return backBtn;
 	}
@@ -188,6 +205,11 @@ public class RoomPanel extends JPanel{
 		return titleLabel;
 	}
 
+	/**
+	 * Gets the room.
+	 *
+	 * @return the room
+	 */
 	public Room getRoom() {
 		return room;
 	}

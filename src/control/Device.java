@@ -90,6 +90,12 @@ public abstract class Device extends Thread {
 		return consume;
 	}
 	
+	/**
+	 * Gets the percent consumption.
+	 *
+	 * @param consume the consume
+	 * @return the percent consumption
+	 */
 	protected double getPercentConsumption(double consume) {
 		int percent = (100/hour) * (getTimer() % hour);
 		double ret = consume - (consume/100) * percent;
@@ -154,6 +160,11 @@ public abstract class Device extends Thread {
 	}
 	
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Device [deviceName=" + deviceName + ", code=" + code + ", toggle=" + toggle + ", roomKey=" + roomKey

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package model;
 
 import java.util.ArrayList;
@@ -68,11 +71,21 @@ public class Room extends Consumption{
 	
 	
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Room [name=" + name + ", n. of devices=" + devices.size() + "]";
 	}
 	
+	/**
+	 * Gets the room name.
+	 *
+	 * @return the room name
+	 */
 	public String getRoomName() {
 		return name;
 	}
@@ -92,6 +105,11 @@ public class Room extends Consumption{
 		devices.removeAll(arr);
 	}
 	
+	/**
+	 * Gets the devices.
+	 *
+	 * @return the devices
+	 */
 	public ArrayList<Device> getDevices(){
 		return devices;
 	}

@@ -74,8 +74,15 @@ public class HousePanel extends JPanel{
 	
 	/** The title label. */
 	private JLabel titleLabel;
+	
+	/** The model. */
 	private DefaultListModel model;
 	
+	/**
+	 * Instantiates a new house panel.
+	 *
+	 * @param controller the controller
+	 */
 	@SuppressWarnings("unchecked")
 	public HousePanel(Controller controller) {
 		model = new DefaultListModel<>();
@@ -131,6 +138,13 @@ public class HousePanel extends JPanel{
 		return list;
 	}
 
+	/**
+	 * Initialize panel.
+	 *
+	 * @param roomsNames the rooms names
+	 * @param houseName the house name
+	 * @param holderName the holder name
+	 */
 	public void initializePanel(ArrayList<Room> roomsNames, String houseName, String holderName) {
 		roomsNames.stream().forEach((s)->{
             model.addElement(s);

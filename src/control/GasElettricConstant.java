@@ -18,13 +18,19 @@ public class GasElettricConstant extends Device {
 	/**
 	 * Instantiates a new gas elettric constant.
 	 *
-	 * @param deviceName the device name
-	 * @param code       the code
-	 * @param consume    the consume
-	 * @param md         the md
 	 */
 	private Semaphore test;
 
+	/**
+	 * Instantiates a new gas elettric constant.
+	 *
+	 * @param deviceName the device name
+	 * @param code the code
+	 * @param consume the consume
+	 * @param md the md
+	 * @param contr the contr
+	 * @param RoomKey the room key
+	 */
 	public GasElettricConstant(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
 		super(deviceName, code, consume, md, true, contr, RoomKey);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());

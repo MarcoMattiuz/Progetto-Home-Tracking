@@ -1,6 +1,10 @@
 package model;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Consumption.
+ */
 public class Consumption {
 
 	/** The daily consumption kwh. */
@@ -15,6 +19,9 @@ public class Consumption {
 	/** The daily consumption lh. */
 	protected double dailyConsumption_Lh;
 	
+	/**
+	 * Instantiates a new consumption.
+	 */
 	public Consumption() {
 		this.dailyConsumption_Kwh = 0;
 		this.presentConsumption_Kwh = 0;
@@ -26,7 +33,6 @@ public class Consumption {
 	 * Round avoid. arrotonda un double in base ai posti decimali inseriti
 	 *
 	 * @param value the value
-	 * @param places the places
 	 * @return Math.round(value * scale) / scale
 	 */
 	protected double round(double value) {
@@ -126,7 +132,7 @@ public class Consumption {
 	/**
 	 * Sets the daily consumption gmc.
 	 *
-	 * @param dailyConsumption_Gmc the new daily consumption gmc
+	 * @param consumption the new daily consumption gmc
 	 */
 	public synchronized void setDailyConsumption_Gmc(double consumption) {
 		this.dailyConsumption_Gmc = consumption;
@@ -136,7 +142,7 @@ public class Consumption {
 	/**
 	 * Adds the to daily consumption gmc.
 	 *
-	 * @param dailyConsumption_Gmc the daily consumption gmc
+	 * @param consumption the consumption
 	 */
 	public synchronized void addToDailyConsumption_Gmc(double consumption) {
 		this.dailyConsumption_Gmc += consumption;
@@ -146,7 +152,7 @@ public class Consumption {
 	/**
 	 * Take from daily consumption gmc.
 	 *
-	 * @param dailyConsumption_Gmc the daily consumption gmc
+	 * @param consumption the consumption
 	 */
 	public synchronized void takeFromDailyConsumption_Gmc(double consumption) {
 		this.dailyConsumption_Gmc -= consumption;
@@ -166,7 +172,7 @@ public class Consumption {
 	/**
 	 * Sets the daily consumption lh.
 	 *
-	 * @param dailyConsumption_Lh the new daily consumption lh
+	 * @param consumption the new daily consumption lh
 	 */
 	public synchronized void setDailyConsumption_Lh(double consumption) {
 		this.dailyConsumption_Lh = consumption;
@@ -178,7 +184,7 @@ public class Consumption {
 	/**
 	 * Adds the to daily consumption lh.
 	 *
-	 * @param dailyConsumption_Lh the daily consumption lh
+	 * @param consumption the consumption
 	 */
 	public synchronized void addToDailyConsumption_Lh(double consumption) {
 		this.dailyConsumption_Lh += consumption;
@@ -189,7 +195,7 @@ public class Consumption {
 	/**
 	 * Take from daily consumption lh.
 	 *
-	 * @param dailyConsumption_Lh the daily consumption lh
+	 * @param consumption the consumption
 	 */
 	public synchronized void takeFromDailyConsumption_Lh(double consumption) {
 		this.dailyConsumption_Lh -= consumption;
@@ -197,6 +203,11 @@ public class Consumption {
 
 	}
 	
+	/**
+	 * Gets the present consumption.
+	 *
+	 * @return the present consumption
+	 */
 	public String getPresentConsumption() {
 		return "Present Consumption: " + this.getPresentConsumptionKwh() +"kW/h \n";
 	}

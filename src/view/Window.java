@@ -2,7 +2,6 @@ package view;
 
 import java.awt.*;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -26,6 +25,7 @@ import javax.management.JMRuntimeException;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -35,72 +35,94 @@ import javax.swing.JLabel;
 /**
  * The Class Window.
  */
-public class Window extends JFrame implements ActionListener,WindowListener{
-	
+public class Window extends JFrame implements ActionListener, WindowListener {
+
 	/** The title. */
 	private final String title;
-	
+
 	/** The opened. */
-	private Boolean opened;					// Se � true la finestra � gi� stata aperta una volta
-	
+	private Boolean opened; // Se � true la finestra � gi� stata aperta una volta
+
 	/** The ft 1. */
 	private Boolean ft1;
-	
+
 	/** The ft 2. */
-	private Boolean ft2;	
-	
+	private Boolean ft2;
+
 	/** The content pane. */
 	private JPanel contentPane;
-	
+
 	/** The home panel. */
 	private JPanel homePanel;
-	
+
 	/** The contract panel. */
 	private JPanel contractPanel;
-	
+
 	/** The no house panel. */
 	private JPanel noHousePanel;
-	
+
 	/** The house btn. */
 	private JButton houseBtn;
-	
+
 	/** The controller. */
 	private Controller controller;
-	
+
 	/** The exit btn. */
 	private JButton exitBtn;
-	
+
 	/** The menu. */
 	private JMenu menu;
-	
+
 	/** The house panel. */
 	private HousePanel housePanel;
 
+	/** The camera B btn. */
 	private JButton cameraBBtn;
-	
+
+	/** The roof btn. */
 	private JButton roofBtn;
 
+	/** The bagno B btn. */
 	private JButton bagnoBBtn;
 
+	/** The camera A btn. */
 	private JButton cameraABtn;
 
+	/** The soggiorno btn. */
 	private JButton soggiornoBtn;
 
+	/** The bagno A btn. */
 	private JButton bagnoABtn;
 
+	/** The cucina btn. */
 	private JButton cucinaBtn;
 
+	/** The taverna btn. */
 	private JButton tavernaBtn;
-	
+
+	/** The room panels. */
 	private ArrayList<RoomPanel> roomPanels;
-	
+
+	/** The roof. */
 	private RoomPanel roof;
+
+	/** The time. */
 	private JLabel time;
-	
+
+	/**
+	 * Gets the time.
+	 *
+	 * @return the time
+	 */
 	public JLabel getTime() {
 		return time;
 	}
 
+	/**
+	 * Sets the time.
+	 *
+	 * @param time the new time
+	 */
 	public void setTime(JLabel time) {
 		this.time = time;
 	}
@@ -111,21 +133,39 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 * @param controller the controller
 	 */
 	public Window(Controller controller) {
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+//				| UnsupportedLookAndFeelException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (UnsupportedLookAndFeelException e) {
+		    // handle exception
+		} catch (ClassNotFoundException e) {
+		    // handle exception
+		} catch (InstantiationException e) {
+		    // handle exception
+		} catch (IllegalAccessException e) {
+		    // handle exception
 		}
-		noHousePanel=new NoHousePanel(controller);
+		
+		noHousePanel = new NoHousePanel(controller);
 		roomPanels = new ArrayList<RoomPanel>(1);
 		housePanel = new HousePanel(controller);
-		title="HOME TRACKING V1";
-		this.controller=controller;
+		title = "HOME TRACKING V1";
+		this.controller = controller;
 		setVisible(true);
-		opened=false;
-		ft1=ft2=true;
+		opened = false;
+		ft1 = ft2 = true;
 		this.controller = controller;
 		setResizable(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -143,16 +183,16 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		exitBtn = new JButton("Exit");
 		exitBtn.setMaximumSize(new Dimension(85, 70));
 		menu.add(exitBtn);
-		
+
 		time = new JLabel("");
 		menuBar.add(time);
 		exitBtn.addActionListener(this);
 		setTitle(title);
-		homePanel=new HomePanel(controller);
-		contractPanel= new ContractPanel(controller);
+		homePanel = new HomePanel(controller);
+		contractPanel = new ContractPanel(controller);
 		menu.hide();
 	}
-	
+
 	/**
 	 * Sets the controller.
 	 *
@@ -161,24 +201,24 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public void setController(Controller controller) {
 		throw new IllegalStateException();
 	}
-	
+
 	/**
 	 * Sets the no house panel.
 	 */
 	public void setNoHousePanel() {
 		setContentPane(noHousePanel);
-		
+
 	}
-	
+
 	/**
 	 * Sets the house panel.
 	 */
 	public void setHousePanel() {
-		noHousePanel=contractPanel=homePanel=null;
+		noHousePanel = contractPanel = homePanel = null;
 		setContentPane(housePanel);
 		setSize(505, 380);
 	}
-	
+
 	/**
 	 * Window opened.
 	 *
@@ -186,7 +226,8 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 */
 	public void windowOpened(WindowEvent e) {
 		setNoHousePanel();
-		((NoHousePanel) getContentPane()).setTitleName(JOptionPane.showInputDialog("Welcome, please enter your name here"));
+		((NoHousePanel) getContentPane())
+				.setTitleName(JOptionPane.showInputDialog("Welcome, please enter your name here"));
 	}
 
 	/**
@@ -198,35 +239,57 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public void windowClosing(WindowEvent arg0) {
 		System.exit(1);
 	}
-	
+
+	/**
+	 * Gets the room panels.
+	 *
+	 * @return the room panels
+	 */
 	public ArrayList<RoomPanel> getRoomPanels() {
 		return roomPanels;
 	}
 
+	/**
+	 * Adds the room panel.
+	 *
+	 * @param roomPanel the room panel
+	 */
 	public void addRoomPanel(RoomPanel roomPanel) {
 		roomPanels.add(roomPanel);
 	}
-	
+
+	/**
+	 * Sets the roof.
+	 *
+	 * @param roof the new roof
+	 */
 	public void setRoof(RoomPanel roof) {
-		this.roof=roof;
+		this.roof = roof;
 	}
-	
+
+	/**
+	 * Sets the roof panel.
+	 */
 	public void setRoofPanel() {
 		setContentPane(roof);
 		menu.setPopupMenuVisible(false);
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
 	}
-	
+
+	/**
+	 * Sets the room panel.
+	 *
+	 * @param idx the new room panel
+	 */
 	public void setRoomPanel(int idx) {
-		if(idx>=0&&idx<=roomPanels.size()) {
+		if (idx >= 0 && idx <= roomPanels.size()) {
 			setContentPane(roomPanels.get(idx));
 		}
 		menu.setPopupMenuVisible(false);
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
 	}
-	
 
 	/**
 	 * Window closed.
@@ -245,8 +308,10 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 */
 	@Override
 	public void windowIconified(WindowEvent e) {
-		if(JOptionPane.showConfirmDialog(this, "Desideri uscire?")==JOptionPane.YES_OPTION)
-			System.exit(1); else setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		if (JOptionPane.showConfirmDialog(this, "Desideri uscire?") == JOptionPane.YES_OPTION)
+			System.exit(1);
+		else
+			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
 	/**
@@ -264,7 +329,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 * @param e the e
 	 */
 	@Override
-	public void windowActivated(WindowEvent e) {		
+	public void windowActivated(WindowEvent e) {
 	}
 
 	/**
@@ -275,9 +340,9 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
 	 * Action performed.
 	 *
@@ -285,31 +350,38 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==houseBtn) {
+		if (e.getSource() == houseBtn) {
 			setHousePanel();
-		}else if(e.getSource()==exitBtn) {
+		} else if (e.getSource() == exitBtn) {
 //			System.exit(EXIT_ON_CLOSE);
 			windowIconified(null);
-		}else if(e.getSource()==tavernaBtn) {
+		} else if (e.getSource() == tavernaBtn) {
 			setRoomPanel(0);
-		}else if(e.getSource()==cucinaBtn) {
+		} else if (e.getSource() == cucinaBtn) {
 			setRoomPanel(1);
-		}else if(e.getSource()==bagnoABtn) {
+		} else if (e.getSource() == bagnoABtn) {
 			setRoomPanel(2);
-		}else if(e.getSource()==soggiornoBtn) {
+		} else if (e.getSource() == soggiornoBtn) {
 			setRoomPanel(3);
-		}else if(e.getSource()==cameraABtn) {
+		} else if (e.getSource() == cameraABtn) {
 			setRoomPanel(4);
-		}else if(e.getSource()==bagnoBBtn) {
+		} else if (e.getSource() == bagnoBBtn) {
 			setRoomPanel(5);
-		}else if(e.getSource()==cameraBBtn) {
+		} else if (e.getSource() == cameraBBtn) {
 			setRoomPanel(6);
-		}else if(e.getSource()==roofBtn) {
+		} else if (e.getSource() == roofBtn) {
 			setRoofPanel();
 		}
 		menu.setPopupMenuVisible(false);
 	}
-	
+
+	/**
+	 * Initialize menu items.
+	 *
+	 * @param numberOfRooms the number of rooms
+	 * @param roomsNames    the rooms names
+	 * @param isSolar       the is solar
+	 */
 	public void initializeMenuItems(int numberOfRooms, ArrayList<Room> roomsNames, boolean isSolar) {
 		menu.remove(exitBtn);
 		houseBtn = new JButton("House");
@@ -317,7 +389,8 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		houseBtn.setMinimumSize(new Dimension(85, 23));
 		houseBtn.addActionListener((ActionListener) this);
 		menu.add(houseBtn);
-		if(isSolar) numberOfRooms-=1;
+		if (isSolar)
+			numberOfRooms -= 1;
 		switch (numberOfRooms) {
 		case 7:
 			cameraBBtn = new JButton(roomsNames.get(6).getRoomName());
@@ -369,7 +442,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 			tavernaBtn.addActionListener((ActionListener) this);
 			menu.add(tavernaBtn);
 		}
-		if(isSolar) {
+		if (isSolar) {
 			roofBtn = new JButton("Roof");
 			roofBtn.setMaximumSize(new Dimension(85, 23));
 			roofBtn.setMinimumSize(new Dimension(85, 23));
@@ -379,7 +452,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		}
 		menu.add(exitBtn);
 	}
-	
+
 	/**
 	 * Sets the disable all menu buttons.
 	 *
@@ -387,7 +460,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 */
 	public void setDisableAllMenuButtons(Boolean bool) {
 	}
-	
+
 	/**
 	 * Sets the home panel.
 	 */
@@ -395,11 +468,11 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		menu.show();
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
-		setSize(466,307);
-		//getContentPane().setVisible(false);
+		setSize(466, 307);
+		// getContentPane().setVisible(false);
 		setContentPane(homePanel);
 	}
-	
+
 	/**
 	 * Sets the contract panel.
 	 */
@@ -407,11 +480,11 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		menu.show();
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
-		setSize(466,307);
-	//	getContentPane().setVisible(false);
+		setSize(466, 307);
+		// getContentPane().setVisible(false);
 		setContentPane(contractPanel);
 	}
-	
+
 	/**
 	 * Gets the content pane.
 	 *
@@ -423,6 +496,11 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		return super.getContentPane();
 	}
 
+	/**
+	 * Gets the home panel.
+	 *
+	 * @return the home panel
+	 */
 	public HomePanel getHomePanel() {
 		return (HomePanel) homePanel;
 	}
@@ -444,8 +522,6 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public JPanel getNoHousePanel() {
 		return noHousePanel;
 	}
-	
-	
 
 	/**
 	 * Show error message.
@@ -455,11 +531,14 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public void showErrorMessage(String message) {
 		JOptionPane.showMessageDialog(getContentPane(), message);
 	}
-	
+
+	/**
+	 * Reverse.
+	 */
 	public void reverse() {
 		Collections.reverse(roomPanels);
 	}
-	
+
 	/**
 	 * Show boolean error message.
 	 *
@@ -467,9 +546,9 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	 * @return true, if successful
 	 */
 	public boolean showBooleanErrorMessage(String message) {
-		if(JOptionPane.showConfirmDialog(getContentPane(), message)==JOptionPane.YES_OPTION) {
+		if (JOptionPane.showConfirmDialog(getContentPane(), message) == JOptionPane.YES_OPTION) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}

@@ -16,6 +16,8 @@ public class SolarPannels extends Device{
    * @param code the code
    * @param consume the consume
    * @param md the md
+   * @param contr the contr
+   * @param RoomKey the room key
    */
   public SolarPannels(String deviceName, int code, Consume consume, Home md,Controller contr, String RoomKey) {
 		super(deviceName, code, consume, md, true, contr, RoomKey);
@@ -43,6 +45,11 @@ public class SolarPannels extends Device{
 		}
 	}
 	
+	/**
+	 * Gets the power.
+	 *
+	 * @return the power
+	 */
 	public double getPower() {
 		return this.getConsume().getKwh();
 	}

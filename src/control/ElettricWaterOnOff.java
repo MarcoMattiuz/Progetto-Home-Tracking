@@ -24,6 +24,8 @@ public class ElettricWaterOnOff extends Device {
 	 * @param code the code
 	 * @param consume the consume
 	 * @param md the md
+	 * @param contr the contr
+	 * @param RoomKey the room key
 	 */
 	public ElettricWaterOnOff(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
 		super(deviceName, code, consume, md, false, contr, RoomKey);
