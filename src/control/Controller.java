@@ -72,8 +72,8 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			Room roof = house.getRoom("roof");
 			roof.addDevice(new SolarPannels("pannelli-solari", 01, new Consume(-1 * solar, 0, 0), house, this));
 		}
-		window.initializeMenuItems(numRooms,rn,isSolar);
 		Collections.reverse(rn);
+		window.initializeMenuItems(numRooms,rn,isSolar);
 		switch (numRooms) {
 		case 7:
 			Room camera2 = house.getRoom("camera-2");
@@ -127,7 +127,6 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			taverna.addDevice(new ElettricOnOff("luce-10", 29, new Consume(0.055, 0, 0), house, this));
 			taverna.addDevice(new ElettricOnOff("luce-11", 30, new Consume(0.065, 0, 0), house,this));
 			taverna.addDevice(new GasElettricConstant("caldaia", 31, new Consume(1.2, 0.65, 0), house,this));
-			taverna.addDevice(new GasElettricConstant("caldaia2TEST", 31, new Consume(2, 1, 0), house,this));
 			window.addRoomPanel(new RoomPanel(this, taverna, rn.get(0)));
 			if(isSolar) {
 				Room roof = house.getRoom("roof");
@@ -294,7 +293,8 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 		
 			// Fine Controlli su tutti i campi dati, si puï¿½ creare la casa adesso
 					if(fieldflag) { 
-						roomsNames=generateHouse((window.getHomePanel()).getRoomsNumber(),(((HomePanel) window.getHomePanel()).wantSolarPanels()==1),2); // TO-DO passare al metodo isSolar (se ci sono i pannelli) e solar (la potenza sviluppata) che va da 2 a 6
+						roomsNames=generateHouse((window.getHomePanel()).getRoomsNumber(),(((HomePanel) window.getHomePanel()).wantSolarPanels()==1),(((HomePanel) window.getHomePanel()).wantSolarPanels()==1)?(window.showBooleanErrorMessage(""
+								+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")?3:6):0); // TO-DO passare al metodo isSolar (se ci sono i pannelli) e solar (la potenza sviluppata) che va da 2 a 6
 						Collections.reverse(roomsNames);
 						roomsNamesReversed=roomsNames;
 						Collections.reverse(roomsNames);
@@ -368,6 +368,7 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			}
 		}
 	}
+	
 //		public void run() {
 //			while(true) {
 //				try {
