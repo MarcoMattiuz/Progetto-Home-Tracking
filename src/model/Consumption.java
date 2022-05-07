@@ -196,6 +196,10 @@ public class Consumption {
 
 	}
 	
+	public String getPresentConsumptio() {
+		return "Present Consumption: " + this.getPresentConsumptionKwh() +"kW/h \n";
+	}
+	
 	/**
 	 * Gets the daily consumption.
 	 *
