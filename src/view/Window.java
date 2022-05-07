@@ -273,7 +273,24 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		}else if(e.getSource()==exitBtn) {
 //			System.exit(EXIT_ON_CLOSE);
 			windowIconified(null);
+		}else if(e.getSource()==tavernaBtn) {
+			setRoomPanel(0);
+		}else if(e.getSource()==cucinaBtn) {
+			setRoomPanel(1);
+		}else if(e.getSource()==bagnoABtn) {
+			setRoomPanel(2);
+		}else if(e.getSource()==soggiornoBtn) {
+			setRoomPanel(3);
+		}else if(e.getSource()==cameraABtn) {
+			setRoomPanel(4);
+		}else if(e.getSource()==bagnoBBtn) {
+			setRoomPanel(5);
+		}else if(e.getSource()==cameraBBtn) {
+			setRoomPanel(6);
+		}else if(e.getSource()==roofBtn) {
+			setRoofPanel();
 		}
+		menu.setPopupMenuVisible(false);
 	}
 	
 	public void initializeMenuItems(int numberOfRooms, ArrayList<String> roomsNames, boolean isSolar) {
@@ -283,7 +300,7 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 		houseBtn.setMinimumSize(new Dimension(85, 23));
 		houseBtn.addActionListener((ActionListener) this);
 		menu.add(houseBtn);
-		if(isSolar) numberOfRooms+=1;
+		if(isSolar) numberOfRooms-=1;
 		switch (numberOfRooms) {
 		case 7:
 			cameraBBtn = new JButton(roomsNames.get(6));
@@ -335,14 +352,14 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 			tavernaBtn.addActionListener((ActionListener) this);
 			menu.add(tavernaBtn);
 		}
-//		if(isSolar) {
-//			roofBtn = new JButton("Roof");
-//			roofBtn.setMaximumSize(new Dimension(85, 23));
-//			roofBtn.setMinimumSize(new Dimension(85, 23));
-//			roofBtn.addActionListener((ActionListener) this);
-//			roofBtn.addActionListener((ActionListener) controller);
-//			menu.add(roofBtn);
-//		}
+		if(isSolar) {
+			roofBtn = new JButton("Roof");
+			roofBtn.setMaximumSize(new Dimension(85, 23));
+			roofBtn.setMinimumSize(new Dimension(85, 23));
+			roofBtn.addActionListener((ActionListener) this);
+			roofBtn.addActionListener((ActionListener) controller);
+			menu.add(roofBtn);
+		}
 		menu.add(exitBtn);
 	}
 	
@@ -410,6 +427,8 @@ public class Window extends JFrame implements ActionListener,WindowListener{
 	public JPanel getNoHousePanel() {
 		return noHousePanel;
 	}
+	
+	
 
 	/**
 	 * Show error message.

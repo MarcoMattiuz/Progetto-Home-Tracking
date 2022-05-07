@@ -72,8 +72,8 @@ public class Controller extends Thread implements ActionListener,ListSelectionLi
 			Room roof = house.getRoom("roof");
 			roof.addDevice(new SolarPannels("pannelli-solari", 01, new Consume(-1 * solar, 0, 0), house, this));
 		}
-		window.initializeMenuItems(numRooms,rn,isSolar);
 		Collections.reverse(rn);
+		window.initializeMenuItems(numRooms,rn,isSolar);
 		switch (numRooms) {
 		case 7:
 			Room camera2 = house.getRoom("camera-2");
