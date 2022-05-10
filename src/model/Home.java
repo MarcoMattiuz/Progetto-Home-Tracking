@@ -46,7 +46,7 @@ public class Home extends Consumption{
 		this.money_kwh = 0;
 		this.money_Lh = 0;
 	}
-
+	
 	/**
 	 * Generate rooms. metodo che istanzia le case e viene richiamato nel controller
 	 *
