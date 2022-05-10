@@ -42,6 +42,10 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	/** The rooms names reversed. */
 	private ArrayList<Room> roomsReversed;
 
+	private Boolean roomsFlag;
+	
+	private Boolean houseFlag;
+	
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -49,6 +53,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	 */
 	public Controller(Home h) {
 		this.house = h;
+		roomsFlag=houseFlag=false;
 	}
 
 	/**
@@ -307,7 +312,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 								(((HomePanel) window.getHomePanel()).wantSolarPanels() == 1),
 								(((HomePanel) window.getHomePanel()).wantSolarPanels() == 1)
 										? (window.showBooleanErrorMessage(""
-												+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")
+												+ "Hai scelto di utilizzare i pannelli,\nla potenza base ï¿½ di 3kw, desideri avere 6 kw?")
 														? 6
 														: 3)
 										: 0);
@@ -329,6 +334,12 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 		if (window.getContentPane() instanceof RoomPanel) {
 			if (e.getSource() == ((RoomPanel) window.getContentPane()).getBackBtn()) {
 				window.setHousePanel();
+			}else if(e.getSource()==((RoomPanel) window.getContentPane()).getViewthingsbtn()) {
+				roomsFlag=!roomsFlag;
+			}
+		}else if(window.getContentPane() instanceof HousePanel) {
+			if(e.getSource()==((HousePanel) window.getContentPane()).getViewthingsbtn()) {
+				houseFlag=!houseFlag;
 			}
 		}
 	}
@@ -414,7 +425,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	/**
 	 * Update time. aggiorna il timer e calcola le ore e i minuti.
 	 *	Questo metodo viene aggiornato nei thread dei dispositivi
-	 * costant perchè quei dispositivi ci sono sempre durante l'esecuzione del
+	 * costant perchï¿½ quei dispositivi ci sono sempre durante l'esecuzione del
 	 * programma
 	 * @param time the time
 	 */
@@ -426,7 +437,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 
 	/**
 	 * Update consumption. Questo metodo viene aggiornato nei thread dei dispositivi
-	 * costant perchè quei dispositivi ci sono sempre durante l'esecuzione del
+	 * costant perchï¿½ quei dispositivi ci sono sempre durante l'esecuzione del
 	 * programma e aggiorna i consumi nelle stanze a nella casa
 	 *
 	 * @param s the s
@@ -434,15 +445,22 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	public void updateConsumption(String s) {
 		if (window.getContentPane() instanceof HousePanel) {
 //			System.out.println(house.getDailyConsumption());
-			((HousePanel) window.getContentPane()).getConsumptionLabel().setText(house.getDailyConsumption());
-		}
-		if (window.getContentPane() instanceof RoomPanel) {
+			if(houseFlag) {
+				((HousePanel) window.getContentPane()).getConsumptionLabel().setText(house.getPresentConsumption());
+			}else {				
+				((HousePanel) window.getContentPane()).getConsumptionLabel().setText(house.getDailyConsumption());
+			}
+		}else if(window.getContentPane() instanceof RoomPanel) {
 			ArrayList<RoomPanel> arr = (window.getRoomPanels());
-			arr.forEach((x) -> {
-				x.getConsumptionLabel().setText(x.getRoom().getDailyConsumption());
-			});
-
+			if(roomsFlag) {				
+				arr.forEach((x)->{
+					x.getConsumptionLabel().setText(x.getRoom().getPresentConsumption());
+				});
+			}else {	
+				arr.forEach((x)->{
+					x.getConsumptionLabel().setText(x.getRoom().getDailyConsumption());
+				});
+			}
 		}
-
 	}
 }

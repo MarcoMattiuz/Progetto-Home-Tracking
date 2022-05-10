@@ -53,7 +53,7 @@ import javax.swing.ListSelectionModel;
 /**
  * The Class HousePanel.
  */
-public class RoomPanel extends JPanel{
+public class RoomPanel extends JPanel implements ActionListener{
 
 	/**
 	 * Create the panel.
@@ -136,6 +136,7 @@ public class RoomPanel extends JPanel{
 	 */
 	public void setListener() {
 		viewthingsbtn.addActionListener(controller);
+		viewthingsbtn.addActionListener(this);
 		list.addListSelectionListener(controller);
 		backBtn.addActionListener(controller);
 	}
@@ -221,5 +222,17 @@ public class RoomPanel extends JPanel{
 	 */
 	public void setTitleLabel(JLabel titleLabel) {
 		this.titleLabel = titleLabel;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==viewthingsbtn) {
+			if(viewthingsbtn.getText().compareTo("VIEW CURRENT CONSUMPTION")==0) {
+				viewthingsbtn.setText("VIEW DAILY CONSUMPTION");
+			}else {
+				viewthingsbtn.setText("VIEW CURRENT CONSUMPTION");
+			}
+		}
 	}
 }
