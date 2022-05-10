@@ -226,5 +226,13 @@ public class Home extends Consumption{
 	public void setMoney_Lh(double money_Lh) {
 		this.money_Lh = money_Lh;
 	}
+	
+	public String calculateMoney() {
+		money_kwh = contract.getPrice_kwh() * getDailyConsumptionKwh();
+		money_Gmh = contract.getPrice_gmh() * getDailyConsumption_Gmc();
+		money_Lh = contract.getPrice_lh() * getDailyConsumption_Lh();
+		
+		return "Costs: Money_Electricity: " + money_kwh + "$/kwh Money_Gas:_" + money_Gmh + "$/Gmh Money_Lh: " + money_Lh + "$/Lh";
+	}
 
 }

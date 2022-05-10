@@ -30,7 +30,7 @@ public class Consumption {
 	}
 	
 	/**
-	 * Round avoid. arrotonda un double alla quarta cifra decimale
+	 * arrotonda un double alla quarta cifra decimale
 	 *
 	 * @param value the value
 	 * @return Math.round(value * scale) / scale
