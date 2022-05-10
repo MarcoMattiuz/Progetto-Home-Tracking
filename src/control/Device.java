@@ -91,14 +91,14 @@ public abstract class Device extends Thread {
 	}
 	
 	/**
-	 * Gets the percent consumption.
+	 * ritorna il consumo di un deivice in base a quanto tempo è stato acceso
 	 *
 	 * @param consume the consume
 	 * @return the percent consumption
 	 */
 	protected double getPercentConsumption(double consume) {
 		int percent = (100/hour) * (getTimer() % hour);
-		double ret = consume - (consume/100) * percent;
+		double ret = (consume/100) * percent;
 		return ret;
 	}
 	/**
@@ -127,7 +127,7 @@ public abstract class Device extends Thread {
 	}
 
 	/**
-	 * Keep time. metodo che viene utilizzato nei metodi run per tenere i tempo costante tra i dispositivi
+	 * Keep time. metodo che viene utilizzato nei metodi run dei device per tenere il tempo costante tra i dispositivi
 	 */
 	protected void keepTime() {
 		try {
@@ -147,7 +147,7 @@ public abstract class Device extends Thread {
 	}
 
 	/**
-	 * Toggle. metodo toggle di base
+	 * Toggle. accende il thread, setta il timer a 0 quando viene riacceso, aggiunge il present consumption e calcola il consumo quando non passa un ora intera
 	 */
 	public void toggle() {
 		toggle = !toggle;

@@ -58,7 +58,7 @@ public class HousePanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	Controller controller;
+	private Controller controller;
 	
 	/** The progress state. */
 	private int progressState;

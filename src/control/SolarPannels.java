@@ -46,7 +46,7 @@ public class SolarPannels extends Device{
 	}
 	
 	/**
-	 * Gets the power.
+	 * ritorna la potenza dei pannelli
 	 *
 	 * @return the power
 	 */

@@ -58,10 +58,10 @@ public class RoomPanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	Controller controller;
+	private Controller controller;
 	
 	/** The room. */
-	Room room;
+	private Room room;
 	
 	/** The list. */
 	private JList list;

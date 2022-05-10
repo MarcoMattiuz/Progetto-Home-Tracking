@@ -51,6 +51,9 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 	/** The holder name tfd. */
 	private JTextField holderNameTfd;
 	
+	/** The house name tfd. */
+	private JTextField houseNameTfd;
+	
 	/** The yes btn. */
 	private JButton yesBtn;
 	
@@ -64,13 +67,11 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 	private JButton proceedBtn;
 	
 	/** The flag. */
-	int flag;
+	private int flag;
 	
 	/** The flag 2. */
-	boolean flag2;
+	private boolean flag2;
 	
-	/** The house name tfd. */
-	private JTextField houseNameTfd;
 	
 	/** The progress bar. */
 	private JProgressBar progressBar;

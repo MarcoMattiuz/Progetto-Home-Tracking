@@ -50,7 +50,7 @@ public class NoHousePanel extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	Controller controller;
+	private Controller controller;
 	
 	/** The name btn. */
 	private JButton nameBtn;

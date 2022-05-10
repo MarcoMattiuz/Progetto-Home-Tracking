@@ -61,7 +61,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	}
 
 	/**
-	 * Generate house. genera la casa istanzia le stanze e i dispositivi
+	 * Genera la casa istanzia le stanze e i dispositivi e i pannelli.
 	 *
 	 * @param numRooms the num rooms
 	 * @param isSolar  the is solar
@@ -334,7 +334,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	}
 
 	/**
-	 * Value changed.
+	 * apre il pannello della stanza selezionata dalla lista.
 	 *
 	 * @param e the e
 	 */
@@ -410,6 +410,14 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 		}
 	}
 
+	
+	/**
+	 * Update time. aggiorna il timer e calcola le ore e i minuti.
+	 *	Questo metodo viene aggiornato nei thread dei dispositivi
+	 * costant perchè quei dispositivi ci sono sempre durante l'esecuzione del
+	 * programma
+	 * @param time the time
+	 */
 	public void updateTime(int time) {
 		int hour = time / 60;
 		int minutes = time % 60;
@@ -419,7 +427,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	/**
 	 * Update consumption. Questo metodo viene aggiornato nei thread dei dispositivi
 	 * costant perchè quei dispositivi ci sono sempre durante l'esecuzione del
-	 * programma
+	 * programma e aggiorna i consumi nelle stanze a nella casa
 	 *
 	 * @param s the s
 	 */

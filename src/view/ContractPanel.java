@@ -47,7 +47,7 @@ public class ContractPanel extends JPanel implements DocumentListener {
 	/**
 	 * Create the panel.
 	 */
-	Controller controller;
+	private Controller controller;
 	
 	/** The contract name tfd. */
 	private JTextField contractNameTfd;
