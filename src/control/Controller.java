@@ -334,6 +334,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 		if (window.getContentPane() instanceof RoomPanel) {
 			if (e.getSource() == ((RoomPanel) window.getContentPane()).getBackBtn()) {
 				window.setHousePanel();
+				roomsFlag=false;
 			}else if(e.getSource()==((RoomPanel) window.getContentPane()).getViewthingsbtn()) {
 				roomsFlag=!roomsFlag;
 			}
@@ -432,7 +433,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	public void updateTime(int time) {
 		int hour = time / 60;
 		int minutes = time % 60;
-		window.getTime().setText("Time: " + "-hours: " + hour + " minutes: " + minutes + "-");
+		window.getTime().setText("Time: " + "Hours: " + hour + " Minutes: " + minutes + "");
 	}
 
 	/**
@@ -454,10 +455,12 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 			ArrayList<RoomPanel> arr = (window.getRoomPanels());
 			if(roomsFlag) {				
 				arr.forEach((x)->{
+					x.getViewthingsbtn().setText("VIEW DAILY CONSUMPTION");
 					x.getConsumptionLabel().setText(x.getRoom().getPresentConsumption());
 				});
 			}else {	
 				arr.forEach((x)->{
+					x.getViewthingsbtn().setText("VIEW PRESENT CONSUMPTION");
 					x.getConsumptionLabel().setText(x.getRoom().getDailyConsumption());
 				});
 			}

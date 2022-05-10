@@ -108,6 +108,7 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 
 	/** The time. */
 	private JLabel time;
+	private JPanel panel;
 
 	/**
 	 * Gets the time.
@@ -183,8 +184,14 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 		exitBtn = new JButton("Exit");
 		exitBtn.setMaximumSize(new Dimension(85, 70));
 		menu.add(exitBtn);
+		
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setMaximumSize(new Dimension(300, 32767));
+		menuBar.add(panel);
 
 		time = new JLabel("");
+		time.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(time);
 		exitBtn.addActionListener(this);
 		setTitle(title);

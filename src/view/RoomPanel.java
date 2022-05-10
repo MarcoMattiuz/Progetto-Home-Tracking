@@ -231,7 +231,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 			if(viewthingsbtn.getText().compareTo("VIEW CURRENT CONSUMPTION")==0) {
 				viewthingsbtn.setText("VIEW DAILY CONSUMPTION");
 			}else {
-				viewthingsbtn.setText("VIEW CURRENT CONSUMPTION");
+				viewthingsbtn.setText("VIEW PRESENT CONSUMPTION");
 			}
 		}
 	}
