@@ -66,25 +66,25 @@ public class House extends Consumption {
 		}
 		switch (num) {
 		case 7:
-			rooms.put("camera-2", new Room("Camera-2"));
+			rooms.put("bedroom-2", new Room("Bedroom 2"));
 			ret.add(rooms.get("camera-2"));
 		case 6:
-			rooms.put("bagno-2", new Room("Bagno-2"));
+			rooms.put("bathroom-2", new Room("Bathroom 2"));
 			ret.add(rooms.get("bagno-2"));
 		case 5:
-			rooms.put("camera-1", new Room("Camera-1"));
+			rooms.put("bedroom-1", new Room("Bedroom 1"));
 			ret.add(rooms.get("camera-1"));
 		case 4:
-			rooms.put("soggiorno", new Room("Soggiorno"));
+			rooms.put("livingroom", new Room("Livingroom"));
 			ret.add(rooms.get("soggiorno"));
 		case 3:
-			rooms.put("bagno-1", new Room("Bagno-1"));
+			rooms.put("bathroom-1", new Room("Bathroom 1"));
 			ret.add(rooms.get("bagno-1"));
 		case 2:
-			rooms.put("cucina", new Room("Cucina"));
+			rooms.put("kitchen", new Room("Kitchen"));
 			ret.add(rooms.get("cucina"));
 		default:
-			rooms.put("taverna", new Room("Taverna"));
+			rooms.put("tavern", new Room("Tavern"));
 			ret.add(rooms.get("taverna"));
 			break;
 		}
