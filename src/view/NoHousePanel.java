@@ -90,7 +90,7 @@ public class NoHousePanel extends JPanel{
 		panel.add(nameBtn);
 		nameBtn.addActionListener(controller);
 		
-		ImageIcon imageIcon = new ImageIcon("src/img/homeImg.png"); 
+		ImageIcon imageIcon = new ImageIcon("img/homeImg.png"); 
         Image image = imageIcon.getImage(); 
         Image newimg = image.getScaledInstance(130, 150,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg);
