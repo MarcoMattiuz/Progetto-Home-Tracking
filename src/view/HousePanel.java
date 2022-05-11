@@ -74,6 +74,7 @@ public class HousePanel extends JPanel implements ActionListener{
 	
 	/** The model. */
 	private DefaultListModel model;
+	private JLabel moneyLabel;
 	
 	/**
 	 * Instantiates a new house panel.
@@ -88,14 +89,14 @@ public class HousePanel extends JPanel implements ActionListener{
 		setLayout(new BorderLayout(0, 0));
 
 		titleLabel = new JLabel("House Panel");
-		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][218.00,grow][69.00px:n][][]"));
+		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][237.00,grow][30.00px:n][][][]"));
 		
 		list = new JList<>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -114,7 +115,13 @@ public class HousePanel extends JPanel implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel.add(viewthingsbtn, "cell 1 4,alignx center");
+		
+		moneyLabel = new JLabel("");
+		moneyLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		panel.add(moneyLabel, "cell 1 3,alignx center,aligny center");
+		panel.add(viewthingsbtn, "cell 1 5,alignx center");
 		setListener();
 	}
 
@@ -204,6 +211,10 @@ public class HousePanel extends JPanel implements ActionListener{
 	 */
 	public void setTitleLabel(JLabel titleLabel) {
 		this.titleLabel = titleLabel;
+	}
+	
+	public JLabel getMoneyLabel() {
+		return moneyLabel;
 	}
 
 	@Override

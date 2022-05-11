@@ -98,7 +98,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 		setLayout(new BorderLayout(0, 0));
 
 		titleLabel = new JLabel("Room Panel");
-		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 		

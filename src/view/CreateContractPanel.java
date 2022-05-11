@@ -83,8 +83,8 @@ public class CreateContractPanel extends JPanel implements DocumentListener {
 		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));
 
-		JLabel titleLabel = new JLabel("CREATING A NEW HOME -> CONTRACT");
-		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel titleLabel = new JLabel("Create a new house -> The Contract");
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 

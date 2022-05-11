@@ -91,8 +91,8 @@ public class CreateHousePanel extends JPanel implements ActionListener, Document
 		setLayout(new BorderLayout(0, 0));
 		flag = 1;
 		flag2 = false;
-		JLabel titleLabel = new JLabel("CREATING A NEW HOME -> HOUSE");
-		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel titleLabel = new JLabel("Creating a new House -> The House");
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 
@@ -182,6 +182,10 @@ public class CreateHousePanel extends JPanel implements ActionListener, Document
 	 */
 	public void setYesBtn(JButton yesBtn) {
 		this.yesBtn = yesBtn;
+	}
+	
+	public JTextField getHolderNameTfd() {
+		return holderNameTfd;
 	}
 
 	/**

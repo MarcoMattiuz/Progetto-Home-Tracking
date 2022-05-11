@@ -53,7 +53,7 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	private JPanel contentPane;
 
 	/** The home panel. */
-	private JPanel homePanel;
+	private JPanel createHousePanel;
 
 	/** The contract panel. */
 	private JPanel contractPanel;
@@ -195,7 +195,7 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 		menuBar.add(time);
 		exitBtn.addActionListener(this);
 		setTitle(title);
-		homePanel = new CreateHousePanel(controller);
+		createHousePanel = new CreateHousePanel(controller);
 		contractPanel = new CreateContractPanel(controller);
 		menu.hide();
 	}
@@ -221,7 +221,7 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	 * Sets the house panel.
 	 */
 	public void setHousePanel() {
-		noHousePanel = contractPanel = homePanel = null;
+		noHousePanel = contractPanel = createHousePanel = null;
 		setContentPane(housePanel);
 		setSize(505, 380);
 	}
@@ -471,19 +471,21 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	/**
 	 * Sets the home panel.
 	 */
-	public void setHomePanel() {
+	public void setCreateHousePanel() {
 		menu.show();
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
 		setSize(466, 307);
 		// getContentPane().setVisible(false);
-		setContentPane(homePanel);
+		setContentPane(createHousePanel);
+		((CreateHousePanel) createHousePanel).getHolderNameTfd().setText(noHousePanel.getName());
+		((CreateHousePanel) createHousePanel).getHolderNameTfd().selectAll();
 	}
 
 	/**
 	 * Sets the contract panel.
 	 */
-	public void setContractPanel() {
+	public void setCreateContractPanel() {
 		menu.show();
 		menu.setPopupMenuVisible(true);
 		menu.setPopupMenuVisible(false);
@@ -509,7 +511,7 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	 * @return the home panel
 	 */
 	public CreateHousePanel getHomePanel() {
-		return (CreateHousePanel) homePanel;
+		return (CreateHousePanel) createHousePanel;
 	}
 
 	/**

@@ -165,13 +165,13 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 		Boolean fieldflag = true;
 		if (window.getContentPane() instanceof NoHousePanel) {
 			if (e.getSource() == ((NoHousePanel) window.getContentPane()).getNameBtn()) {
-				window.setHomePanel();
+				window.setCreateHousePanel();
 			}
 
 		} else if (window.getContentPane() instanceof CreateHousePanel) {
 			if (e.getSource() == ((CreateHousePanel) window.getContentPane()).getProceedBtn()) {
 				int progress = ((CreateHousePanel) window.getContentPane()).getIndexProgressBar();
-				window.setContractPanel();
+				window.setCreateContractPanel();
 				((CreateContractPanel) window.getContentPane()).setProgressBar(progress);
 			} else if (e.getSource() == ((CreateHousePanel) window.getContentPane()).getBackBtn()) {
 				window.setNoHousePanel();
@@ -327,7 +327,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 				}
 			} else if (e.getSource() == ((CreateContractPanel) window.getContentPane()).getBackBtn()) {
 				int progress = ((CreateContractPanel) window.getContentPane()).getIndexProgressBar();
-				window.setHomePanel();
+				window.setCreateHousePanel();
 				((CreateHousePanel) window.getContentPane()).setProgressBar(progress);
 			}
 		}
@@ -446,6 +446,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	public void updateConsumption(String s) {
 		if (window.getContentPane() instanceof HousePanel) {
 //			System.out.println(house.getDailyConsumption());
+			((HousePanel) window.getContentPane()).getMoneyLabel().setText(house.calculateMoney());
 			if(houseFlag) {
 				((HousePanel) window.getContentPane()).getConsumptionLabel().setText(house.getPresentConsumption());
 			}else {				
