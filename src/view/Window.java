@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.Controller;
-import model.Home;
+import model.House;
 import model.Room;
 
 import javax.swing.JMenuBar;
@@ -195,8 +195,8 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 		menuBar.add(time);
 		exitBtn.addActionListener(this);
 		setTitle(title);
-		homePanel = new HomePanel(controller);
-		contractPanel = new ContractPanel(controller);
+		homePanel = new CreateHousePanel(controller);
+		contractPanel = new CreateContractPanel(controller);
 		menu.hide();
 	}
 
@@ -508,8 +508,8 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	 *
 	 * @return the home panel
 	 */
-	public HomePanel getHomePanel() {
-		return (HomePanel) homePanel;
+	public CreateHousePanel getHomePanel() {
+		return (CreateHousePanel) homePanel;
 	}
 
 	/**

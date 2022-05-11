@@ -1,7 +1,7 @@
 package control;
 
 import model.Consume;
-import model.Home;
+import model.House;
 // TODO: Auto-generated Javadoc
 
 /**
@@ -23,7 +23,7 @@ public abstract class Device extends Thread {
 	private Consume consume;
 	
 	/** The md. */
-	private Home md;
+	private House md;
 	
 	/** The timer. */
 	private int timer; //contatore del tempo 
@@ -51,7 +51,7 @@ public abstract class Device extends Thread {
 	 * @param contr the contr
 	 * @param RoomKey the room key
 	 */
-	public Device(String deviceName, int code, Consume consume, Home md, boolean toggle, Controller contr, String RoomKey) {
+	public Device(String deviceName, int code, Consume consume, House md, boolean toggle, Controller contr, String RoomKey) {
 		this.contr = contr;
 		this.deviceName= deviceName;
 		this.code = code;
@@ -142,7 +142,7 @@ public abstract class Device extends Thread {
 	 *
 	 * @return the md
 	 */
-	public Home getMd() {
+	public House getMd() {
 		return md;
 	}
 
@@ -167,7 +167,7 @@ public abstract class Device extends Thread {
 	 */
 	@Override
 	public String toString() {
-		if(this instanceof ElettricConstant || this instanceof GasElettricConstant) {
+		if(this instanceof ElettricConstant || this instanceof GasElettricConstant || this instanceof SolarPannels) {
 			return "Device -> " + deviceName + ", Activated: [Always]" ;
 		}
 		return "Device -> " + deviceName + ", Activated: [" + (isToggle() ? "On" : "Off") +"]";

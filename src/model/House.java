@@ -12,7 +12,7 @@ import java.util.Map;
  *         {@docRoot}
  * @version 4.21.0
  */
-public class Home extends Consumption{
+public class House extends Consumption{
 	
 	/** The house holder. */
 	private String house_holder;
@@ -38,7 +38,7 @@ public class Home extends Consumption{
 	 * @param house_holder the house holder
 	 * @param contract the contract
 	 */
-	public Home(String house_holder, Contract contract) {
+	public House(String house_holder, Contract contract) {
 		this.house_holder = house_holder;
 		this.contract = contract;
 		this.rooms = new HashMap<String, Room>();
@@ -96,7 +96,7 @@ public class Home extends Consumption{
 	 *
 	 * @param key the key
 	 * @return rooms.get(key)
-	 * @see model.Home
+	 * @see model.House
 	 */
 	public Room getRoom(String key) {
 		return rooms.get(key);

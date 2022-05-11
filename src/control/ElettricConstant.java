@@ -3,7 +3,7 @@ package control;
 import java.util.concurrent.Semaphore;
 
 import model.Consume;
-import model.Home;
+import model.House;
 // TODO: Auto-generated Javadoc
 
 /**
@@ -25,7 +25,7 @@ public class ElettricConstant extends Device {
 	 * @param contr the contr
 	 * @param RoomKey the room key
 	 */
-	public ElettricConstant(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
+	public ElettricConstant(String deviceName, int code, Consume consume, House md, Controller contr, String RoomKey) {
 		super(deviceName, code, consume, md, true, contr,RoomKey);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
 		md.getRoom(roomKey).addToPresentConsumptionKwh(this.getConsume().getKwh());

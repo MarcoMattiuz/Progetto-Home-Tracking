@@ -3,7 +3,7 @@ package control;
 import java.util.concurrent.Semaphore;
 
 import model.Consume;
-import model.Home;
+import model.House;
 // TODO: Auto-generated Javadoc
 
 /**
@@ -28,7 +28,7 @@ public class ElettricOnOff extends Device {
 	 * @param contr the contr
 	 * @param RoomKey the room key
 	 */
-	ElettricOnOff(String deviceName, int code, Consume consume, Home md, Controller contr, String RoomKey) {
+	ElettricOnOff(String deviceName, int code, Consume consume, House md, Controller contr, String RoomKey) {
 		super(deviceName, code, consume, md, false, contr,RoomKey);
 		this.firstOn = true;
 	}

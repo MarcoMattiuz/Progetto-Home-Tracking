@@ -16,7 +16,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.Consume;
-import model.Home;
+import model.House;
 import model.Room;
 import view.*;
 // TODO: Auto-generated Javadoc
@@ -31,7 +31,7 @@ import view.*;
 public class Controller extends Thread implements ActionListener, ListSelectionListener {
 
 	/** The house. */
-	private Home house;
+	private House house;
 
 	/** The window. */
 	private Window window;
@@ -51,7 +51,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	 *
 	 * @param h the h
 	 */
-	public Controller(Home h) {
+	public Controller(House h) {
 		this.house = h;
 		roomsFlag=houseFlag=false;
 	}
@@ -168,65 +168,65 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 				window.setHomePanel();
 			}
 
-		} else if (window.getContentPane() instanceof HomePanel) {
-			if (e.getSource() == ((HomePanel) window.getContentPane()).getProceedBtn()) {
-				int progress = ((HomePanel) window.getContentPane()).getIndexProgressBar();
+		} else if (window.getContentPane() instanceof CreateHousePanel) {
+			if (e.getSource() == ((CreateHousePanel) window.getContentPane()).getProceedBtn()) {
+				int progress = ((CreateHousePanel) window.getContentPane()).getIndexProgressBar();
 				window.setContractPanel();
-				((ContractPanel) window.getContentPane()).setProgressBar(progress);
-			} else if (e.getSource() == ((HomePanel) window.getContentPane()).getBackBtn()) {
+				((CreateContractPanel) window.getContentPane()).setProgressBar(progress);
+			} else if (e.getSource() == ((CreateHousePanel) window.getContentPane()).getBackBtn()) {
 				window.setNoHousePanel();
 				window.getJMenuBar().getMenu(0).hide(); // Nascondo il menu
 			}
 
-		} else if (window.getContentPane() instanceof ContractPanel) {
-			if (e.getSource() == ((ContractPanel) window.getContentPane()).getProceedBtn()) {
+		} else if (window.getContentPane() instanceof CreateContractPanel) {
+			if (e.getSource() == ((CreateContractPanel) window.getContentPane()).getProceedBtn()) {
 				// Controlli su tutti i campi dati
-				if (((HomePanel) window.getHomePanel()).getHolderName().isBlank()) {
+				if (((CreateHousePanel) window.getHomePanel()).getHolderName().isBlank()) {
 					window.showErrorMessage("The \"Holder name\" field cannot be empty!");
 					fieldflag = false;
-				} else if (((HomePanel) window.getHomePanel()).getHouseName().isBlank()) {
+				} else if (((CreateHousePanel) window.getHomePanel()).getHouseName().isBlank()) {
 					window.showErrorMessage("The \"House name\" field cannot be empty!");
 					fieldflag = false;
-				} else if (((HomePanel) window.getHomePanel()).getRoomsNumber() == 0) {
+				} else if (((CreateHousePanel) window.getHomePanel()).getRoomsNumber() == 0) {
 					window.showErrorMessage("The \"Rooms number\" field cannot be 0!");
 					fieldflag = false;
-				} else if (((HomePanel) window.getHomePanel()).getRoomsNumber() < 0) {
+				} else if (((CreateHousePanel) window.getHomePanel()).getRoomsNumber() < 0) {
 					if (window.showBooleanErrorMessage(
 							"The \"Rooms number\" field cannot be negative, do you want to make it positive?")) {
-						((HomePanel) window.getHomePanel())
-								.setRoomsNumber(((HomePanel) window.getHomePanel()).getRoomsNumber() * -1);
+						((CreateHousePanel) window.getHomePanel())
+								.setRoomsNumber(((CreateHousePanel) window.getHomePanel()).getRoomsNumber() * -1);
 						fieldflag = false;
 
 					} else {
 						fieldflag = false;
 					}
-				} else if (((HomePanel) window.getHomePanel()).getRoomsNumber() > 7) {
+				} else if (((CreateHousePanel) window.getHomePanel()).getRoomsNumber() > 7) {
 					if (window.showBooleanErrorMessage(
 							"The \"Rooms number\" field cannot be >7, do you want to set it to 7?")) {
-						((HomePanel) window.getHomePanel()).setRoomsNumber(7);
+						((CreateHousePanel) window.getHomePanel()).setRoomsNumber(7);
 						fieldflag = false;
 					} else {
 						fieldflag = false;
 					}
-				} else if (((HomePanel) window.getHomePanel()).wantSolarPanels() == 0) {
+				} else if (((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 0) {
 					window.showErrorMessage("You have to select one of the two buttons for the solar panels!");
 					fieldflag = false;
-				} else if (((ContractPanel) window.getContentPane()).getContractName().isBlank()) {
+				} else if (((CreateContractPanel) window.getContentPane()).getContractName().isBlank()) {
 					window.showErrorMessage("The \"Contract name\" field cannot be empty!");
 					fieldflag = false;
-				} else if (((ContractPanel) window.getContentPane()).getePrice().isBlank()) {
+				} else if (((CreateContractPanel) window.getContentPane()).getePrice().isBlank()) {
 					window.showErrorMessage("The \"Electricity Price\" field cannot be empty!");
 					fieldflag = false;
-				} else if (!((ContractPanel) window.getContentPane()).getePrice().isBlank()) {
+				} else if (!((CreateContractPanel) window.getContentPane()).getePrice().isBlank()) {
 					try {
-						if (Float.valueOf(((ContractPanel) window.getContentPane()).getePrice()) == 0) {
+						if (Float.valueOf(((CreateContractPanel) window.getContentPane()).getePrice()) == 0) {
 							window.showErrorMessage("The \"Electricity Price\" cannot be 0!");
 							fieldflag = false;
-						} else if ((Float.valueOf(((ContractPanel) window.getContentPane()).getePrice()) < 0)) {
+						} else if ((Float.valueOf(((CreateContractPanel) window.getContentPane()).getePrice()) < 0)) {
 							if (window.showBooleanErrorMessage(
 									"The \"Electricity Price\" field cannot be negative, do you want to make it positive?")) {
-								((ContractPanel) window.getContractPanel()).setePrice(((double) (Float
-										.valueOf(((ContractPanel) window.getContractPanel()).getePrice()) * -1)));
+								((CreateContractPanel) window.getContractPanel()).setePrice(((double) (Float
+										.valueOf(((CreateContractPanel) window.getContractPanel()).getePrice()) * -1)));
 								fieldflag = false;
 								return; // Bruttino //si molto bruttino :(
 							} else {
@@ -243,28 +243,28 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 						return;
 						/**/}
 				}
-				if (((ContractPanel) window.getContentPane()).getgPrice().isBlank()
-						&& !(((ContractPanel) window.getContentPane()).getePrice().isBlank())
-						&& ((Double.valueOf(((ContractPanel) window.getContentPane()).getePrice())) > 0)) {
+				if (((CreateContractPanel) window.getContentPane()).getgPrice().isBlank()
+						&& !(((CreateContractPanel) window.getContentPane()).getePrice().isBlank())
+						&& ((Double.valueOf(((CreateContractPanel) window.getContentPane()).getePrice())) > 0)) {
 					window.showErrorMessage("The \"Gas Price\" field cannot be empty!");
 					fieldflag = false;
-				} else if (!((ContractPanel) window.getContentPane()).getgPrice().isBlank()) {
+				} else if (!((CreateContractPanel) window.getContentPane()).getgPrice().isBlank()) {
 					try {
-						if (Float.valueOf(((ContractPanel) window.getContentPane()).getgPrice()) == 0) {
+						if (Float.valueOf(((CreateContractPanel) window.getContentPane()).getgPrice()) == 0) {
 							window.showErrorMessage("The \"Gas Price\" cannot be 0!");
 							fieldflag = false;
-						} else if ((Float.valueOf(((ContractPanel) window.getContentPane()).getgPrice()) < 0)) {
+						} else if ((Float.valueOf(((CreateContractPanel) window.getContentPane()).getgPrice()) < 0)) {
 							if (window.showBooleanErrorMessage(
 									"The \"Gas Price\" field cannot be negative, do you want to make it positive?")) {
-								((ContractPanel) window.getContractPanel()).setgPrice(((double) (Float
-										.valueOf(((ContractPanel) window.getContractPanel()).getgPrice()) * -1)));
+								((CreateContractPanel) window.getContractPanel()).setgPrice(((double) (Float
+										.valueOf(((CreateContractPanel) window.getContractPanel()).getgPrice()) * -1)));
 								fieldflag = false;
 							} else {
 								fieldflag = false;
 							}
 						}
 					} catch (Exception e2) {
-						if (!((ContractPanel) window.getContentPane()).getgPrice().isBlank()) {
+						if (!((CreateContractPanel) window.getContentPane()).getgPrice().isBlank()) {
 							window.showErrorMessage("The \"Gas Price\" field is not a number!");
 							fieldflag = false;
 							if (window.showBooleanErrorMessage("Do you think this is a mistake?")) {
@@ -275,27 +275,27 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 						return;
 					}
 				}
-				if (((ContractPanel) window.getContentPane()).getwPrice().isBlank()
-						&& !(((ContractPanel) window.getContentPane()).getgPrice().isBlank())
-						&& ((Double.valueOf(((ContractPanel) window.getContentPane()).getgPrice())) > 0)) {
+				if (((CreateContractPanel) window.getContentPane()).getwPrice().isBlank()
+						&& !(((CreateContractPanel) window.getContentPane()).getgPrice().isBlank())
+						&& ((Double.valueOf(((CreateContractPanel) window.getContentPane()).getgPrice())) > 0)) {
 					window.showErrorMessage("The \"Water Price\" field cannot be empty!");
 					fieldflag = false;
 				} else {
 					try {
-						if (Float.valueOf(((ContractPanel) window.getContentPane()).getwPrice()) == 0) {
+						if (Float.valueOf(((CreateContractPanel) window.getContentPane()).getwPrice()) == 0) {
 							window.showErrorMessage("The \"Water Price\" cannot be 0!");
 							fieldflag = false;
-						} else if ((Float.valueOf(((ContractPanel) window.getContentPane()).getwPrice()) < 0)) {
+						} else if ((Float.valueOf(((CreateContractPanel) window.getContentPane()).getwPrice()) < 0)) {
 							if (window.showBooleanErrorMessage(
 									"The \"Water Price\" field cannot be negative, do you want to make it positive?")) {
-								((ContractPanel) window.getContractPanel()).setwPrice(((double) (Float
-										.valueOf(((ContractPanel) window.getContractPanel()).getwPrice()) * -1)));
+								((CreateContractPanel) window.getContractPanel()).setwPrice(((double) (Float
+										.valueOf(((CreateContractPanel) window.getContractPanel()).getwPrice()) * -1)));
 								fieldflag = false;
 							}
 							return;
 						}
 					} catch (Exception e21) {
-						if (!((ContractPanel) window.getContentPane()).getwPrice().isBlank()) {
+						if (!((CreateContractPanel) window.getContentPane()).getwPrice().isBlank()) {
 							window.showErrorMessage("The \"Water Price\" field is not a number!");
 							fieldflag = false;
 							if (window.showBooleanErrorMessage("Do you think this is a mistake?")) {
@@ -309,8 +309,8 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 					// Fine Controlli su tutti i campi dati, si puï¿½ creare la casa adesso
 					if (fieldflag) {
 						rooms = generateHouse((window.getHomePanel()).getRoomsNumber(),
-								(((HomePanel) window.getHomePanel()).wantSolarPanels() == 1),
-								(((HomePanel) window.getHomePanel()).wantSolarPanels() == 1)
+								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1),
+								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1)
 										? (window.showBooleanErrorMessage(""
 												+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")
 														? 6
@@ -325,10 +325,10 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 						((HousePanel) window.getContentPane()).initializePanel(rooms, houseName, holderName);
 					}
 				}
-			} else if (e.getSource() == ((ContractPanel) window.getContentPane()).getBackBtn()) {
-				int progress = ((ContractPanel) window.getContentPane()).getIndexProgressBar();
+			} else if (e.getSource() == ((CreateContractPanel) window.getContentPane()).getBackBtn()) {
+				int progress = ((CreateContractPanel) window.getContentPane()).getIndexProgressBar();
 				window.setHomePanel();
-				((HomePanel) window.getContentPane()).setProgressBar(progress);
+				((CreateHousePanel) window.getContentPane()).setProgressBar(progress);
 			}
 		}
 		if (window.getContentPane() instanceof RoomPanel) {
@@ -455,7 +455,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 			ArrayList<RoomPanel> arr = (window.getRoomPanels());
 			if(roomsFlag) {				
 				arr.forEach((x)->{
-					if(x.getRoom().getRoomName().contains("roof")||x.getRoom().getRoomName().contains("Roof")) {
+					if(x.getRoom().getDevices().get(0) instanceof SolarPannels) {
 						x.getViewthingsbtn().hide();
 					}
 					x.getViewthingsbtn().setText("VIEW DAILY CONSUMPTION");

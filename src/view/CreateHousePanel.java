@@ -40,7 +40,7 @@ import javax.swing.DebugGraphics;
  */
 @SuppressWarnings("serial")
 
-public class HomePanel extends JPanel implements ActionListener, DocumentListener, ChangeListener {
+public class CreateHousePanel extends JPanel implements ActionListener, DocumentListener, ChangeListener {
 
 	/** The progress state. */
 	private int progressState;
@@ -84,7 +84,7 @@ public class HomePanel extends JPanel implements ActionListener, DocumentListene
 	 *
 	 * @param controller the controller
 	 */
-	public HomePanel(Controller controller) {
+	public CreateHousePanel(Controller controller) {
 		progressState = 0;
 		setSize(new Dimension(430, 244));
 		this.controller = controller;

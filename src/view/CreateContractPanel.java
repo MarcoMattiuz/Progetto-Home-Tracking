@@ -42,7 +42,7 @@ import javax.swing.JSlider;
 /**
  * The Class ContractPanel.
  */
-public class ContractPanel extends JPanel implements DocumentListener {
+public class CreateContractPanel extends JPanel implements DocumentListener {
 
 	/**
 	 * Create the panel.
@@ -78,7 +78,7 @@ public class ContractPanel extends JPanel implements DocumentListener {
 	 *
 	 * @param controller the controller
 	 */
-	public ContractPanel(Controller controller) {
+	public CreateContractPanel(Controller controller) {
 		setSize(new Dimension(430, 244));
 		this.controller = controller;
 		setLayout(new BorderLayout(0, 0));
