@@ -167,7 +167,10 @@ public abstract class Device extends Thread {
 	 */
 	@Override
 	public String toString() {
-		return "Device -> " + deviceName + ", Activated: [" + toggle +"]";
+		if(this instanceof ElettricConstant || this instanceof GasElettricConstant) {
+			return "Device -> " + deviceName + ", Activated: [Always]" ;
+		}
+		return "Device -> " + deviceName + ", Activated: [" + (isToggle() ? "On" : "Off") +"]";
 	}
 
 	/**
