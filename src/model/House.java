@@ -61,8 +61,8 @@ public class House extends Consumption {
 	public ArrayList<Room> generateRooms(int num, boolean isSolar) {
 		ArrayList<Room> ret = new ArrayList<Room>();
 		if (isSolar) {
-			rooms.put("roof", new Room("roof"));
-			ret.add(rooms.get("roof"));
+			rooms.put("Roof", new Room("Roof"));
+			ret.add(rooms.get("Roof"));
 		}
 		switch (num) {
 		case 7:
@@ -70,7 +70,7 @@ public class House extends Consumption {
 			ret.add(rooms.get("bedroom-2"));
 		case 6:
 			rooms.put("bathroom-2", new Room("Bathroom 2"));
-			ret.add(rooms.get("bathroom-22"));
+			ret.add(rooms.get("bathroom-2"));
 		case 5:
 			rooms.put("bedroom-1", new Room("Bedroom 1"));
 			ret.add(rooms.get("bedroom-1"));
@@ -239,10 +239,8 @@ public class House extends Consumption {
 	 * @return the string
 	 */
 	public synchronized String calculateMoney() {
-		System.out.println(contract.getPrice_kwh() + "   --    " + getDailyConsumptionKwh());
 		money_kwh = contract.getPrice_kwh() * getDailyConsumptionKwh();
 		money_kwh = round(money_kwh);
-		System.out.println("MOMO" + money_kwh);
 		money_Gmh = contract.getPrice_gmh() * getDailyConsumption_Gmc();
 		money_Gmh = round(money_Gmh);
 		money_Lh = contract.getPrice_lh() * getDailyConsumption_Lh();

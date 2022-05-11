@@ -133,44 +133,44 @@ public class HousePanel extends JPanel implements ActionListener{
 		setLayout(new BorderLayout(0, 0));
 
 		titleLabel = new JLabel("House Panel");
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][237.00,grow][30.00px:n][][][][][]"));
+		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][180.00,grow][16.00px:n][16.00px:n][8][16.00px:n][16.00px:n][]"));
 		
 		list = new JList<>();
+		list.setFixedCellWidth(300);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(model);
-		list.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		list.setFont(new Font("Arial", Font.PLAIN, 12));
 		list.setBorder(null);
 		list.setBackground(SystemColor.control);
 		panel.add(list, "flowx,cell 1 1,alignx left,aligny top");
 		
 		consumptionLabel = new JLabel("");
-		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.add(consumptionLabel, "cell 1 2");
+		consumptionLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel.add(consumptionLabel, "cell 1 2,alignx center,aligny center");
 		
 		viewthingsbtn = new JButton("VIEW PRESENT CONSUMPTION");
-		viewthingsbtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		viewthingsbtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		
 		moneyLabel = new JLabel("");
 		moneyLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		moneyLabel.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel.add(moneyLabel, "cell 1 3,alignx center,aligny center");
 		
 		profitLabel = new JLabel("");
-		panel.add(profitLabel, "cell 1 5");
+		profitLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel.add(profitLabel, "cell 1 5,alignx center,aligny center");
 		
 		billLabel = new JLabel("");
-		panel.add(billLabel, "cell 1 6");
+		billLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel.add(billLabel, "cell 1 6,alignx center,aligny center");
 		panel.add(viewthingsbtn, "cell 1 7,alignx center");
 		setListener();
 	}

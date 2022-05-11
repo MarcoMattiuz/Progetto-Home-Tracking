@@ -84,7 +84,7 @@ public class CreateContractPanel extends JPanel implements DocumentListener {
 		setLayout(new BorderLayout(0, 0));
 
 		JLabel titleLabel = new JLabel("Create a new house -> The Contract");
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 
@@ -95,30 +95,38 @@ public class CreateContractPanel extends JPanel implements DocumentListener {
 				"[30.00][30.00][30.00:30.00][30.00][10.00][:37.00:30px,grow][10.00][]"));
 
 		JLabel contractNameLabel = new JLabel("Contract Name");
+		contractNameLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(contractNameLabel, "cell 0 0");
 
 		contractNameTfd = new JTextField();
+		contractNameTfd.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(contractNameTfd, "cell 3 0,growx,aligny center");
 		contractNameTfd.setColumns(10);
 
 		JLabel ePriceLabel = new JLabel("Electricity Price");
+		ePriceLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(ePriceLabel, "cell 0 1");
 
 		ePriceTfd = new JTextField();
+		ePriceTfd.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(ePriceTfd, "flowx,cell 3 1,growx");
 		ePriceTfd.setColumns(10);
 
 		JLabel gPriceLabel = new JLabel("Gas Price");
+		gPriceLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(gPriceLabel, "cell 0 2");
 
 		gPriceTfd = new JTextField();
+		gPriceTfd.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(gPriceTfd, "flowx,cell 3 2,growx");
 		gPriceTfd.setColumns(10);
 
 		JLabel wPriceLabel = new JLabel("Water Price");
+		wPriceLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(wPriceLabel, "cell 0 3");
 
 		wPriceTfd = new JTextField();
+		wPriceTfd.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(wPriceTfd, "flowx,cell 3 3,growx");
 		wPriceTfd.setColumns(10);
 
@@ -133,22 +141,27 @@ public class CreateContractPanel extends JPanel implements DocumentListener {
 		panel.add(splitPane, "cell 0 5 4 1,alignx center,growy");
 
 		backBtn = new JButton("Back");
+		backBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		backBtn.setMinimumSize(new Dimension(71, 23));
 		backBtn.setMaximumSize(new Dimension(71, 23));
 		splitPane.setLeftComponent(backBtn);
 
 		proceedBtn = new JButton("Proceed");
+		proceedBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		splitPane.setRightComponent(proceedBtn);
 
 		JLabel lblNewLabel_4 = new JLabel("\u20AC/kWh");
+		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(lblNewLabel_4, "cell 3 1,alignx trailing");
 
 		JLabel lblNewLabel_5 = new JLabel("\u20AC/Smc");
+		lblNewLabel_5.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblNewLabel_5.setMinimumSize(new Dimension(31, 14));
 		lblNewLabel_5.setMaximumSize(new Dimension(31, 14));
 		panel.add(lblNewLabel_5, "cell 3 2,alignx trailing");
 
 		JLabel lblNewLabel_6 = new JLabel("\u20AC/mq");
+		lblNewLabel_6.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblNewLabel_6.setMinimumSize(new Dimension(31, 14));
 		lblNewLabel_6.setMaximumSize(new Dimension(31, 14));
 		panel.add(lblNewLabel_6, "cell 3 3,alignx trailing");

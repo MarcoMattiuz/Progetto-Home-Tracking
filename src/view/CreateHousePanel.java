@@ -92,7 +92,7 @@ public class CreateHousePanel extends JPanel implements ActionListener, Document
 		flag = 1;
 		flag2 = false;
 		JLabel titleLabel = new JLabel("Creating a new House -> The House");
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 
@@ -103,34 +103,43 @@ public class CreateHousePanel extends JPanel implements ActionListener, Document
 				"[30.00][30.00][30.00:30.00][30.00][10.00][:37.00:30px,grow][10.00][]"));
 
 		JLabel holderNameLabel = new JLabel("Holder Name");
+		holderNameLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(holderNameLabel, "cell 0 0");
 
 		holderNameTfd = new JTextField();
+		holderNameTfd.setFont(new Font("Arial", Font.PLAIN, 11));
 		holderNameTfd.getDocument().addDocumentListener(this);
 
 		panel.add(holderNameTfd, "cell 3 0,growx,aligny center");
 		holderNameTfd.setColumns(10);
 
 		JLabel houseNameLabel = new JLabel("House Name");
+		houseNameLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(houseNameLabel, "cell 0 1");
 
 		houseNameTfd = new JTextField();
+		houseNameTfd.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(houseNameTfd, "cell 3 1,growx");
 		houseNameTfd.setColumns(10);
 		houseNameTfd.getDocument().addDocumentListener(this);
 		JLabel rnLabel = new JLabel("Rooms Number");
+		rnLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(rnLabel, "cell 0 2");
 
 		spinner = new JSpinner();
+		spinner.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(spinner, "cell 3 2,alignx left,aligny center");
 
 		JLabel sPLabel = new JLabel("Solar Panels");
+		sPLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(sPLabel, "cell 0 3");
 
 		yesBtn = new JButton("Yes");
+		yesBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(yesBtn, "flowx,cell 3 3");
 
 		noBtn = new JButton("No");
+		noBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(noBtn, "cell 3 3");
 
 		progressBar = new JProgressBar();
@@ -143,10 +152,12 @@ public class CreateHousePanel extends JPanel implements ActionListener, Document
 		splitPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		panel.add(splitPane, "cell 0 5 4 1,alignx center,growy");
 		backBtn = new JButton("Back");
+		backBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		backBtn.setMinimumSize(new Dimension(71, 23));
 		backBtn.setMaximumSize(new Dimension(71, 23));
 		splitPane.setLeftComponent(backBtn);
 		proceedBtn = new JButton("Proceed");
+		proceedBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		splitPane.setRightComponent(proceedBtn);
 		setListener();
 	}

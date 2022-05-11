@@ -111,6 +111,8 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	
 	/** The panel. */
 	private JPanel panel;
+	
+	private boolean firstTime;
 
 	/**
 	 * Gets the time.
@@ -160,6 +162,7 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 		} catch (IllegalAccessException e) {
 		    // handle exception
 		}
+		firstTime=true;
 		
 		noHousePanel = new NoHousePanel(controller);
 		roomPanels = new ArrayList<RoomPanel>(1);
@@ -394,8 +397,8 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	public void initializeMenuItems(int numberOfRooms, ArrayList<Room> roomsNames, boolean isSolar) {
 		menu.remove(exitBtn);
 		houseBtn = new JButton("House");
-		houseBtn.setMaximumSize(new Dimension(85, 23));
-		houseBtn.setMinimumSize(new Dimension(85, 23));
+		houseBtn.setMaximumSize(new Dimension(100, 23));
+		houseBtn.setMinimumSize(new Dimension(100, 23));
 		houseBtn.addActionListener((ActionListener) this);
 		menu.add(houseBtn);
 		if (isSolar)
@@ -403,58 +406,58 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 		switch (numberOfRooms) {
 		case 7:
 			cameraBBtn = new JButton(roomsNames.get(6).getRoomName());
-			cameraBBtn.setMaximumSize(new Dimension(85, 23));
-			cameraBBtn.setMinimumSize(new Dimension(85, 23));
+			cameraBBtn.setMaximumSize(new Dimension(100, 23));
+			cameraBBtn.setMinimumSize(new Dimension(100, 23));
 			cameraBBtn.addActionListener((ActionListener) this);
 			cameraBBtn.addActionListener((ActionListener) controller);
 			menu.add(cameraBBtn);
 		case 6:
 			bagnoBBtn = new JButton(roomsNames.get(5).getRoomName());
-			bagnoBBtn.setMaximumSize(new Dimension(85, 23));
-			bagnoBBtn.setMinimumSize(new Dimension(85, 23));
+			bagnoBBtn.setMaximumSize(new Dimension(100, 23));
+			bagnoBBtn.setMinimumSize(new Dimension(100, 23));
 			bagnoBBtn.addActionListener((ActionListener) this);
 			bagnoBBtn.addActionListener((ActionListener) controller);
 			menu.add(bagnoBBtn);
 		case 5:
 			cameraABtn = new JButton(roomsNames.get(4).getRoomName());
-			cameraABtn.setMaximumSize(new Dimension(85, 23));
-			cameraABtn.setMinimumSize(new Dimension(85, 23));
+			cameraABtn.setMaximumSize(new Dimension(100, 23));
+			cameraABtn.setMinimumSize(new Dimension(100, 23));
 			cameraABtn.addActionListener((ActionListener) controller);
 			cameraABtn.addActionListener((ActionListener) this);
 			menu.add(cameraABtn);
 		case 4:
 			soggiornoBtn = new JButton(roomsNames.get(3).getRoomName());
-			soggiornoBtn.setMaximumSize(new Dimension(85, 23));
-			soggiornoBtn.setMinimumSize(new Dimension(85, 23));
+			soggiornoBtn.setMaximumSize(new Dimension(100, 23));
+			soggiornoBtn.setMinimumSize(new Dimension(100, 23));
 			soggiornoBtn.addActionListener((ActionListener) controller);
 			soggiornoBtn.addActionListener((ActionListener) this);
 			menu.add(soggiornoBtn);
 		case 3:
 			bagnoABtn = new JButton(roomsNames.get(2).getRoomName());
-			bagnoABtn.setMaximumSize(new Dimension(85, 23));
-			bagnoABtn.setMinimumSize(new Dimension(85, 23));
+			bagnoABtn.setMaximumSize(new Dimension(100, 23));
+			bagnoABtn.setMinimumSize(new Dimension(100, 23));
 			bagnoABtn.addActionListener((ActionListener) controller);
 			bagnoABtn.addActionListener((ActionListener) this);
 			menu.add(bagnoABtn);
 		case 2:
 			cucinaBtn = new JButton(roomsNames.get(1).getRoomName());
-			cucinaBtn.setMaximumSize(new Dimension(85, 23));
-			cucinaBtn.setMinimumSize(new Dimension(85, 23));
+			cucinaBtn.setMaximumSize(new Dimension(100, 23));
+			cucinaBtn.setMinimumSize(new Dimension(100, 23));
 			cucinaBtn.addActionListener((ActionListener) controller);
 			cucinaBtn.addActionListener((ActionListener) this);
 			menu.add(cucinaBtn);
 		default:
 			tavernaBtn = new JButton(roomsNames.get(0).getRoomName());
-			tavernaBtn.setMaximumSize(new Dimension(85, 23));
-			tavernaBtn.setMinimumSize(new Dimension(85, 23));
+			tavernaBtn.setMaximumSize(new Dimension(100, 23));
+			tavernaBtn.setMinimumSize(new Dimension(100, 23));
 			tavernaBtn.addActionListener((ActionListener) controller);
 			tavernaBtn.addActionListener((ActionListener) this);
 			menu.add(tavernaBtn);
 		}
 		if (isSolar) {
 			roofBtn = new JButton("Roof");
-			roofBtn.setMaximumSize(new Dimension(85, 23));
-			roofBtn.setMinimumSize(new Dimension(85, 23));
+			roofBtn.setMaximumSize(new Dimension(100, 23));
+			roofBtn.setMinimumSize(new Dimension(100, 23));
 			roofBtn.addActionListener((ActionListener) this);
 			roofBtn.addActionListener((ActionListener) controller);
 			menu.add(roofBtn);
@@ -480,8 +483,11 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 		setSize(466, 307);
 		// getContentPane().setVisible(false);
 		setContentPane(createHousePanel);
-		((CreateHousePanel) createHousePanel).getHolderNameTfd().setText(noHousePanel.getName());
-		((CreateHousePanel) createHousePanel).getHolderNameTfd().selectAll();
+		if(firstTime) {			
+			((CreateHousePanel) createHousePanel).getHolderNameTfd().setText(noHousePanel.getName());
+			((CreateHousePanel) createHousePanel).getHolderNameTfd().selectAll();
+			firstTime=false;
+		}
 	}
 
 	/**

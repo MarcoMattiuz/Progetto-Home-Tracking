@@ -83,77 +83,77 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 		house.getContract().setPrices(price_kwh, price_Gmh, price_Lh);
 		// solar ï¿½ la potenza dell'impianto e viene messa come -consumo nei pannelli
 		if (isSolar) {
-			Room roof = house.getRoom("roof");
-			roof.addDevice(new SolarPannels("solar-pannels", 01, new Consume(solar, 0, 0), house, this, "roof"));
+			Room Roof = house.getRoom("Roof");
+			Roof.addDevice(new SolarPannels("solar-panels", 01, new Consume(solar, 0, 0), house, this, "Roof"));
 		}
 		Collections.reverse(rn);
 		window.initializeMenuItems(numRooms, rn, isSolar);
 		switch (numRooms) {
 		case 7:
-			Room camera2 = house.getRoom("bedroom-2");
-			camera2.addDevice(new ElettricOnOff("LED-3", 21, new Consume(0.007, 0, 0), house, this, "bedroom-2"));
-			camera2.addDevice(new ElettricOnOff("LED-4", 22, new Consume(0.007, 0, 0), house, this, "bedroom-2"));
-			camera2.addDevice(
+			Room bedroom2 = house.getRoom("bedroom-2");
+			bedroom2.addDevice(new ElettricOnOff("Led_Light", 21, new Consume(0.007, 0, 0), house, this, "bedroom-2"));
+			bedroom2.addDevice(new ElettricOnOff("Led_Light", 22, new Consume(0.007, 0, 0), house, this, "bedroom-2"));
+			bedroom2.addDevice(
 					new ElettricOnOff("Computer-2", 23, new Consume(1.1, 0, 0), house, this, "bedroom-2"));
-			window.addRoomPanel(new RoomPanel(this, camera2, rn.get(6).getRoomName()));
+			window.addRoomPanel(new RoomPanel(this, bedroom2, rn.get(6).getRoomName()));
 		case 6:
-			Room bagno2 = house.getRoom("bathroom-2");
-			bagno2.addDevice(new WaterOnOff("lavandino", 13, new Consume(0, 0, 320), house, this, "bathroom-2"));
-			bagno2.addDevice(new WaterOnOff("doccia", 14, new Consume(0, 0, 520), house, this, "bathroom-2"));
-			bagno2.addDevice(new ElettricOnOff("luce-5", 15, new Consume(0.056, 0, 0), house, this, "bathroom-2"));
-			bagno2.addDevice(new ElettricOnOff("luce-6", 16, new Consume(0.067, 0, 0), house, this, "bathroom-2"));
-			window.addRoomPanel(new RoomPanel(this, bagno2, rn.get(5).getRoomName()));
+			Room bathroom2 = house.getRoom("bathroom-2");
+			bathroom2.addDevice(new WaterOnOff("Sink", 13, new Consume(0, 0, 320), house, this, "bathroom-2"));
+			bathroom2.addDevice(new WaterOnOff("Shower", 14, new Consume(0, 0, 520), house, this, "bathroom-2"));
+			bathroom2.addDevice(new ElettricOnOff("Led_Light", 15, new Consume(0.056, 0, 0), house, this, "bathroom-2"));
+			bathroom2.addDevice(new ElettricOnOff("Led_Light", 16, new Consume(0.067, 0, 0), house, this, "bathroom-2"));
+			window.addRoomPanel(new RoomPanel(this, bathroom2, rn.get(5).getRoomName()));
 		case 5:
-			Room camera1 = house.getRoom("bedroom-1");
-			camera1.addDevice(new ElettricOnOff("LED-1", 17, new Consume(0.006, 0, 0), house, this, "bedroom-1"));
-			camera1.addDevice(new ElettricOnOff("LED-2", 18, new Consume(0.008, 0, 0), house, this, "bedroom-1"));
-			camera1.addDevice(
-					new ElettricOnOff("Computer-1", 19, new Consume(0.9, 0, 0), house, this, "bedroom-1"));
-			camera1.addDevice(new ElettricOnOff("tv-1", 20, new Consume(0.3, 0, 0), house, this, "bedroom-1"));
-			window.addRoomPanel(new RoomPanel(this, camera1, rn.get(4).getRoomName()));
+			Room bedroom1 = house.getRoom("bedroom-1");
+			bedroom1.addDevice(new ElettricOnOff("Led_Light", 17, new Consume(0.006, 0, 0), house, this, "bedroom-1"));
+			bedroom1.addDevice(new ElettricOnOff("Led_Light", 18, new Consume(0.008, 0, 0), house, this, "bedroom-1"));
+			bedroom1.addDevice(
+					new ElettricOnOff("Computer_1", 19, new Consume(0.9, 0, 0), house, this, "bedroom-1"));
+			bedroom1.addDevice(new ElettricOnOff("Television_1", 20, new Consume(0.3, 0, 0), house, this, "bedroom-1"));
+			window.addRoomPanel(new RoomPanel(this, bedroom1, rn.get(4).getRoomName()));
 		case 4:
-			Room soggiorno = house.getRoom("livingroom");
-			soggiorno.addDevice(new ElettricOnOff("LED-7", 24, new Consume(0.007, 0, 0), house, this, "livingroom"));
-			soggiorno.addDevice(new ElettricOnOff("LED-8", 25, new Consume(0.005, 0, 0), house, this, "livingroom"));
-			soggiorno.addDevice(new ElettricOnOff("LED-9", 26, new Consume(0.004, 0, 0), house, this, "livingroom"));
-			soggiorno.addDevice(new ElettricOnOff("tvOLED-2", 27, new Consume(0.15, 0, 0), house, this, "livingroom"));
-			soggiorno.addDevice(
-					new ElettricOnOff("air conditioning", 28, new Consume(0.8, 0, 0), house, this, "livingroom"));
-			window.addRoomPanel(new RoomPanel(this, soggiorno, rn.get(3).getRoomName()));
+			Room livingroom = house.getRoom("livingroom");
+			livingroom.addDevice(new ElettricOnOff("Led_Light", 24, new Consume(0.007, 0, 0), house, this, "livingroom"));
+			livingroom.addDevice(new ElettricOnOff("Led_Light", 25, new Consume(0.005, 0, 0), house, this, "livingroom"));
+			livingroom.addDevice(new ElettricOnOff("Led_Light", 26, new Consume(0.004, 0, 0), house, this, "livingroom"));
+			livingroom.addDevice(new ElettricOnOff("Television_OLed_Light_2", 27, new Consume(0.15, 0, 0), house, this, "livingroom"));
+			livingroom.addDevice(
+					new ElettricOnOff("Air_Conditioning", 28, new Consume(0.8, 0, 0), house, this, "livingroom"));
+			window.addRoomPanel(new RoomPanel(this, livingroom, rn.get(3).getRoomName()));
 		case 3:
-			Room bagno1 = house.getRoom("bathroom-1");
-			bagno1.addDevice(new WaterOnOff("sink", 8, new Consume(0, 0, 350), house, this, "bathroom-1"));
-			bagno1.addDevice(new WaterOnOff("shower", 9, new Consume(0, 0, 480), house, this, "bathroom-1"));
-			bagno1.addDevice(new ElettricOnOff("LED-3", 10, new Consume(0.004, 0, 0), house, this, "bathroom-1"));
-			bagno1.addDevice(new ElettricOnOff("LED-4", 11, new Consume(0.005, 0, 0), house, this, "bathroom-1"));
-			bagno1.addDevice(new ElettricOnOff("heater", 12, new Consume(2.3, 0, 0), house, this, "bathroom-1"));
-			window.addRoomPanel(new RoomPanel(this, bagno1, rn.get(2).getRoomName()));
+			Room bathroom1 = house.getRoom("bathroom-1");
+			bathroom1.addDevice(new WaterOnOff("Sink", 8, new Consume(0, 0, 350), house, this, "bathroom-1"));
+			bathroom1.addDevice(new WaterOnOff("Shower", 9, new Consume(0, 0, 480), house, this, "bathroom-1"));
+			bathroom1.addDevice(new ElettricOnOff("Led_Light", 10, new Consume(0.004, 0, 0), house, this, "bathroom-1"));
+			bathroom1.addDevice(new ElettricOnOff("Led_Light", 11, new Consume(0.005, 0, 0), house, this, "bathroom-1"));
+			bathroom1.addDevice(new ElettricOnOff("Heater", 12, new Consume(2.3, 0, 0), house, this, "bathroom-1"));
+			window.addRoomPanel(new RoomPanel(this, bathroom1, rn.get(2).getRoomName()));
 		case 2:
-			Room cucina = house.getRoom("kitchen");
-			cucina.addDevice(new ElettricOnOff("forno", 1, new Consume(1.4, 0, 0), house, this, "kitchen"));
-			cucina.addDevice(new ElettricConstant("frigo", 2, new Consume(1, 0, 0), house, this, "kitchen"));
-			cucina.addDevice(new ElettricOnOff("luceLED-1", 3, new Consume(0.005, 0, 0), house, this, "kitchen"));
-			cucina.addDevice(new ElettricOnOff("luceLED-2", 4, new Consume(0.004, 0, 0), house, this, "kitchen"));
-			cucina.addDevice(new ElettricOnOff("tostapane", 5, new Consume(0.5, 0, 0), house, this, "kitchen"));
-			cucina.addDevice(new WaterOnOff("lavabo", 6, new Consume(0, 0, 400), house, this, "kitchen")); // 400 litri
+			Room kitchen = house.getRoom("kitchen");
+			kitchen.addDevice(new ElettricOnOff("Oven", 1, new Consume(1.4, 0, 0), house, this, "kitchen"));
+			kitchen.addDevice(new ElettricConstant("Fridge", 2, new Consume(1, 0, 0), house, this, "kitchen"));
+			kitchen.addDevice(new ElettricOnOff("Led_Light", 3, new Consume(0.005, 0, 0), house, this, "kitchen"));
+			kitchen.addDevice(new ElettricOnOff("Led_Light", 4, new Consume(0.004, 0, 0), house, this, "kitchen"));
+			kitchen.addDevice(new ElettricOnOff("Toaster", 5, new Consume(0.5, 0, 0), house, this, "kitchen"));
+			kitchen.addDevice(new WaterOnOff("Sink", 6, new Consume(0, 0, 400), house, this, "kitchen")); // 400 litri
 																											// all'ora
-			cucina.addDevice(
-					new ElettricWaterOnOff("lavastoviglie", 7, new Consume(1.6, 0, 50), house, this, "kitchen")); // 50
+			kitchen.addDevice(
+					new ElettricWaterOnOff("Dishwasher", 7, new Consume(1.6, 0, 50), house, this, "kitchen")); // 50
 																													// litri
-			window.addRoomPanel(new RoomPanel(this, cucina, rn.get(1).getRoomName()));
+			window.addRoomPanel(new RoomPanel(this, kitchen, rn.get(1).getRoomName()));
 
 		default:
-			Room taverna = house.getRoom("tavern");
-			taverna.addDevice(new ElettricOnOff("luce-10", 29, new Consume(0.055, 0, 0), house, this, "tavern"));
-			taverna.addDevice(new ElettricOnOff("luce-11", 30, new Consume(0.065, 0, 0), house, this, "tavern"));
-			taverna.addDevice(new ElettricWaterOnOff("lavatrice", 32, new Consume(1.8, 0, 70), house, this, "tavern")); // 50
+			Room tavern = house.getRoom("tavern");
+			tavern.addDevice(new ElettricOnOff("Led_Light_1", 29, new Consume(0.055, 0, 0), house, this, "tavern"));
+			tavern.addDevice(new ElettricOnOff("Led_Light_1", 30, new Consume(0.065, 0, 0), house, this, "tavern"));
+			tavern.addDevice(new ElettricWaterOnOff("Washing_Machine", 32, new Consume(1.8, 0, 70), house, this, "tavern")); // 50
 																															// litri
-			taverna.addDevice(
-					new GasElettricConstant("caldaia", 31, new Consume(1.2, 0.65, 0), house, this, "tavern"));
-			window.addRoomPanel(new RoomPanel(this, taverna, rn.get(0).getRoomName()));
+			tavern.addDevice(
+					new GasElettricConstant("Water_Heater", 31, new Consume(1.2, 0.65, 0), house, this, "tavern"));
+			window.addRoomPanel(new RoomPanel(this, tavern, rn.get(0).getRoomName()));
 			if (isSolar) {
-				Room roof = house.getRoom("roof");
-				window.setRoof(new RoomPanel(this, roof, "Roof"));
+				Room Roof = house.getRoom("Roof");
+				window.setRoof(new RoomPanel(this, Roof, "Roof"));
 			}
 			break;
 		}
@@ -318,13 +318,14 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1),
 								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1)
 										? (window.showBooleanErrorMessage(""
-												+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")
+												+ "Have you chosen to use the panels, \nthe base power is 3kw, do you want to have 6kw?\n"
+												+ "")
 														? 6
 														: 3)
 										: 0,
 									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getePrice()),
-									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getePrice()),
-									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getePrice())
+									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getgPrice()),
+									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getwPrice())
 									);
 						Collections.reverse(rooms);
 						roomsReversed = rooms;
@@ -370,7 +371,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(0);
 				} else if (((String) ((HousePanel) window.getContentPane()).getList().getSelectedValue().toString())
-						.contains("roof")) {
+						.contains("Roof")) {
 					// Roof
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoofPanel();

@@ -70,7 +70,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 	private JLabel consumptionLabel;
 	
 	/** The viewthingsbtn. */
-	private JButton viewthingsbtn;
+	private JButton viewThingsBtn;
 	
 	/** The title label. */
 	private JLabel titleLabel;
@@ -98,35 +98,45 @@ public class RoomPanel extends JPanel implements ActionListener{
 		setLayout(new BorderLayout(0, 0));
 
 		titleLabel = new JLabel("Room Panel");
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
+		panel.setToolTipText("4334");
+		panel.setName("");
 		panel.setBorder(null);
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][218.00,grow][69.00px:n][][]"));
 		
 		list = new JList<>();
+		list.setFixedCellWidth(300);
+		list.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setModel(model);
-		list.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		list.setFont(new Font("Arial", Font.PLAIN, 12));
 		list.setBorder(null);
 		list.setBackground(SystemColor.control);
 		panel.add(list, "flowx,cell 1 1,alignx left,aligny top");
 		
-		consumptionLabel = new JLabel("NaN");
-		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.add(consumptionLabel, "cell 1 2");
+		consumptionLabel = new JLabel("");
+		consumptionLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel.add(consumptionLabel, "cell 1 2,alignx center,aligny center");
 		
 		backBtn = new JButton("BACK");
+		backBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		panel.add(backBtn, "flowx,cell 1 4,alignx center");
 		
-		viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
-		panel.add(viewthingsbtn, "cell 1 4,alignx center");
+		viewThingsBtn = new JButton("VIEW CURRENT CONSUMPTION");
+		viewThingsBtn.setFont(new Font("Arial", Font.PLAIN, 11));
+		panel.add(viewThingsBtn, "cell 1 4,alignx center");
 		setListener();
 		(room.getDevices()).stream().forEach((s)->{
 			model.addElement(s);
+			if(s.toString().contains("panels")) {
+				panel.remove(viewThingsBtn);
+				panel.remove(consumptionLabel);
+			}
 		});
 		titleLabel.setText(titleLabel.getText()+" -> \""+roomName+"\"");
 	}
@@ -135,8 +145,8 @@ public class RoomPanel extends JPanel implements ActionListener{
 	 * Sets the listener.
 	 */
 	public void setListener() {
-		viewthingsbtn.addActionListener(controller);
-		viewthingsbtn.addActionListener(this);
+		viewThingsBtn.addActionListener(controller);
+		viewThingsBtn.addActionListener(this);
 		list.addListSelectionListener(controller);
 		backBtn.addActionListener(controller);
 	}
@@ -185,7 +195,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 	 * @return the viewthingsbtn
 	 */
 	public JButton getViewthingsbtn() {
-		return viewthingsbtn;
+		return viewThingsBtn;
 	}
 
 	/**
@@ -194,7 +204,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 	 * @param viewthingsbtn the new viewthingsbtn
 	 */
 	public void setViewthingsbtn(JButton viewthingsbtn) {
-		this.viewthingsbtn = viewthingsbtn;
+		this.viewThingsBtn = viewthingsbtn;
 	}
 
 	/**
@@ -232,11 +242,11 @@ public class RoomPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==viewthingsbtn) {
-			if(viewthingsbtn.getText().compareTo("VIEW CURRENT CONSUMPTION")==0) {
-				viewthingsbtn.setText("VIEW DAILY CONSUMPTION");
+		if(e.getSource()==viewThingsBtn) {
+			if(viewThingsBtn.getText().compareTo("VIEW CURRENT CONSUMPTION")==0) {
+				viewThingsBtn.setText("VIEW DAILY CONSUMPTION");
 			}else {
-				viewthingsbtn.setText("VIEW PRESENT CONSUMPTION");
+				viewThingsBtn.setText("VIEW PRESENT CONSUMPTION");
 			}
 		}
 	}

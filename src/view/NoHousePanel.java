@@ -72,7 +72,7 @@ public class NoHousePanel extends JPanel{
 		setLayout(new BorderLayout(0, 0));
 		
 		titleLabel = new JLabel("\"\"");
-		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(titleLabel, BorderLayout.NORTH);
 		
@@ -80,6 +80,7 @@ public class NoHousePanel extends JPanel{
 		add(panel, BorderLayout.CENTER);
 		
 		nameBtn = new JButton("Create House");
+		nameBtn.setFont(new Font("Arial", Font.PLAIN, 11));
 		nameBtn.addActionListener(controller);
 		nameBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel.add(nameBtn);
@@ -104,8 +105,8 @@ public class NoHousePanel extends JPanel{
 	public void setTitleName(String name) {
 		this.name=name;
 		titleLabel.setText("Welcome "+name.toUpperCase()+"!");
-		//JOptionPane.showMessageDialog(this, "Hello "+name+", it looks like you haven't created a house yet,\n"
-		//		+ "click on the button \"Create House\" to generate a new one");
+		JOptionPane.showMessageDialog(this, "Hello "+name+", it looks like you haven't created a house yet,\n"
+				+ "click on the button \"Create House\" to generate a new one");
 	}
 
 	/**
