@@ -456,9 +456,6 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 			ArrayList<RoomPanel> arr = (window.getRoomPanels());
 			if(roomsFlag) {				
 				arr.forEach((x)->{
-					if(x.getRoom().getDevices().get(0) instanceof SolarPannels) {
-						x.getViewthingsbtn().hide();
-					}
 					x.getViewthingsbtn().setText("VIEW DAILY CONSUMPTION");
 					x.getConsumptionLabel().setText(x.getRoom().getPresentConsumption());
 					

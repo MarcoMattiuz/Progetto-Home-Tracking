@@ -109,6 +109,8 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	/** The time. */
 	private JLabel time;
 	private JPanel panel;
+	
+	private Boolean firstTimeFlag;
 
 	/**
 	 * Gets the time.
@@ -134,31 +136,14 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	 * @param controller the controller
 	 */
 	public Window(Controller controller) {
-//		try {
-//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-//				| UnsupportedLookAndFeelException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
 		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		            break;
-		        }
-		    }
-		} catch (UnsupportedLookAndFeelException e) {
-		    // handle exception
-		} catch (ClassNotFoundException e) {
-		    // handle exception
-		} catch (InstantiationException e) {
-		    // handle exception
-		} catch (IllegalAccessException e) {
-		    // handle exception
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+		firstTimeFlag=true;
 		noHousePanel = new NoHousePanel(controller);
 		roomPanels = new ArrayList<RoomPanel>(1);
 		housePanel = new HousePanel(controller);
@@ -478,8 +463,11 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 		setSize(466, 307);
 		// getContentPane().setVisible(false);
 		setContentPane(createHousePanel);
-		((CreateHousePanel) createHousePanel).getHolderNameTfd().setText(noHousePanel.getName());
-		((CreateHousePanel) createHousePanel).getHolderNameTfd().selectAll();
+		if(firstTimeFlag) {			
+			((CreateHousePanel) createHousePanel).getHolderNameTfd().setText(noHousePanel.getName());
+			((CreateHousePanel) createHousePanel).getHolderNameTfd().selectAll();
+			firstTimeFlag=false;
+		}
 	}
 
 	/**

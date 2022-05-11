@@ -108,7 +108,7 @@ public class HousePanel extends JPanel implements ActionListener{
 		
 		consumptionLabel = new JLabel("");
 		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.add(consumptionLabel, "cell 1 2");
+		panel.add(consumptionLabel, "cell 1 2,alignx center,aligny center");
 		
 		viewthingsbtn = new JButton("VIEW PRESENT CONSUMPTION");
 		viewthingsbtn.addActionListener(new ActionListener() {
