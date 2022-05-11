@@ -78,7 +78,7 @@ public class Room extends Consumption{
 	 */
 	@Override
 	public String toString() {
-		return "Room [name=" + name + ", n. of devices=" + devices.size() + "]";
+		return "Room -> " + name + " [" + devices.size() + " devices]";
 	}
 	
 	/**

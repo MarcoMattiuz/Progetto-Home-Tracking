@@ -312,7 +312,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 								(((HomePanel) window.getHomePanel()).wantSolarPanels() == 1),
 								(((HomePanel) window.getHomePanel()).wantSolarPanels() == 1)
 										? (window.showBooleanErrorMessage(""
-												+ "Hai scelto di utilizzare i pannelli,\nla potenza base ï¿½ di 3kw, desideri avere 6 kw?")
+												+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")
 														? 6
 														: 3)
 										: 0);
@@ -455,8 +455,12 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 			ArrayList<RoomPanel> arr = (window.getRoomPanels());
 			if(roomsFlag) {				
 				arr.forEach((x)->{
+					if(x.getRoom().getRoomName().contains("roof")||x.getRoom().getRoomName().contains("Roof")) {
+						x.getViewthingsbtn().hide();
+					}
 					x.getViewthingsbtn().setText("VIEW DAILY CONSUMPTION");
 					x.getConsumptionLabel().setText(x.getRoom().getPresentConsumption());
+					
 				});
 			}else {	
 				arr.forEach((x)->{

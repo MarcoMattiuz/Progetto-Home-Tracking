@@ -60,9 +60,6 @@ public class HousePanel extends JPanel implements ActionListener{
 	 */
 	private Controller controller;
 	
-	/** The progress state. */
-	private int progressState;
-	
 	/** The list. */
 	private JList list;
 	
@@ -112,7 +109,7 @@ public class HousePanel extends JPanel implements ActionListener{
 		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel.add(consumptionLabel, "cell 1 2");
 		
-		viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
+		viewthingsbtn = new JButton("VIEW PRESENT CONSUMPTION");
 		viewthingsbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -213,10 +210,10 @@ public class HousePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==viewthingsbtn) {
-			if(viewthingsbtn.getText().compareTo("VIEW CURRENT CONSUMPTION")==0) {
+			if(viewthingsbtn.getText().compareTo("VIEW PRESENT CONSUMPTION")==0) {
 				viewthingsbtn.setText("VIEW DAILY CONSUMPTION");
 			}else {
-				viewthingsbtn.setText("VIEW CURRENT CONSUMPTION");
+				viewthingsbtn.setText("VIEW PRESENT CONSUMPTION");
 			}
 		}
 	}
