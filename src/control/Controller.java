@@ -73,8 +73,9 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	 * @param solar    the solar
 	 * @return the array list
 	 */
-	public ArrayList<Room> generateHouse(int numRooms, boolean isSolar, int solar) {
+	public ArrayList<Room> generateHouse(int numRooms, boolean isSolar, int solar, double price_kwh,double price_Gmh,double price_Lh) {
 		ArrayList<Room> rn = house.generateRooms(numRooms, isSolar);
+		house.getContract().setPrices(price_kwh, price_Gmh, price_Lh);
 		// solar ï¿½ la potenza dell'impianto e viene messa come -consumo nei pannelli
 		if (isSolar) {
 			Room roof = house.getRoom("roof");
@@ -315,7 +316,11 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 												+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")
 														? 6
 														: 3)
-										: 0);
+										: 0,
+									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getePrice()),
+									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getePrice()),
+									Double.parseDouble(((CreateContractPanel) window.getContractPanel()).getePrice())
+									);
 						Collections.reverse(rooms);
 						roomsReversed = rooms;
 						Collections.reverse(rooms);
