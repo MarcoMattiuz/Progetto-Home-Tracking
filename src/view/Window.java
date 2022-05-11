@@ -238,8 +238,14 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 	 */
 	public void windowOpened(WindowEvent e) {
 		setNoHousePanel();
-		((NoHousePanel) getContentPane())
-				.setTitleName(JOptionPane.showInputDialog("Welcome, please enter your name here"));
+		try {
+			((NoHousePanel) getContentPane())
+			.setTitleName(JOptionPane.showInputDialog("Welcome, please enter your name here"));
+			
+		} catch (Exception e2) {
+			((NoHousePanel) getContentPane())
+			.setTitleName("");
+		}
 	}
 
 	/**

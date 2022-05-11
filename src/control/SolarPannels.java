@@ -34,9 +34,9 @@ public class SolarPannels extends Device {
 			contr.updateConsumption(getMd().getDailyConsumption());
 			contr.updateProfit();
 			if (getTimer() != 0 && getTimer() % hour == 0) {
-				System.out.println("PANNELLI: " + this.getPower());
+			//System.out.println("PANNELLI: " + this.getPower());
 				double prod = this.getConsume().getKwh() - ((Math.random() * (this.getConsume().getKwh()-1)) + 1);
-				System.out.println("produzione: " + prod);
+			//	System.out.println("produzione: " + prod);
 				getMd().addToDailyProducedKhw(prod);
 			}
 			incrTimer();

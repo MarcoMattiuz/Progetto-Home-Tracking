@@ -60,7 +60,7 @@ public class WaterOnOff extends Device {
 				if (getTimer() != 0 && getTimer() % hour == 0) {
 					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
 					getMd().getRoom(roomKey).addToDailyConsumption_Lh(this.getConsume().getLh());
-					System.out.println("--" + getDeviceName() + "--");
+				//	System.out.println("--" + getDeviceName() + "--");
 				}
 				incrTimer();
 				keepTime();

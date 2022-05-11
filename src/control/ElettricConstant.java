@@ -44,8 +44,8 @@ public class ElettricConstant extends Device {
 			if (getTimer() != 0 && getTimer() % hour == 0) {
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 				getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
-				System.out.println("CASA: " + getMd().getDailyConsumption());
-				System.out.println(roomKey + ": " + getMd().getRoom(roomKey).getDailyConsumption());
+			//	System.out.println("CASA: " + getMd().getDailyConsumption());
+			//	System.out.println(roomKey + ": " + getMd().getRoom(roomKey).getDailyConsumption());
 				contr.updateProfit();
 			}
 			incrTimer();

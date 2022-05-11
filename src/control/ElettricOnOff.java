@@ -51,8 +51,8 @@ public class ElettricOnOff extends Device {
 			getMd().takeFromPresentConsumptionKwh(this.getConsume().getKwh());
 			getMd().getRoom(roomKey).takeFromPresentConsumptionKwh(this.getConsume().getKwh());
 			// aggiungo la dailyconsumption anche se non è passata un ora
-			System.out.println("TIMER:" + getTimer());
-			System.out.println("PERCENTCONSUMPTION:" + getPercentConsumption(this.getConsume().getKwh()));
+		//	System.out.println("TIMER:" + getTimer());
+		//	System.out.println("PERCENTCONSUMPTION:" + getPercentConsumption(this.getConsume().getKwh()));
 			getMd().addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
 			getMd().getRoom(roomKey).addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
 		}

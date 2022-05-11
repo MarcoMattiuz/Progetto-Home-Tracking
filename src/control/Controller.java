@@ -367,7 +367,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 			if (!(((HousePanel) window.getContentPane()).getList().getSelectedIndex() == -1)) {
 				if (((HousePanel) window.getContentPane()).getList().getSelectedValue().equals(rooms.get(0)) == true) {
 					// Taverna
-					System.out.println("Taverna");
+				//	System.out.println("Taverna");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(0);
 				} else if (((String) ((HousePanel) window.getContentPane()).getList().getSelectedValue().toString())
@@ -378,37 +378,37 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 				} else if (((HousePanel) window.getContentPane()).getList().getSelectedValue()
 						.equals(rooms.get(1)) == true) {
 					// Cucina
-					System.out.println("Cucina");
+				//	System.out.println("Cucina");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(1);
 				} else if (((HousePanel) window.getContentPane()).getList().getSelectedValue()
 						.equals(rooms.get(2)) == true) {
 					// Bagno 1
-					System.out.println("Bagno 1");
+				//	System.out.println("Bagno 1");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(2);
 				} else if (((HousePanel) window.getContentPane()).getList().getSelectedValue()
 						.equals(rooms.get(3)) == true) {
 					// Soggiorno
-					System.out.println("Soggiorno");
+				//	System.out.println("Soggiorno");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(3);
 				} else if (((HousePanel) window.getContentPane()).getList().getSelectedValue()
 						.equals(rooms.get(4)) == true) {
 					// Camera 1
-					System.out.println("Camera 1");
+				//	System.out.println("Camera 1");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(4);
 				} else if (((HousePanel) window.getContentPane()).getList().getSelectedValue()
 						.equals(rooms.get(5)) == true) {
 					// Bagno 2
-					System.out.println("Bagno 2");
+				//	System.out.println("Bagno 2");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(5);
 				} else if (((HousePanel) window.getContentPane()).getList().getSelectedValue()
 						.equals(rooms.get(6)) == true) {
 					// Camera 2
-					System.out.println("Camera 2");
+				//	System.out.println("Camera 2");
 					((HousePanel) window.getContentPane()).getList().clearSelection();
 					window.setRoomPanel(6);
 				} else {
