@@ -312,7 +312,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1),
 								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1)
 										? (window.showBooleanErrorMessage(""
-												+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")
+												+ "You have chosen to use the panels, \nthe base power is 3kw, do you want to have 6kw?")
 														? 6
 														: 3)
 										: 0);
