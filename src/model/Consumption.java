@@ -37,7 +37,6 @@ public class Consumption {
 	 */
 	protected double round(double value) {
 		double ret =Math.round(value*10000.0)/10000.0;
-		System.out.println("ARROTONDATO"+ret);
 		return ret;
 	}
 	
@@ -97,7 +96,7 @@ public class Consumption {
 	 */
 	public synchronized void setPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh = consumption;
-		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
+		presentConsumption_Kwh = round(presentConsumption_Kwh);
 	}
 	
 	/**
@@ -107,7 +106,7 @@ public class Consumption {
 	 */
 	public synchronized void addToPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh += consumption;
-		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
+		presentConsumption_Kwh = round(presentConsumption_Kwh);
 	}
 	
 	/**
@@ -117,7 +116,7 @@ public class Consumption {
 	 */
 	public synchronized void takeFromPresentConsumptionKwh(double consumption) {
 		this.presentConsumption_Kwh -= consumption;
-		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
+		presentConsumption_Kwh = round(presentConsumption_Kwh);
 	}
 	
 	/**

@@ -70,7 +70,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 	private JLabel consumptionLabel;
 	
 	/** The viewthingsbtn. */
-	private JButton viewThingsBtn;
+	private JButton viewthingsbtn;
 	
 	/** The title label. */
 	private JLabel titleLabel;
@@ -115,21 +115,18 @@ public class RoomPanel extends JPanel implements ActionListener{
 		list.setBackground(SystemColor.control);
 		panel.add(list, "flowx,cell 1 1,alignx left,aligny top");
 		
-		consumptionLabel = new JLabel("");
+		consumptionLabel = new JLabel("NaN");
 		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.add(consumptionLabel, "cell 1 2,alignx center,aligny center");
+		panel.add(consumptionLabel, "cell 1 2");
 		
 		backBtn = new JButton("BACK");
 		panel.add(backBtn, "flowx,cell 1 4,alignx center");
 		
-		viewThingsBtn = new JButton("VIEW CURRENT CONSUMPTION");
-		panel.add(viewThingsBtn, "cell 1 4,alignx center");
+		viewthingsbtn = new JButton("VIEW CURRENT CONSUMPTION");
+		panel.add(viewthingsbtn, "cell 1 4,alignx center");
 		setListener();
 		(room.getDevices()).stream().forEach((s)->{
 			model.addElement(s);
-			if(s.toString().contains("Roof")||s.toString().contains("solari")) {
-				panel.remove(viewThingsBtn);
-			}
 		});
 		titleLabel.setText(titleLabel.getText()+" -> \""+roomName+"\"");
 	}
@@ -138,8 +135,8 @@ public class RoomPanel extends JPanel implements ActionListener{
 	 * Sets the listener.
 	 */
 	public void setListener() {
-		viewThingsBtn.addActionListener(controller);
-		viewThingsBtn.addActionListener(this);
+		viewthingsbtn.addActionListener(controller);
+		viewthingsbtn.addActionListener(this);
 		list.addListSelectionListener(controller);
 		backBtn.addActionListener(controller);
 	}
@@ -188,7 +185,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 	 * @return the viewthingsbtn
 	 */
 	public JButton getViewthingsbtn() {
-		return viewThingsBtn;
+		return viewthingsbtn;
 	}
 
 	/**
@@ -197,7 +194,7 @@ public class RoomPanel extends JPanel implements ActionListener{
 	 * @param viewthingsbtn the new viewthingsbtn
 	 */
 	public void setViewthingsbtn(JButton viewthingsbtn) {
-		this.viewThingsBtn = viewthingsbtn;
+		this.viewthingsbtn = viewthingsbtn;
 	}
 
 	/**
@@ -230,11 +227,11 @@ public class RoomPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==viewThingsBtn) {
-			if(viewThingsBtn.getText().compareTo("VIEW CURRENT CONSUMPTION")==0) {
-				viewThingsBtn.setText("VIEW DAILY CONSUMPTION");
+		if(e.getSource()==viewthingsbtn) {
+			if(viewthingsbtn.getText().compareTo("VIEW CURRENT CONSUMPTION")==0) {
+				viewthingsbtn.setText("VIEW DAILY CONSUMPTION");
 			}else {
-				viewThingsBtn.setText("VIEW PRESENT CONSUMPTION");
+				viewthingsbtn.setText("VIEW PRESENT CONSUMPTION");
 			}
 		}
 	}

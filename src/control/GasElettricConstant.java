@@ -25,13 +25,14 @@ public class GasElettricConstant extends Device {
 	 * Instantiates a new gas elettric constant.
 	 *
 	 * @param deviceName the device name
-	 * @param code the code
-	 * @param consume the consume
-	 * @param md the md
-	 * @param contr the contr
-	 * @param RoomKey the room key
+	 * @param code       the code
+	 * @param consume    the consume
+	 * @param md         the md
+	 * @param contr      the contr
+	 * @param RoomKey    the room key
 	 */
-	public GasElettricConstant(String deviceName, int code, Consume consume, House md, Controller contr, String RoomKey) {
+	public GasElettricConstant(String deviceName, int code, Consume consume, House md, Controller contr,
+			String RoomKey) {
 		super(deviceName, code, consume, md, true, contr, RoomKey);
 		md.addToPresentConsumptionKwh(this.getConsume().getKwh());
 		md.getRoom(roomKey).addToPresentConsumptionKwh(this.getConsume().getKwh());
@@ -46,18 +47,18 @@ public class GasElettricConstant extends Device {
 	@Override
 	public void run() {
 		while (true) {
-			contr.updateTime(getTimer());
+			contr.updateTime(getTimer(), hour);
 			contr.updateConsumption(getMd().getDailyConsumption());
 			if (getTimer() != 0 && getTimer() % hour == 0) {
-				
-				//casa
+			
+				// casa
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 				getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
-				//stanza
-				getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh()); 
-				getMd().getRoom(roomKey).addToDailyConsumption_Gmc(this.getConsume().getGmc()); 
-				System.out.println("CASA: "+getMd().getDailyConsumption());
-				System.out.println(roomKey+": "+ getMd().getRoom(roomKey).getDailyConsumption());
+				// stanza
+				getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
+				getMd().getRoom(roomKey).addToDailyConsumption_Gmc(this.getConsume().getGmc());
+				System.out.println("CASA: " + getMd().getDailyConsumption());
+				System.out.println(roomKey + ": " + getMd().getRoom(roomKey).getDailyConsumption());
 			}
 			incrTimer();
 			keepTime();

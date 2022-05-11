@@ -23,8 +23,8 @@ public class WaterOnOff extends Device {
 	 * @param code       the code
 	 * @param consume    the consume
 	 * @param md         the md
-	 * @param contr the contr
-	 * @param RoomKey the room key
+	 * @param contr      the contr
+	 * @param RoomKey    the room key
 	 */
 	public WaterOnOff(String deviceName, int code, Consume consume, House md, Controller contr, String RoomKey) {
 		super(deviceName, code, consume, md, false, contr, RoomKey);
@@ -43,7 +43,7 @@ public class WaterOnOff extends Device {
 		}
 		if (toggle) {
 			setTimer(0);
-		}else {
+		} else {
 			getMd().addToDailyConsumption_Lh(getPercentConsumption(this.getConsume().getLh()));
 			getMd().getRoom(roomKey).addToDailyConsumption_Lh(getPercentConsumption(this.getConsume().getLh()));
 		}

@@ -10,11 +10,11 @@ import model.House;
  * The Class ElettricOnOff.
  *
  * @author Marco&Davide <br>
- * {@docRoot}
+ *         {@docRoot}
  * @version 4.21.0
  */
 public class ElettricOnOff extends Device {
-	
+
 	/** The first on. */
 	private boolean firstOn;
 
@@ -22,14 +22,14 @@ public class ElettricOnOff extends Device {
 	 * Instantiates a new elettric on off.
 	 *
 	 * @param deviceName the device name
-	 * @param code the code
-	 * @param consume the consume
-	 * @param md the md
-	 * @param contr the contr
-	 * @param RoomKey the room key
+	 * @param code       the code
+	 * @param consume    the consume
+	 * @param md         the md
+	 * @param contr      the contr
+	 * @param RoomKey    the room key
 	 */
 	ElettricOnOff(String deviceName, int code, Consume consume, House md, Controller contr, String RoomKey) {
-		super(deviceName, code, consume, md, false, contr,RoomKey);
+		super(deviceName, code, consume, md, false, contr, RoomKey);
 		this.firstOn = true;
 	}
 
@@ -37,7 +37,7 @@ public class ElettricOnOff extends Device {
 	 * Toggle.
 	 */
 	@Override
-	public void toggle() {  //prova a implementare con un semaforo
+	public void toggle() { // prova a implementare con un semaforo
 		toggle = !toggle;
 		if (firstOn) {
 			this.start();
@@ -50,9 +50,9 @@ public class ElettricOnOff extends Device {
 		} else {
 			getMd().takeFromPresentConsumptionKwh(this.getConsume().getKwh());
 			getMd().getRoom(roomKey).takeFromPresentConsumptionKwh(this.getConsume().getKwh());
-			//aggiungo la dailyconsumption anche se non è passata un ora
-			System.out.println("TIMER:"+getTimer());
-			System.out.println("PERCENTCONSUMPTION:"+getPercentConsumption(this.getConsume().getKwh()));
+			// aggiungo la dailyconsumption anche se non è passata un ora
+			System.out.println("TIMER:" + getTimer());
+			System.out.println("PERCENTCONSUMPTION:" + getPercentConsumption(this.getConsume().getKwh()));
 			getMd().addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
 			getMd().getRoom(roomKey).addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
 		}

@@ -8,11 +8,11 @@ import model.House;
  * The Class GasOnOff.
  *
  * @author Marco&Davide <br>
- * {@docRoot}
+ *         {@docRoot}
  * @version 4.21.0
  */
 public class GasOnOff extends Device {
-	
+
 	/** The first on. */
 	private boolean firstOn;
 
@@ -20,14 +20,14 @@ public class GasOnOff extends Device {
 	 * Instantiates a new gas on off.
 	 *
 	 * @param deviceName the device name
-	 * @param code the code
-	 * @param consume the consume
-	 * @param md the md
-	 * @param contr the contr
-	 * @param RoomKey the room key
+	 * @param code       the code
+	 * @param consume    the consume
+	 * @param md         the md
+	 * @param contr      the contr
+	 * @param RoomKey    the room key
 	 */
-	public GasOnOff(String deviceName, int code, Consume consume, House md,Controller contr, String RoomKey) {
-		super(deviceName, code, consume, md, false, contr,RoomKey);
+	public GasOnOff(String deviceName, int code, Consume consume, House md, Controller contr, String RoomKey) {
+		super(deviceName, code, consume, md, false, contr, RoomKey);
 		this.firstOn = true;
 	}
 
@@ -43,8 +43,8 @@ public class GasOnOff extends Device {
 		}
 		if (toggle) {
 			setTimer(0);
-		}else {
-			//percent
+		} else {
+			// percent
 			getMd().addToDailyConsumption_Gmc(getPercentConsumption(this.getConsume().getGmc()));
 			getMd().getRoom(roomKey).addToDailyConsumption_Gmc(getPercentConsumption(this.getConsume().getGmc()));
 		}

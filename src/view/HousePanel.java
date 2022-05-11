@@ -74,8 +74,31 @@ public class HousePanel extends JPanel implements ActionListener{
 	
 	/** The model. */
 	private DefaultListModel model;
+	
+	/** The money label. */
 	private JLabel moneyLabel;
 	
+	/** The profif label. */
+	private JLabel profitLabel;
+	
+	/**
+	 * Gets the profit label.
+	 *
+	 * @return the profit label
+	 */
+	public JLabel getProfitLabel() {
+		return profitLabel;
+	}
+
+	/**
+	 * Sets the profit label.
+	 *
+	 * @param profitLabel the new profit label
+	 */
+	public void setProfitLabel(JLabel profitLabel) {
+		this.profitLabel = profitLabel;
+	}
+
 	/**
 	 * Instantiates a new house panel.
 	 *
@@ -96,7 +119,7 @@ public class HousePanel extends JPanel implements ActionListener{
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][237.00,grow][30.00px:n][][][]"));
+		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][237.00,grow][30.00px:n][][][][]"));
 		
 		list = new JList<>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -108,7 +131,7 @@ public class HousePanel extends JPanel implements ActionListener{
 		
 		consumptionLabel = new JLabel("");
 		consumptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.add(consumptionLabel, "cell 1 2,alignx center,aligny center");
+		panel.add(consumptionLabel, "cell 1 2");
 		
 		viewthingsbtn = new JButton("VIEW PRESENT CONSUMPTION");
 		viewthingsbtn.addActionListener(new ActionListener() {
@@ -121,7 +144,10 @@ public class HousePanel extends JPanel implements ActionListener{
 		moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		panel.add(moneyLabel, "cell 1 3,alignx center,aligny center");
-		panel.add(viewthingsbtn, "cell 1 5,alignx center");
+		
+		profitLabel = new JLabel("");
+		panel.add(profitLabel, "cell 1 5");
+		panel.add(viewthingsbtn, "cell 1 6,alignx center");
 		setListener();
 	}
 
@@ -213,10 +239,20 @@ public class HousePanel extends JPanel implements ActionListener{
 		this.titleLabel = titleLabel;
 	}
 	
+	/**
+	 * Gets the money label.
+	 *
+	 * @return the money label
+	 */
 	public JLabel getMoneyLabel() {
 		return moneyLabel;
 	}
 
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

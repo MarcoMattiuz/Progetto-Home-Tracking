@@ -26,7 +26,7 @@ public class MainClass {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		House home = new House("marco davide", new Contract("contratto", 3, 0.17, 0.58, 1.30));
+		House home = new House("marco davide", new Contract("contratto", 3, 0, 0, 0));
 		Controller controller = new Controller(home);
 		Window frame= new Window(controller);
 		controller.setWindow(frame);

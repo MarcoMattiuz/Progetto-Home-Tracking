@@ -312,7 +312,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1),
 								(((CreateHousePanel) window.getHomePanel()).wantSolarPanels() == 1)
 										? (window.showBooleanErrorMessage(""
-												+ "You have chosen to use the panels, \nthe base power is 3kw, do you want to have 6kw?")
+												+ "Hai scelto di utilizzare i pannelli,\nla potenza base è di 3kw, desideri avere 6 kw?")
 														? 6
 														: 3)
 										: 0);
@@ -430,9 +430,9 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	 * programma
 	 * @param time the time
 	 */
-	public void updateTime(int time) {
-		int hour = time / 60;
-		int minutes = time % 60;
+	public void updateTime(int time, int hourt) {
+		int hour = time / hourt;
+		int minutes = time % hourt;
 		window.getTime().setText("Time: " + "Hours: " + hour + " Minutes: " + minutes + "");
 	}
 
@@ -456,6 +456,9 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 			ArrayList<RoomPanel> arr = (window.getRoomPanels());
 			if(roomsFlag) {				
 				arr.forEach((x)->{
+					if(x.getRoom().getDevices().get(0) instanceof SolarPannels) {
+						x.getViewthingsbtn().hide();
+					}
 					x.getViewthingsbtn().setText("VIEW DAILY CONSUMPTION");
 					x.getConsumptionLabel().setText(x.getRoom().getPresentConsumption());
 					
@@ -466,6 +469,13 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 					x.getConsumptionLabel().setText(x.getRoom().getDailyConsumption());
 				});
 			}
+		}
+	}
+	
+	public void updateProfit() {
+		if (window.getContentPane() instanceof HousePanel) {
+//			System.out.println(house.getDailyConsumption());
+			((HousePanel) window.getContentPane()).getProfitLabel().setText(house.calculateGains());
 		}
 	}
 }

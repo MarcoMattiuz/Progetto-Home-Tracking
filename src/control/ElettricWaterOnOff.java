@@ -8,33 +8,32 @@ import model.House;
  * The Class ElettricWaterOnOff.
  *
  * @author Marco&Davide <br>
- * {@docRoot}
+ *         {@docRoot}
  * @version 4.21.0
  */
 public class ElettricWaterOnOff extends Device {
-	
+
 	/** The first on. */
 	private boolean firstOn;
-	
-	
+
 	/**
 	 * Instantiates a new elettric water on off.
 	 *
 	 * @param deviceName the device name
-	 * @param code the code
-	 * @param consume the consume
-	 * @param md the md
-	 * @param contr the contr
-	 * @param RoomKey the room key
+	 * @param code       the code
+	 * @param consume    the consume
+	 * @param md         the md
+	 * @param contr      the contr
+	 * @param RoomKey    the room key
 	 */
-	public ElettricWaterOnOff(String deviceName, int code, Consume consume, House md, Controller contr, String RoomKey) {
+	public ElettricWaterOnOff(String deviceName, int code, Consume consume, House md, Controller contr,
+			String RoomKey) {
 		super(deviceName, code, consume, md, false, contr, RoomKey);
 		this.firstOn = true;
 	}
-	
-	
+
 	/**
-	 * Toggle. 
+	 * Toggle.
 	 */
 	@Override
 	public void toggle() {
@@ -50,7 +49,7 @@ public class ElettricWaterOnOff extends Device {
 		} else {
 			getMd().takeFromPresentConsumptionKwh(this.getConsume().getKwh());
 			getMd().getRoom(roomKey).takeFromPresentConsumptionKwh(this.getConsume().getKwh());
-			//percent
+			// percent
 			getMd().addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
 			getMd().getRoom(roomKey).addToDailyConsumptionKhw(getPercentConsumption(this.getConsume().getKwh()));
 			getMd().addToDailyConsumption_Lh(getPercentConsumption(this.getConsume().getLh()));
@@ -67,10 +66,10 @@ public class ElettricWaterOnOff extends Device {
 			contr.updateConsumption(getMd().getDailyConsumption());
 			if (toggle) {
 				if (getTimer() != 0 && getTimer() % hour == 0) {
-					//casa
+					// casa
 					getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 					getMd().addToDailyConsumption_Lh(this.getConsume().getLh());
-					//stanza
+					// stanza
 					getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
 					getMd().getRoom(roomKey).addToDailyConsumption_Lh(this.getConsume().getLh());
 				}
