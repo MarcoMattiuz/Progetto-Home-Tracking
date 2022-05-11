@@ -224,6 +224,11 @@ public class RoomPanel extends JPanel implements ActionListener{
 		this.titleLabel = titleLabel;
 	}
 
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

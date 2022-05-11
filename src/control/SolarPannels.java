@@ -32,14 +32,12 @@ public class SolarPannels extends Device {
 	public void run() {
 		while (true) {
 			contr.updateConsumption(getMd().getDailyConsumption());
+			contr.updateProfit();
 			if (getTimer() != 0 && getTimer() % hour == 0) {
 				System.out.println("PANNELLI: " + this.getPower());
-				double prod = this.getConsume().getKwh() - ((Math.random() * 3) + 1);
+				double prod = this.getConsume().getKwh() - ((Math.random() * (this.getConsume().getKwh()-1)) + 1);
 				System.out.println("produzione: " + prod);
-				getMd().takeFromDailyConsumptionKhw(prod);
-				getMd().getRoom(roomKey).takeFromDailyConsumptionKhw(prod); // questo serve per vedere quanto hanno
-																			// prodotto i pannelli
-				contr.updateProfit();
+				getMd().addToDailyProducedKhw(prod);
 			}
 			incrTimer();
 			keepTime();
@@ -47,7 +45,7 @@ public class SolarPannels extends Device {
 	}
 
 	/**
-	 * ritorna la potenza dei pannelli
+	 * ritorna la potenza dei pannelli.
 	 *
 	 * @return the power
 	 */

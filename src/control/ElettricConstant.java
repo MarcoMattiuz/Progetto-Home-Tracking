@@ -40,6 +40,7 @@ public class ElettricConstant extends Device {
 	public void run() {
 		while (true) {
 			contr.updateConsumption(getMd().getDailyConsumption());
+			contr.updateBill();
 			if (getTimer() != 0 && getTimer() % hour == 0) {
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 				getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());

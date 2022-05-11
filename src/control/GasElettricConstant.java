@@ -49,16 +49,15 @@ public class GasElettricConstant extends Device {
 		while (true) {
 			contr.updateTime(getTimer(), hour);
 			contr.updateConsumption(getMd().getDailyConsumption());
+			contr.updateBill();
 			if (getTimer() != 0 && getTimer() % hour == 0) {
-			
+
 				// casa
 				getMd().addToDailyConsumptionKhw(this.getConsume().getKwh());
 				getMd().addToDailyConsumption_Gmc(this.getConsume().getGmc());
 				// stanza
 				getMd().getRoom(roomKey).addToDailyConsumptionKhw(this.getConsume().getKwh());
 				getMd().getRoom(roomKey).addToDailyConsumption_Gmc(this.getConsume().getGmc());
-				System.out.println("CASA: " + getMd().getDailyConsumption());
-				System.out.println(roomKey + ": " + getMd().getRoom(roomKey).getDailyConsumption());
 			}
 			incrTimer();
 			keepTime();

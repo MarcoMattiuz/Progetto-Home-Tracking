@@ -52,6 +52,7 @@ public class NoHousePanel extends JPanel{
 	 */
 	private Controller controller;
 	
+	/** The name. */
 	String name;
 	
 	/** The name btn. */
@@ -107,6 +108,11 @@ public class NoHousePanel extends JPanel{
 		//		+ "click on the button \"Create House\" to generate a new one");
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}

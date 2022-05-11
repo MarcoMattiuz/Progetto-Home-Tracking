@@ -81,6 +81,27 @@ public class HousePanel extends JPanel implements ActionListener{
 	/** The profif label. */
 	private JLabel profitLabel;
 	
+	/** The bill label. */
+	private JLabel billLabel;
+	
+	/**
+	 * Gets the bill label.
+	 *
+	 * @return the bill label
+	 */
+	public JLabel getBillLabel() {
+		return billLabel;
+	}
+
+	/**
+	 * Sets the bill label.
+	 *
+	 * @param billLabel the new bill label
+	 */
+	public void setBillLabel(JLabel billLabel) {
+		this.billLabel = billLabel;
+	}
+
 	/**
 	 * Gets the profit label.
 	 *
@@ -119,7 +140,7 @@ public class HousePanel extends JPanel implements ActionListener{
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][237.00,grow][30.00px:n][][][][]"));
+		panel.setLayout(new MigLayout("", "[35.00][grow][35.00]", "[8.00][237.00,grow][30.00px:n][][][][][]"));
 		
 		list = new JList<>();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -147,7 +168,10 @@ public class HousePanel extends JPanel implements ActionListener{
 		
 		profitLabel = new JLabel("");
 		panel.add(profitLabel, "cell 1 5");
-		panel.add(viewthingsbtn, "cell 1 6,alignx center");
+		
+		billLabel = new JLabel("");
+		panel.add(billLabel, "cell 1 6");
+		panel.add(viewthingsbtn, "cell 1 7,alignx center");
 		setListener();
 	}
 

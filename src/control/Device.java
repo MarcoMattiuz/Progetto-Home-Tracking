@@ -60,7 +60,7 @@ public abstract class Device extends Thread {
 		this.timer = 0;
 		this.toggle = toggle;
 		this.roomKey = RoomKey;
-		this.hour = 10;
+		this.hour = 60;
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public abstract class Device extends Thread {
 	}
 	
 	/**
-	 * ritorna il consumo di un deivice in base a quanto tempo è stato acceso
+	 * ritorna il consumo di un deivice in base a quanto tempo è stato acceso.
 	 *
 	 * @param consume the consume
 	 * @return the percent consumption

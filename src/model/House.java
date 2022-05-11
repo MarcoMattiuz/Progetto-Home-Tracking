@@ -234,38 +234,45 @@ public class House extends Consumption {
 	}
 
 	/**
-	 * Calculate money.
+	 * calcola quanto bisogna pagare di ogni risorsa in base ai prezzi nel proprio contratto.
 	 *
-	 * @param timer the timer
-	 * @param hour the hour
 	 * @return the string
 	 */
 	public synchronized String calculateMoney() {
-		System.out.println(contract.getPrice_kwh() + "   --    "+ getDailyConsumptionKwh());
+		System.out.println(contract.getPrice_kwh() + "   --    " + getDailyConsumptionKwh());
 		money_kwh = contract.getPrice_kwh() * getDailyConsumptionKwh();
 		money_kwh = round(money_kwh);
-		System.out.println("MOMO"+ money_kwh);
+		System.out.println("MOMO" + money_kwh);
 		money_Gmh = contract.getPrice_gmh() * getDailyConsumption_Gmc();
 		money_Gmh = round(money_Gmh);
 		money_Lh = contract.getPrice_lh() * getDailyConsumption_Lh();
 		money_Lh = round(money_Lh);
-		
+
 		return "Costs: " + money_kwh + " $/kwh," + money_Gmh + " $/Gmh,: " + money_Lh + " $/Lh";
 	}
-	
+
+	/**
+	 * calcola i guadagni prodotti dai pannelli solari.
+	 *
+	 * @return the string
+	 */
 	public synchronized String calculateGains() {
-		if(money_kwh < 0) {
-			money_gains -= money_kwh;
-			money_kwh = 0;
-		}
-		
-		return "Profit: " + money_gains + "$ in sold elettricity";
+		money_gains = dailyProduced_Kwh * contract.getPrice_kwh();
+		money_gains = round(money_gains);
+		return "Produced Electricity: " + dailyProduced_Kwh + "kW/h, Profit: " + money_gains + "$ in sold elettricity";
 	}
-	
+
+	/**
+	 * calcola i guadagni totati, la bolletta e la bolletta tolti i guadagni.
+	 *
+	 * @return the string
+	 */
 	public synchronized String calculateBill() {
 		double bill = money_kwh + money_Gmh + money_Lh;
+		double billPlusProduced = bill - money_gains;
 		bill = round(bill);
-		return "Total bill: " + bill + "$";
+		billPlusProduced = round(billPlusProduced);
+		return "Total bill: " + bill + "$, Bill - [produced elettricity]: " + billPlusProduced + "$";
 	}
 
 }

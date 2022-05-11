@@ -1,24 +1,25 @@
 package model;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Consumption.
  */
 public class Consumption {
 
+	/** The daily produced kwh. */
+	protected double dailyProduced_Kwh;
 	/** The daily consumption kwh. */
 	protected double dailyConsumption_Kwh;
-	
+
 	/** The present consumption kwh. */
 	protected double presentConsumption_Kwh;
-	
+
 	/** The daily consumption gmc. */
 	protected double dailyConsumption_Gmc;
-	
+
 	/** The daily consumption lh. */
 	protected double dailyConsumption_Lh;
-	
+
 	/**
 	 * Instantiates a new consumption.
 	 */
@@ -27,19 +28,20 @@ public class Consumption {
 		this.presentConsumption_Kwh = 0;
 		this.dailyConsumption_Gmc = 0;
 		this.dailyConsumption_Lh = 0;
+		this.dailyProduced_Kwh = 0;
 	}
-	
+
 	/**
-	 * arrotonda un double alla quarta cifra decimale
+	 * arrotonda un double alla quarta cifra decimale.
 	 *
 	 * @param value the value
 	 * @return Math.round(value * scale) / scale
 	 */
 	protected double round(double value) {
-		double ret =Math.round(value*10000.0)/10000.0;
+		double ret = Math.round(value * 10000.0) / 10000.0;
 		return ret;
 	}
-	
+
 	/**
 	 * Gets the daily consumption kwh.
 	 *
@@ -68,7 +70,7 @@ public class Consumption {
 		this.dailyConsumption_Kwh += consumption;
 		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
-	
+
 	/**
 	 * Take from daily consumption khw.
 	 *
@@ -78,17 +80,46 @@ public class Consumption {
 		this.dailyConsumption_Kwh -= consumption;
 		dailyConsumption_Kwh = round(dailyConsumption_Kwh);
 	}
-	
+
+	/**
+	 * Gets the daily consumption kwh.
+	 *
+	 * @return dailyConsumption_Kwh
+	 */
+	public synchronized double getDailyProducedKwh() {
+		return dailyProduced_Kwh;
+	}
+
+	/**
+	 * Sets the daily produced kwh.
+	 *
+	 * @param produce the new daily produced kwh
+	 */
+	public synchronized void setDailyProducedKwh(double produce) {
+		this.dailyProduced_Kwh = produce;
+		dailyProduced_Kwh = round(dailyProduced_Kwh);
+	}
+
+	/**
+	 * Adds the to daily produced khw.
+	 *
+	 * @param produce the produce
+	 */
+	public synchronized void addToDailyProducedKhw(double produce) {
+		this.dailyProduced_Kwh += produce;
+		dailyProduced_Kwh = round(dailyProduced_Kwh);
+	}
+
 	/**
 	 * Gets the present consumption kwh.
 	 *
-	 * @return presentConsumption_Kwh
+	 * @return the present consumption kwh
 	 */
 	public synchronized double getPresentConsumptionKwh() {
 		return presentConsumption_Kwh;
 
 	}
-	
+
 	/**
 	 * Sets the present consumption kwh.
 	 *
@@ -98,7 +129,7 @@ public class Consumption {
 		this.presentConsumption_Kwh = consumption;
 		presentConsumption_Kwh = round(presentConsumption_Kwh);
 	}
-	
+
 	/**
 	 * Adds the to present consumption kwh.
 	 *
@@ -108,7 +139,7 @@ public class Consumption {
 		this.presentConsumption_Kwh += consumption;
 		presentConsumption_Kwh = round(presentConsumption_Kwh);
 	}
-	
+
 	/**
 	 * Take from present consumption kwh.
 	 *
@@ -118,7 +149,7 @@ public class Consumption {
 		this.presentConsumption_Kwh -= consumption;
 		presentConsumption_Kwh = round(presentConsumption_Kwh);
 	}
-	
+
 	/**
 	 * Gets the daily consumption gmc.
 	 *
@@ -127,7 +158,7 @@ public class Consumption {
 	public synchronized double getDailyConsumption_Gmc() {
 		return dailyConsumption_Gmc;
 	}
-	
+
 	/**
 	 * Sets the daily consumption gmc.
 	 *
@@ -137,7 +168,7 @@ public class Consumption {
 		this.dailyConsumption_Gmc = consumption;
 		dailyConsumption_Kwh = round(dailyConsumption_Gmc);
 	}
-	
+
 	/**
 	 * Adds the to daily consumption gmc.
 	 *
@@ -147,7 +178,7 @@ public class Consumption {
 		this.dailyConsumption_Gmc += consumption;
 		dailyConsumption_Gmc = round(dailyConsumption_Gmc);
 	}
-	
+
 	/**
 	 * Take from daily consumption gmc.
 	 *
@@ -155,10 +186,10 @@ public class Consumption {
 	 */
 	public synchronized void takeFromDailyConsumption_Gmc(double consumption) {
 		this.dailyConsumption_Gmc -= consumption;
-		dailyConsumption_Gmc= round(dailyConsumption_Gmc);
+		dailyConsumption_Gmc = round(dailyConsumption_Gmc);
 
 	}
-	
+
 	/**
 	 * Gets the daily consumption lh.
 	 *
@@ -167,7 +198,7 @@ public class Consumption {
 	public synchronized double getDailyConsumption_Lh() {
 		return dailyConsumption_Lh;
 	}
-	
+
 	/**
 	 * Sets the daily consumption lh.
 	 *
@@ -178,8 +209,7 @@ public class Consumption {
 		dailyConsumption_Lh = round(dailyConsumption_Lh);
 
 	}
-	
-	
+
 	/**
 	 * Adds the to daily consumption lh.
 	 *
@@ -190,7 +220,7 @@ public class Consumption {
 		dailyConsumption_Lh = round(dailyConsumption_Lh);
 
 	}
-	
+
 	/**
 	 * Take from daily consumption lh.
 	 *
@@ -201,26 +231,24 @@ public class Consumption {
 		dailyConsumption_Lh = round(dailyConsumption_Lh);
 
 	}
-	
+
 	/**
-	 * ritorna una stringa con la presentConsumption
+	 * ritorna una stringa con la presentConsumption.
 	 *
 	 * @return the present consumption
 	 */
 	public String getPresentConsumption() {
-		return "Present Consumption: " + this.getPresentConsumptionKwh() +"kW/h \n";
+		return "Present Consumption: " + this.getPresentConsumptionKwh() + "kW/h \n";
 	}
-	
+
 	/**
-	 * ritorna una stringa con i dailyConsumption
+	 * ritorna una stringa con i dailyConsumption.
 	 *
 	 * @return the daily consumption
 	 */
 	public String getDailyConsumption() {
-		return "Daily Consumption: \n"
-				+ "Electricity: " + this.getDailyConsumptionKwh() + " kW/h \n"
-						+ " Gas: " + this.getDailyConsumption_Gmc() + " Gm/h \n"
-								+ " Water: " + this.getDailyConsumption_Lh() + " l/h";
-	
+		return "Daily Consumption: \n" + "Electricity: " + this.getDailyConsumptionKwh() + " kW/h \n" + " Gas: "
+				+ this.getDailyConsumption_Gmc() + " Gm/h \n" + " Water: " + this.getDailyConsumption_Lh() + " l/h";
+
 	}
 }

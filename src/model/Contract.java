@@ -30,9 +30,6 @@ public class Contract {
 	 *
 	 * @param type the type
 	 * @param max_kw the max kw
-	 * @param price_kwh the price kwh
-	 * @param price_gmc the price gmc
-	 * @param price_lh the price lh
 	 */
 	public Contract(String type, double max_kw) {
 		this.type = type;
@@ -42,6 +39,13 @@ public class Contract {
 		this.price_lh = 0;
 	}
 	
+	/**
+	 * Sets the prices.
+	 * 
+	 * @param price_kwh the price kwh
+	 * @param price_gmh the price gmh
+	 * @param price_lh the price lh
+	 */
 	public void setPrices(double price_kwh, double price_gmh,double price_lh) {
 		this.price_kwh = price_kwh;
 		this.price_gmh = price_gmh;

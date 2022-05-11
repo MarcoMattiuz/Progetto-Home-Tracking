@@ -108,6 +108,8 @@ public class Window extends JFrame implements ActionListener, WindowListener {
 
 	/** The time. */
 	private JLabel time;
+	
+	/** The panel. */
 	private JPanel panel;
 
 	/**

@@ -42,8 +42,10 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	/** The rooms names reversed. */
 	private ArrayList<Room> roomsReversed;
 
+	/** The rooms flag. */
 	private Boolean roomsFlag;
 	
+	/** The house flag. */
 	private Boolean houseFlag;
 	
 	/**
@@ -71,6 +73,9 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	 * @param numRooms the num rooms
 	 * @param isSolar  the is solar
 	 * @param solar    the solar
+	 * @param price_kwh the price kwh
+	 * @param price_Gmh the price gmh
+	 * @param price_Lh the price lh
 	 * @return the array list
 	 */
 	public ArrayList<Room> generateHouse(int numRooms, boolean isSolar, int solar, double price_kwh,double price_Gmh,double price_Lh) {
@@ -430,10 +435,12 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 	
 	/**
 	 * Update time. aggiorna il timer e calcola le ore e i minuti.
-	 *	Questo metodo viene aggiornato nei thread dei dispositivi
-	 * costant perchï¿½ quei dispositivi ci sono sempre durante l'esecuzione del
+	 * 	Questo metodo viene aggiornato nei thread dei dispositivi
+	 * costant perchè quei dispositivi ci sono sempre durante l'esecuzione del
 	 * programma
+	 *
 	 * @param time the time
+	 * @param hourt the hourt
 	 */
 	public void updateTime(int time, int hourt) {
 		int hour = time / hourt;
@@ -443,7 +450,7 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 
 	/**
 	 * Update consumption. Questo metodo viene aggiornato nei thread dei dispositivi
-	 * costant perchï¿½ quei dispositivi ci sono sempre durante l'esecuzione del
+	 * costant perchè quei dispositivi ci sono sempre durante l'esecuzione del
 	 * programma e aggiorna i consumi nelle stanze a nella casa
 	 *
 	 * @param s the s
@@ -477,10 +484,23 @@ public class Controller extends Thread implements ActionListener, ListSelectionL
 		}
 	}
 	
+	/**
+	 * aggiorna i label con il profitto, viene aggiornato nei dispositivi constant.
+	 */
 	public void updateProfit() {
 		if (window.getContentPane() instanceof HousePanel) {
 //			System.out.println(house.getDailyConsumption());
 			((HousePanel) window.getContentPane()).getProfitLabel().setText(house.calculateGains());
+		}
+	}
+	
+	/**
+	 * aggiorna il label con la bolletta totale, viene aggiornato nei dispositivi constant.
+	 */
+	public void updateBill() {
+		if (window.getContentPane() instanceof HousePanel) {
+//			System.out.println(house.getDailyConsumption());
+			((HousePanel) window.getContentPane()).getBillLabel().setText(house.calculateBill());
 		}
 	}
 }

@@ -184,6 +184,11 @@ public class CreateHousePanel extends JPanel implements ActionListener, Document
 		this.yesBtn = yesBtn;
 	}
 	
+	/**
+	 * Gets the holder name tfd.
+	 *
+	 * @return the holder name tfd
+	 */
 	public JTextField getHolderNameTfd() {
 		return holderNameTfd;
 	}
