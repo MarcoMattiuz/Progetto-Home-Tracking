@@ -15,6 +15,8 @@ import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JToolBar;
 import javax.swing.JTabbedPane;
 import java.awt.event.ActionListener;
@@ -35,6 +37,8 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.Dimension;
 //import net.miginfocom.swing.MigLayout;
 import javax.swing.DebugGraphics;
+import javax.swing.ImageIcon;
+
 import java.awt.ComponentOrientation;
 import javax.swing.JFormattedTextField;
 import javax.swing.JEditorPane;
@@ -85,7 +89,13 @@ public class NoHousePanel extends JPanel{
 		nameBtn.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel.add(nameBtn);
 		nameBtn.addActionListener(controller);
-	//	controller.actionPerformed(null);
+		
+		ImageIcon imageIcon = new ImageIcon("src/img/homeImg.png"); 
+        Image image = imageIcon.getImage(); 
+        Image newimg = image.getScaledInstance(130, 150,  java.awt.Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(newimg);
+        JLabel picLabel = new JLabel(imageIcon);
+        add(picLabel, BorderLayout.SOUTH);
 		}
 	
 		/**
